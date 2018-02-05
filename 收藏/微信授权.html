@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+</head>
+<body ng-controller="MyController">
+<h1>hello 这是测试页面 ！</h1>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+<script src="https://cdn.bootcss.com/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+<script>
+    angular.module('myApp', [])
+        .controller('MyController', function ($scope,$http) {
+            var wei = 'https://open.weixin.qq.com/connect/oauth2/authorize?' +
+                'appid=wx0b31bcd6cbe880a4' +
+                '&redirect_uri=' +
+                'http://academy.home.bigfish.ptteng.com/bigfish' +  //url不能有特殊字符，需要编码 http://tool.chinaz.com/tools/urlencode.aspx
+                '&response_type=code' +
+                '&scope=snsapi_userinfo' +
+                '&state=STATE' +
+                '#wechat_redirect';
+            window.location.href = wei;
+
+            $scope.getQueryString = function (name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return unescape(r[2]);
+                } else {
+                    return null;
+                }
+            };
+            var code = $scope.getQueryString('code');
+            console.log(code);
+//            $scope.save = function () {
+//                $http({
+//                    method: "GET",
+//                    url: '/ajax/a/wx/code',
+//                    params: {
+//                        code:code
+//                    }
+//                }).then(function (response) {
+//                    if (response.data.code === 0) {
+//                        alert("welcome !")
+//                    } else {
+//                        alert(response.data.message);
+//                    }
+//                });
+//            };
+//            $scope.save();
+        });
+
+</script>
+</body>
+</html>

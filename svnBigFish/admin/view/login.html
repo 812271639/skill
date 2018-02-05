@@ -1,0 +1,44 @@
+<div class="back" >
+    <div class="main">
+        <div class="logInTop">后台登录</div>
+        <div class="content">
+            <form name="userForm">
+                <div class="inside">
+                    <img src="image/iphone.png">
+                    <input
+                            type="text"
+                            name="names"
+                            placeholder="请输入账号"
+                            ng-model="vm.name"
+                            ng-minlength="1"
+                            ng-maxlength="11"
+                            ng-focus="blur=false"
+                            ng-blur="blur=true"
+                            required>
+                </div>
+                <div class="inside">
+                    <img src="image/locked.png">
+                    <input
+                            type="password"
+                            name="password"
+                            placeholder="请输入密码"
+                            ng-model="vm.password"
+                            ng-focus="blur=false"
+                            ng-blur="blur=true ;vm.messages=''"
+                            ng-minlength="5"
+                            ng-maxlength="11"
+                            required>
+                </div>
+                <div class="verification">
+                    <span ng-show="blur" ng-bind="vm.messages"></span>
+                    <span ng-show="blur && userForm.names.$error.minlength">账号最短为1字符</span>
+                    <span ng-show="blur && userForm.names.$error.maxlength">账号最长为11字符</span>
+                    <span ng-show="blur && userForm.password.$error.minlength">密码最短为5字符</span>
+                    <span ng-show="blur && userForm.password.$error.maxlength">密码最长为11字符</span>
+                </div>
+                <button class="log" type="submit" ng-click="vm.login()">登录</button>
+            </form>
+        </div>
+    </div>
+
+</div>

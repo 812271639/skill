@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>好吧</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="iphone-inline-video.browser.js"></script>
+    <style>
+        *{padding:0;margin:0;width:100%;
+            height:100%;
+        }
+        body{background:url("images/008.jpg") black no-repeat;background-size: 100% 100%;}
+        .a1,.a2{display:block;width: 27vw;height: 8vw;background: rgba(255, 255, 255, 0);position: absolute;
+        }
+        .a1{bottom: 7%;left: 16vw;}
+        .a2{bottom: 7%;right: 16vw;}
+        *{margin:0;padding:0;height:100%;}
+        body{}
+        #video{width: 100%}
+        .IIV::-webkit-media-controls-play-button,
+        .IIV::-webkit-media-controls-start-playback-button {
+        opacity: 0;
+        pointer-events: none;
+        width: 5px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<video class="IIV" id="video" onclick="play()"  preload="auto" poster="images/fengmian.jpg" >
+    <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
+</video>
+
+
+<img id="fenxiang" src="images/h5fenxiang.jpg" style="display:none;z-index: 100;position: absolute;right: 0;top: 0">
+
+<a class="a1" href="http://www.iqiyi.com/v_19rrlssr44.html?fv=2a25e637c995c78ee7694ccc1b108156">
+</a>
+<a id="jg" class="a2"></a>
+
+<script src="jquery.min.js"></script>
+<script>
+
+    var vid = document.getElementById('video');
+
+    var video = $('video').get(0);
+    makeVideoPlayableInline(video);
+    vid.play();
+
+    vid.onclick = function(){
+        vid.play();
+    };
+    vid.addEventListener('ended', function(){
+        vid.style.width = '1px';
+    }, false);
+
+    var ojg = document.getElementById('jg');
+    var fx = document.getElementById('fenxiang');
+    ojg.onclick = function(){
+        fx.style.display = 'block';
+    }
+
+</script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script>
+        var shareConfig = {
+            debug: false,
+            appId: 'wxbba5954485cb06af',//php输出参数
+            timestamp: '1463978541',//php输出参数
+            nonceStr: 'kH8mUAycwTP5zqZy',//php输出参数
+            signature: '613fbbcbee45eef115c993f2cbe13d3dea12a5a2',//php输出参数
+            jsApiList: [
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo'
+            ]
+        };
+        var shareAllData = {
+            title:'全新BMW M2即将上市',
+            desc:'该新闻已被BMW M快速删除',
+            imgUrl:'http://bmw2.thefront.com.cn/m2_2016/img/share.png',
+            link:'http://bmw2.thefront.com.cn/m2_2016/'
+        };
+
+        wx.config(shareConfig);
+        wx.ready(function () {
+            wx.onMenuShareAppMessage(shareAllData);
+            wx.onMenuShareTimeline({
+                title: shareAllData.desc,
+                link: shareAllData.link,
+                imgUrl: shareAllData.imgUrl
+            });
+        });
+    </script>-->
+</body>
+</html>

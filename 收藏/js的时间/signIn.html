@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+    <title>签到</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    <script src="https://cdn.bootcss.com/oclazyload/1.1.0/ocLazyLoad.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular-animate.js"></script>
+    <script src="https://cdn.bootcss.com/angular-sanitize/1.6.1/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="../script/controller/signIn.js"></script>
+    <script src="../script/directive/signDay.js"></script>
+    <link rel="stylesheet" href="../style/signIn.css">
+
+
+</head>
+<body >
+
+<div class="signBottom" ng-controller="signIn"><sign-Day></sign-Day></div>
+
+<!--<script type="text/ng-template" id="signDay.html">-->
+    <!--<div class="" data-toggle="modal" data-target="#myModal"><img ng-src="../image/sign/sing.png" alt=""></div>-->
+    <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+        <!--<div class="signCenter">-->
+            <!--<div class="modal-dialog">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="modal-body">-->
+                        <!--<div class="signDay">-->
+                            <!--<div class="totalSign">当前累计签到 <span class="redNum">{{signDate}}</span>天</div>-->
+                            <!--<div class="dayContent">-->
+                                <!--<div class="headWeek">-->
+                                    <!--<ul>-->
+                                        <!--<li class="myWeek"><span class="blueNum">周日</span></li>-->
+                                        <!--<li class="myWeek">周一</li>-->
+                                        <!--<li class="myWeek">周二</li>-->
+                                        <!--<li class="myWeek">周三</li>-->
+                                        <!--<li class="myWeek">周四</li>-->
+                                        <!--<li class="myWeek">周五</li>-->
+                                        <!--<li class="myWeek"><span class="blueNum">周六</span></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                                <!--<div class="Container" id="Container"></div>-->
+                            <!--</div>-->
+                            <!--<div class="signBtn">-->
+                                <!--<button class=" signButton"-->
+                                        <!--ng-click="sign()"-->
+                                        <!--data-dismiss="modal"-->
+                                        <!--data-toggle="modal"-->
+                                        <!--data-target="#Modal"-->
+                                        <!--ng-disabled="alreadySign">{{signWord}}-->
+                                <!--</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;回调弹出逆袭豆模态框&ndash;&gt;-->
+    <!--<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+        <!--<div class="beanCenter">-->
+            <!--<div class="modal-dialog">-->
+                <!--<div class="modal-content">-->
+                    <!--<div class="closeModal" data-dismiss="modal" aria-hidden="true">-->
+                        <!--<img ng-src="../image/sign/close.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+                        <!--<img ng-src="../image/sign/bean.png" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="beanNbm">-->
+                        <!--逆袭豆 <span class="beanNbmColor">+{{beans}}</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--//</script>-->
+</body>
+
+</html>

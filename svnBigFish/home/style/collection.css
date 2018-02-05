@@ -1,0 +1,44 @@
+.c-header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffe57e;
+    padding: .17rem;
+    text-align: center;
+    z-index:999;
+}
+.blank {
+    width: 100%;
+    height: .97rem;
+}
+.typewording{
+    font-size: 26px;
+    color: #e3a51c;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 2px solid;
+}
+.typeWord{
+    font-size: 26px;
+    color: #e3a51c;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
+}
+.tech,.reed{
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+    box-sizing:border-box;
+    width: calc((100% - 2px)/2);
+    z-index: 999;
+}
+.m-Line{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+    border-left: solid 2px black;
+}
+
+

@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="row head">
+        求学大作战后台管理系统
+        <div class="admin" ng-click="logout()">|<span class="adminLine glyphicon glyphicon-off"></span></div>
+        <div class="admin">|<span class="adminLine">admin</span></div>
+    </div>
+</div>
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <div class="row sidebar">
+                    <div class="manage">后台管理系统</div>
+                    <div class="sidebarList" ng-click="article()">
+                        <span class="glyphicon glyphicon-pencil pencilIcon"></span> 列表管理
+                        <span ng-hide="listShow" class="glyphicon glyphicon-chevron-left leftIcon"></span>
+                        <span ng-show="listShow" class="glyphicon glyphicon-chevron-down leftIcon"></span>
+                    </div>
+                    <div ng-if="listShow">
+                        <div class="manageList" ui-sref="admin.user">学生证</div>
+                        <div class="manageList"  ui-sref="admin.article">文学部</div>
+                        <div class="manageList" ui-sref="admin.video">影像部</div>
+                    </div>
+                    <div class="sidebarList" ng-click="modules()">
+                        <span class="glyphicon glyphicon-pencil pencilIcon"></span> 后台管理
+                        <span ng-hide="moduleShow" class="glyphicon glyphicon-chevron-left leftIcon"></span>
+                        <span ng-show="moduleShow" class="glyphicon glyphicon-chevron-down leftIcon"></span>
+                    </div>
+                    <div ng-if="moduleShow">
+                        <div class="manageList" ui-sref="admin.password">修改密码</div>
+                        <div class="manageList" ui-sref="admin.accountManage">账户管理</div>
+                        <div class="manageList" ui-sref="admin.roleManage">角色管理</div>
+                        <div class="manageList" ui-sref="">模块管理</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                <div ui-view=""><h1>welcome ！</h1></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+/*main {*/
+/*overflow: hidden;*/
+/*min-height: 100vh;*/
+/*}*/
+
+/*.sidebar {*/
+/*text-align: center;*/
+/*font-size: .16rem;*/
+/*color: white;*/
+/*background-color: #232a3a;*/
+/*}*/
+
+/*@media screen and (min-width: 768px) {*/
+/*.sidebar {*/
+/*padding-bottom: 10000px;*/
+/*overflow: visible;*/
+/*margin-bottom: -10000px;*/
+/*}*/
+/*}*/
+
+/*.manage {*/
+/*padding: 1rem 0;*/
+/*font-size: 1.8rem;*/
+/*border-bottom: solid 1px #f3f3f36b;*/
+/*}*/
+
+/*.sidebarList {*/
+/*padding: 1rem 0 .5rem 0;*/
+/*font-size: 1.6rem;*/
+/*cursor: pointer;*/
+/*}*/
+
+/*.pencilIcon {*/
+/*margin-right: 2%;*/
+/*font-size: 1.4rem;*/
+/*}*/
+
+/*.leftIcon {*/
+/*float: right;*/
+/*margin-right: 2%;*/
+/*margin-top: .1rem;*/
+/*font-size: 1.4rem;*/
+/*}*/
+
+/*.manageList {*/
+/*padding: .5rem 0;*/
+/*font-size: 1.6rem;*/
+/*cursor: pointer;*/
+/*}*/
+
+/*.rightContent {*/
+/*background-color: #dadada;*/
+/*}*/
+// $scope.listShow = false;
+// $scope.moduleShow = false;
+// $scope.article = function () {                 //侧边栏Article管理点击事件
+//     $scope.listShow = !$scope.listShow;
+// };
+//
+// $scope.modules = function () {                 //侧边栏Article管理点击事件
+//     $scope.moduleShow = !$scope.moduleShow;
+// };

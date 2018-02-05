@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //------------------------------------------------------原型链
+//    构造一个Father函数，添加属性color
+
+        function Father() {
+            this.color = "皮肤是黄色";
+            this.name = '成龙';
+            this.food = ['米饭', '面包']
+        }
+
+        Father.prototype.eat = function () {//给 Father函数 添加原型方法
+            return this.food;
+        };
+
+        function Child() {             //构造一个Child函数，添加属性eye
+            this.eye = '眼睛是黑色'
+        }
+
+        Child.prototype = new Father(); //将Father的实例 赋值给 Child 的原型
+
+        Child.prototype.getEye = function () {     //给 Child  添加原型方法
+            return this.eye;
+        };
+
+        var newChild = new Child();  //实例化一个 Child
+
+        console.log(newChild.constructor);
+        console.log(Child.prototype.constructor);
+
+        console.log(newChild.eat());
+        console.log(newChild.getEye());
+        console.log(newChild.name);
+        //    console.log(Object.getOwnPropertyNames(Child.prototype));
+            console.log(Object.getPrototypeOf(newChild));
+
+    //    <!--//组合继承-->
+
+
+</script>
+<script>
+    //------------------------------------------------原型链组合继承
+        //构造一个Father函数，添加属性color
+        function Father() {
+            this.color = "皮肤是黄色";
+            this.food = ['米饭', '面包']
+        }
+
+        Father.prototype.eat = function () {//给 Father函数 添加原型方法
+            alert(this.food);
+        };
+
+        function Child(name, age) {             //构造一个Child函数，添加属性age
+            Father.call(this, name);
+            this.age = age;
+        }
+
+        Child.prototype = new Father(); //将Father的实例 赋值给 Child 的原型
+        Child.prototype.constructor = Child;
+        Child.prototype.getAge = function () {     //给 Child  添加原型方法
+            alert(this.age);
+        };
+
+        var newChild = new Child('小明同学', 22);  //实例化一个 Child
+
+        newChild.food.push('猪肉');
+        console.log(newChild.food);
+        newChild.eat();
+        newChild.getAge();
+
+        var anotherChild = new Child('比卡丘', 22);  //实例化一个 Child
+
+        console.log(anotherChild.food);
+        anotherChild.eat();
+        anotherChild.getAge();
+
+    //
+        console.log(newChild.constructor);
+        console.log(Child.prototype.constructor);
+
+        console.log(newChild.getColor());
+        console.log(newChild.getEye());
+
+        console.log(Object.getOwnPropertyNames(Child.prototype));
+        console.log(Object.getPrototypeOf(newChild));
+
+//    组合继承
+
+
+</script>
+
+<script>
+    //-----------------------------------------------------工厂模式
+        function bigFish (name,color,food){
+            var fish = new Object();
+            fish.name = name;
+            fish.color = color;
+            fish.food = food;
+            fish.eat = function () {
+                alert(this.food);
+            };
+            return fish;
+        }
+        var 鲨鱼 = bigFish("大白鲨",'白色','大白鲨吃其它鱼');
+        var 人鱼 = bigFish('美人鱼','不知道','美人鱼不知道吃什么');
+
+        鲨鱼.eat();
+        人鱼.eat();
+    console.log(typeof 鲨鱼.constructor);
+    console.log(typeof 鲨鱼);
+</script>
+
+
+<script>
+    //-------------------------------------------------------构造函数
+        function Fish(name, color, food) {
+            this.name = name;
+            this.color = color;
+            this.food = food;
+            this.eat = function () {
+                alert(this.food);
+            };
+        }
+
+        var littleFish = new Fish('小鱼','五颜六色','小鱼吃虾米');
+        var bigFish = new Fish('大鱼','白色','大鱼吃小鱼');
+           alert(littleFish.eat === bigFish.eat);
+        littleFish.eat();
+
+        console.log(Fish.prototype);
+        console.log(Fish.prototype.constructor);
+
+            function Fish (name,color,food){
+                this.name = name;
+                this.color = color;
+                this.food = food;
+                this.eat = eat;
+            }
+            function eat() {
+                alert(this.food);
+            }
+        //
+
+
+            var bigFish = new Fish('大鱼','白色','大鱼吃小鱼');
+
+              bigFish.eat();
+        console.log(typeof littleFish.constructor);
+        console.log(typeof  littleFish);
+</script>
+
+<script>
+function Fish() {}
+
+Fish.prototype.name = "大白鲨";
+Fish.prototype.color = '白色';
+Fish.prototype.food = '大白鲨吃其它鱼';
+Fish.prototype.eat = function () {
+alert(this.food);
+};
+var shark1 = new Fish();
+var shark2 = new Fish();
+    shark1.eat();
+    shark2.eat();
+    alert(shark1.eat === shark2.eat);
+    console.log(Fish);
+console.log(Fish.prototype);
+    console.log(Fish.prototype.__proto__);
+
+    console.log(shark1.prototype); //undefined ；shark1 有一个[[prototype]] 指向构造函数的原型，但是没有标准的访问方式
+    console.log(Fish.prototype.isPrototypeOf(shark1)); //isPrototypeOf 确定对象之间的关系
+
+console.log(Object.getPrototypeOf(shark1));//Object.getPrototypeOf()返回[[prototype]]
+console.log(Object.getPrototypeOf(shark1).constructor);//返回构造原型Fish(){} ,可以继续添加原型属性Fish.prototype.xxx
+
+console.log(shark1.name);
+console.log(shark2.name);
+shark1.name = "美人鱼"; //实例可以屏蔽原型对象属性值，却不能重写这个值
+console.log(shark1.name);
+console.log(shark2.name);
+delete shark1.name;           //delete 可以删除实例属性，让我们从新访问原型属性
+console.log(shark1.name);
+
+console.log(shark1.hasOwnProperty('name'));//hasOwnProperty()判断一个属性存在于实例中还是在原型中。属性存在原型中返回false
+
+console.log('name' in shark1);//in 操作符会在  通过对象能够访问给定属性时返回true，不论这个属性在原型中还是在实例中
+
+shark1.name = "美人鱼";
+console.log(shark1.hasOwnProperty('name')); //属性存在实例中返回true
+delete shark1.name;
+console.log(shark1.hasOwnProperty('name'));
+
+//同时使用in 和 hasOwnProperty（）就可以确定一个属性存在于原型中还是在实例中
+
+function hasPrototypeProperty(object, name) {
+return !object.hasOwnProperty(name) && (name in object)
+}
+
+console.log(hasPrototypeProperty(shark1, 'name'));
+shark1.name = "美人鱼";
+console.log(hasPrototypeProperty(shark1, 'name'));
+
+for (var x in shark1) {
+console.log(x)
+}
+shark1.color = "黑色";
+//Object.keys() 返回所有可枚举的实例属性
+console.log(Object.keys(shark1));
+
+//Object.getOwnPropertyNames() 返回所有实例属性，不管此属性是否可枚举，例如不可枚举的constructor属性
+console.log(Object.getOwnPropertyNames(Fish.prototype));
+//    shark1.name = "美人鱼";
+//    console.log(Object.getOwnPropertyDescriptor(shark1,'name'));
+//Object.getOwnPropertyDescriptor() 方法返回指定对象上一个自有属性对应的属性描述符。（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）
+// 该方法允许对一个属性的描述进行检索。在 Javascript 中， 属性 由一个字符串类型的“名字”（name） 和一个“属性描述符”（property descriptor）对象构成。
+//一个属性描述符是一个记录.由下面属性当中的某些组成的：value 该属性的值(仅针对数据属性描述符有效)writable当且仅当属性的值可以被改变时为true。(仅针对数据属性描述有效)
+// get获取该属性的访问器函数（getter）。如果没有访问器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)
+//  set获取该属性的设置器函数（setter）。 如果没有设置器， 该值为undefined。(仅针对包含访问器或设置器的属性描述有效)
+//  configurable当且仅当指定对象的属性描述可以被改变或者属性可被删除时，为true。
+//enumerable当且仅当指定对象的属性可以被枚举出时，为 true。
+//
+
+</script>
+<script>
+    //重写原型
+    function 凤凰() {
+    }
+
+    凤凰.prototype.name = "凤凰";
+    凤凰.prototype.color = '红色';
+    凤凰.prototype.food = '凤凰吃火';
+    凤凰.prototype.eat = function () {
+        console.log(this.food);
+    };
+
+        var 小鸟 = new 凤凰();
+        小鸟.eat();
+    凤凰.prototype = {
+        constructor: 凤凰,
+        name: '麻雀',
+        color: '麻雀颜色',
+        food: ['虫子', '大米', '小麦'],
+
+        eat: function () {
+            console.log(this.food);
+        }
+    };
+
+    var 小鸟 = new 凤凰();
+    var 大鸟 = new 凤凰();
+    小鸟.food.push('玉米');
+    小鸟.eat();
+    大鸟.eat();
+
+</script>
+<!--<script>-->
+<!--console.log(Object.prototype);-->
+<!--console.log(Object.prototype.__proto__); //null-->
+<!--console.log(Function.prototype);-->
+<!--console.log(Function.prototype.__proto__);-->
+<!--console.log(Array.prototype);-->
+<!--console.log(Array.prototype.__proto__);-->
+<!--console.log(String.prototype);-->
+<!--console.log(String.prototype.__proto__);-->
+
+<!--</script>-->
+
+
+</body>
+</html>

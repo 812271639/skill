@@ -1,0 +1,109 @@
+.mainbody {
+    padding: 0 .3rem;
+    min-height: 100vh;
+    background-color:#fbf3d0;
+    margin-bottom: -0.4rem;
+}
+.uPanle {
+    width: 100%;
+    height: 4.2rem;
+    padding: .3rem;
+    background-image: url("../image/article/backg.png");
+    background-size: 100% 100%;
+    margin-bottom: .5rem;
+}
+.studenPanle {
+    width: 100%;
+    height: 3.6rem;
+    background-color: #fbf3d0;
+    z-index: 888;
+    border-radius: 5px;
+
+}
+.studenMes {
+    margin: 0 auto;
+    width: 85%;
+    position: relative;
+
+}
+.studen {
+    font-size: .48rem;
+    padding:.4rem;
+    text-align: center;
+    color: #c66d08;
+}
+.u-avatar {
+    position: absolute;
+    width: 1.2rem;
+    height: 1.5rem;
+    background-color: #0f0f0f;
+    opacity: 0.4;
+    color:#fcba1a ;
+    z-index: 999;
+    left: .08rem;
+    top: .08rem;
+    text-align: center;
+
+}
+.avatarimg {
+    float: left;
+    position: relative;
+    width: 1.36rem;
+    height: 1.66rem;
+    border: .08rem solid #fcba1a;
+
+}
+.usermes {
+    float: left;
+    width: 100%;
+    font-size: .2rem;
+    padding: .1rem .38rem;
+    color: #fcba1a;
+}
+.userval {
+    font-size: .2rem;
+    color: #5f2500;
+}
+.userbtn {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    box-shadow: 0  -1px 0 0;
+    border-radius: 10px;
+    margin: .4rem auto;
+    padding: .15rem;
+    background-color:#fcd32d;
+}
+.userbtn-font {
+    display: inline-block;
+    margin-left: .4rem;
+    font-size: .32rem;
+    color: #5f2500;
+}
+.edit {
+    display: inline-block;
+    padding: .14rem .6rem;
+    font-size: .2rem;
+    text-decoration: none;
+
+}
+.save {
+    width: 2.6rem;
+    margin: 0 auto;
+    border-radius: 5px;
+    text-align: center;
+    font-size: .45rem;
+    color: #FFFFFF;
+    background-color: #aec542;
+}
+.u-nickname {
+    width: 65%;
+    background-color: #fcd32d;
+    color: #FFFFFF;
+    border-radius: 4px;
+}
+.u-img {
+    width: .8rem;
+    height: .8rem;
+}
+

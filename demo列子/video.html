@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<span style="color:#ff0000;">   </span><div class="video">
+    <video id="media"  controls="controls"   width="600" height="400">
+        <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type="video/mp4" />
+        您的浏览器版本太低,请及时更新
+    </video>
+    <div class="skip">1243333333333333333333333332432222224</div>
+    <!-- 切换清晰度 -->
+    <a class="toggle-btn">切换至240p</a>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $('.skip').hide();
+    var myVideo=document.getElementById("media");
+    myVideo.addEventListener('play',function(){
+        $('.skip').hide();
+    });
+    myVideo.addEventListener('pause',function(){
+        $('.skip').show();
+    });
+
+    ////切换清晰度
+    function toggleVideo(e){
+        //当前播放时间
+        var curTime=e.currentTime;
+        $("#media").attr("src","video/exo.mp4").attr("autoplay","true");
+        e.currentTime=curTime
+    }
+
+    $('.toggle-btn').click(function(){
+        toggleVideo(myVideo);
+    })
+</script>
+
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    第一种方式：<br/>
+    有$sce处理：<audio  ng-src="{{sceControl(formData.mediaUrl)}}"  controls="controls">您的浏览器不支持html5</audio><br/>
+    无$sce处理：<audio  ng-src="{{formData.mediaUrl}}"  controls="controls">您的浏览器不支持html5</audio><br/><br/>
+
+    第二种方式：<br/>
+    <audio  ng-src="{{data.url}}"  controls="controls">您的浏览器不支持html5</audio>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope,$sce){
+        //第一种方式数据源
+        $scope.formData={
+            "name":"视频",
+            "mediaUrl":"http://res.audiogroup.cn/res/upload/agx_ims_creative/audio/20160307/bpryk96.mp3"//视频路径
+        };
+        $scope.sceControl = $sce.trustAsResourceUrl;//第一种处理方式
+
+        //第二种方式数据源
+        $scope.data={
+            "name":"视频",
+            "url":"http://res.audiogroup.cn/res/upload/agx_ims_creative/audio/20160307/bpryk96.mp3"//视频路径
+        };
+        $scope.data.url = $sce.trustAsResourceUrl($scope.data.url);//第二种处理方式
+
+    });
+</script>
+</body>
+</html>

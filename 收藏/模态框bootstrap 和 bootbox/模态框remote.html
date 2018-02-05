@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模态框</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scale=no">
+
+</head>
+<body>
+<button class="btn btn-success  btn-lg" data-toggle="modal" href="remot.html" data-target="#modal">Click me</button>
+<button class="btn btn-success  btn-lg" data-toggle="modal"  data-target="#Modals">Click me</button>
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            //remote.html内容会被加载到这里
+        </div>
+    </div>ss
+</div>
+
+<div class="modal fade" id="Modals" tabindex="-1" role="dialog" aria-labelledby="Modals" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="ModalLabel">
+                    标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                内容
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary"  >
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+//    $("#modal").modal({
+//        remote: "remot.html"
+//    }).on("hidden.bs.modal", function() {
+//            $(this).removeData("bs.modal");
+//            $(this).find(".modal-content").children().remove();
+//            /*modal页面加载$()错误,由于移除缓存时加载到<span style="color: rgb(51, 51, 255);"><div class="modal-content"></div></span>未移除的数据，手动移除加载的内容*/
+//
+//        });
+</script>
+</body>
+</html>

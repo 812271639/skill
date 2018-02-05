@@ -1,0 +1,123 @@
+.banner {
+    height: 3.1rem;
+    width: 100%;
+}
+.list {
+
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e3e3e3;
+    overflow: hidden;
+    margin: 0 .15rem;
+}
+.avatar {
+    float: left;
+    margin: .3rem .2rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+
+}
+.titalMeg {
+    float: left;
+    width: 69%;
+}
+.titalName {
+    float: left;
+    width: 2.65rem;
+    font-size: .24rem;
+    margin-top: .24rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.a-author {
+    float: left;
+    width: 100%;
+    font-size: .18rem;
+    margin-top: .10rem;
+}
+.intro {
+    float: left;
+    font-size: .18rem;
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color: #b8b8b8;
+}
+.morebtn {
+    display: inline-block;
+    width: 6rem;
+}
+.upvoteBox {
+    float: left;
+    margin: .15rem 0;
+    width: 70%;
+}
+.upvote {
+    float: left;
+    width: 50px;
+    color: #b8b8b8;
+    font-size: .18rem;
+    padding: 0 .1rem;
+}
+.date {
+    float:right;
+    vertical-align: middle;
+    color: #b8b8b8;
+    font-size: .18rem;
+    padding: 0 .1rem;
+}
+.glyphicon {
+    font-size: .2rem;
+    top: .03rem;
+}
+.a-bannerImg {
+    width: 100%;
+    height: 3rem;
+}
+.mainbody {
+    padding: 0 .3rem;
+}
+.titleName {
+    padding-top:.35rem;
+    font-size: .28rem;
+    font-weight: bold;
+
+}
+.message {
+    display: inline-block;
+    padding: 0 .1rem;
+    font-size: .15rem;
+    color: #b8b8b8;
+
+
+}
+.titleBody {
+    font-size: .24rem;
+    color: #b8b8b8;
+    width: 100%;
+
+}
+.voteStatus {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: .6rem 0;
+}
+.voteStatus>.footBox>.thumbsing {
+    font-size: .75rem;
+    margin: 0 .15rem;
+}
+.footBox {
+    text-align: center;
+    width: 1rem;
+    font-size: .24rem;
+}
+.invote {
+    color: red;
+}
+.collect {
+    color: #fcbb1c;
+}

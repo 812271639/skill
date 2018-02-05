@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="video.css">
+</head>
+<body>
+<video width="600" height="340">
+    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" type="video/mp4">
+</video>
+<!--https://www.inserthtml.com/2013/03/custom-html5-video-player/-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="video.js"></script>
+<script>
+
+    $(document).ready(function() {
+        $('video').videoPlayer({
+            'playerWidth' : 0.95,
+            'videoClass' : 'video'
+        });
+    });
+
+
+//    (function($) {
+//
+//        $.fn.videoPlayer = function(options) { // videoPlayer is the name of our plugin
+//            var settings = {
+//                playerWidth : '0.95', // Default is 95%
+//                videoClass : 'video'  // Video Class
+//            };
+//            // Extend the options so they work with the plugin
+//            if(options) {
+//                $.extend(settings, options);
+//            }
+//            // For each so that we keep chainability.
+//            return this.each(function() {
+//                // Code goes here
+//            });
+//        }
+//    })(jQuery);
+</script>
+</body>
+</html>

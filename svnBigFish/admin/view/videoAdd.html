@@ -1,0 +1,159 @@
+<div class="videoAdd">
+    <form role="form" class="form" name="formVideo">
+        <div class="row ">
+            <div class="col-lg-3 col-md-6 col-sm-6  selectHeight">                                <!--年级选择-->
+                所属年级
+                <span class="redIcon" ng-hide="vm.videoList.grade || vm.videoList.type == 1">*</span>
+                <select class="form-control addInput" ng-model="vm.videoList.grade">
+                    <option value=''>请选择</option>
+                    <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-selected="vm.videoList.grade == x" ng-bind="y"></option>
+                </select>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6  selectHeight">                                <!--科目选择-->
+                所属科目
+                <span class="redIcon" ng-hide="vm.videoList.subject || vm.videoList.type == 1">*</span>
+                <select class="form-control addInput" ng-model="vm.videoList.subject">
+                    <option value=''>请选择</option>
+                    <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-selected="vm.videoList.subject == x" ng-bind="y">
+                    </option>
+                </select>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 teacherHeight">
+                老师昵称
+                <span class="redIcon" ng-hide="vm.image.teacherName || vm.videoList.type == 1">*</span>
+                <select class="form-control teacherInput" ng-model="vm.image">
+                    <option ng-repeat=" x  in vm.teacherData" ng-value="x" ng-bind="x.teacherName"></option>
+                </select>
+                <button class="btn btn-success addButton" ng-click="vm.addTeacher()"> +添加</button>
+                <button class="btn btn-danger removeButton" ng-click="vm.deleteTeacher(vm.image.tid)"> 删除</button>
+                <span>头像</span>
+                <img class="image" ng-src="{{vm.image.teacherAvatar}}"
+                     ng-init="vm.image.teacherAvatar='../image/405.jpg'">
+            </div>
+        </div>
+        <div class="row " ng-show="vm.add">                 <!--新增老师-->
+            <div class="col-lg-12 ">
+                <div class="fileUpLoad">
+                    <div class=" nickname">
+                        <div class="col-md-2">
+                            <span class="redIcon " ng-show="formVideo.teacher.$invalid">*</span>
+                            昵称
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" name="teacher" class="form-control" ng-model="vm.teacherName"
+                                   ng-maxlength="10">
+                        </div>
+                        <p class="remind" ng-show="formVideo.teacher.$error.maxlength">老师名字最长为10个字</p>
+                    </div>
+                    <div class="mainUpLoad">
+                        <up-load return-url="vm.image" url="vm.teacher" picture-name="vm.head"></up-load> <!--新增老师图片上传指令-->
+                    </div>
+                    <div class="btnPosition">
+                        <button ng-click="vm.saveTeacher()" class="btn btn-success saveButton"
+                                ng-disabled="!vm.image || !vm.teacherName">保存
+                        </button>
+                        <button class="btn btn-danger cancelButton" ng-click="vm.cancelTeacher()">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                     <!--标题-->
+                标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题
+                <span class="redIcon" ng-hide="vm.videoList.title || vm.videoList.type == 1">*</span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <input type="text" name="title" class="form-control videoAddInput" ng-model="vm.videoList.title"
+                       ng-maxlength="40">
+                <div class="remind"><span ng-show="formVideo.title.$error.maxlength">标题最长为40个字</span></div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                       <!--分类选择-->
+                分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
+                <span class="redIcon" ng-hide="vm.videoList.type || vm.videoList.type == 1">*</span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <select class="form-control videoAddInput" ng-model="vm.videoList.type">
+                    <option value=''>请选择</option>
+                    <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-selected="vm.videoList.type == x" ng-bind="y"></option>
+                </select>
+            </div>
+        </div>
+        <div class="row " ng-show="vm.videoList.type">
+            <div class="col-lg-12 ">
+                <div class="fileUpLoad">
+                    <up-load return-url="vm.returnUrl" url="vm.banner" picture-name="vm.picture"></up-load>  <!--banner封面上传指令-->
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                         <!--视频简介-->
+                视频简介
+                <span class="redIcon" ng-hide="vm.videoList.intro || vm.videoList.type == 1">*</span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <textarea rows="3"
+                          name="intro"
+                          ng-maxlength="140"
+                          ng-model="vm.videoList.intro"
+                          class="form-control resize videoAddInput">
+                </textarea>
+                <div class="remind"><span ng-show="formVideo.intro.$error.maxlength">视频简介最长为140个字</span></div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                          <!--视频链接-->
+                视频连接
+                <span class="redIcon" ng-hide="vm.videoList.videoUrl || vm.videoList.type == 1">*</span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <div class="videoUrl">
+                    <span>视频URL</span>
+                    <input type="url"
+                           name="videoUrl"
+                           ng-model="vm.videoList.videoUrl"
+                           class="form-control videoAddInput"
+                           ng-blur="fn(formVideo.videoUrl.$invalid)"
+                           ng-pattern="/^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?\.[mM][pP]4$/">
+                    <div class="remind"><span ng-show="formVideo.videoUrl.$invalid">仅支持MP4格式</span></div>
+                    <video ng-src="{{vm.videoList.videoUrl}}" id="video" class="videoMP4" controls preload="auto"></video>
+                </div>
+            </div>
+        </div>
+        <div class="row videoEditor">
+            <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">
+                正&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文
+                <span class="redIcon" ng-hide="vm.videoEditor.text || vm.videoList.type == 1">*</span>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <div meta-umeditor
+                     type="text/html"
+                     class="myEditor"
+                     ng-model="vm.videoEditor.text"
+                     meta-umeditor-config='vm.config'>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-lg-12 btnPosition">
+                <button class="btn btn-success saveButton"
+                        ng-disabled=
+                                "(vm.videoList.type == 2) ?
+                                (!vm.videoList.grade
+                                || !vm.videoList.subject
+                                || !vm.image
+                                || !vm.videoList.title
+                                || !vm.videoList.type
+                                || !vm.returnUrl
+                                || !vm.videoList.intro
+                                || !vm.videoList.videoUrl
+                                || !vm.videoEditor.text
+                                || formVideo.videoUrl.$invalid) : (!vm.videoList.type || !vm.returnUrl)"
+                        ng-click="vm.addVideo()" ng-bind="vm.button">
+                </button>
+                <button class="btn btn-danger cancelButton" type="reset" ng-click="vm.cancel()">取消</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,64 @@
+<div nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+    <div class="row">
+        <div class="col-md-1 picturePre">
+            {{pictureName}}
+        </div>
+        <div class="col-md-11">
+            <p> 图片预览</p>
+            <div class="reviewSize">
+                <img class="review" id="img-preview" ng-src="{{returnUrl}}">
+            </div>
+            <div>
+                <a href="javascript:" class="file"><!--a标签用来改默认样式-->
+                    <input type="file" nv-file-select="" uploader="uploader" multiple/>
+                    选择图片
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-11 col-md-push-1">
+            <table class="table table-bordered ">
+                <thead>
+                <tr>
+                    <th>图片名</th>
+                    <th ng-show="uploader.isHTML5">图片大小</th>
+                    <th ng-show="uploader.isHTML5">进度</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in uploader.queue">
+                    <td ><span class="imageName">{{ item.file.name }}</span></td>
+                    <td ng-show="uploader.isHTML5" nowrap> {{ item.file.size/1024/1024|number:2 }} MB</td>
+                    <td ng-show="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar"
+                                 ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </td>
+                    <td class="text-center">
+                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </td>
+                    <td nowrap>
+                        <button type="button"
+                                class="btn btn-success btn-xs"
+                                ng-click="item.upload()"
+                                ng-disabled="item.isReady || item.isUploading || item.isSuccess || (fileSize > 5 )">
+                            <span class="glyphicon glyphicon-upload"></span> 上传
+                        </button>
+                        <button type="button"
+                                class="btn btn-danger btn-xs"
+                                ng-click="item.remove();delete()">
+                            <span class="glyphicon glyphicon-trash"></span> 删除
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div style="color: red; text-align: center" ng-show=" fileSize > 5 "> 上传的图片不能超过5M</div>
+</div>

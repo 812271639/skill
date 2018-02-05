@@ -1,0 +1,30 @@
+
+<body ng-controller="user">
+<div class="mainbody">
+    <div class="uPanle">
+        <div class="studenPanle ">
+
+            <div class="studen"> 学生证</div>
+            <div class="studenMes clearfix">
+               <img ng-src="{{vm.img}}" class="avatarimg"/>
+                <div class="clearfix">
+                <div class="usermes">昵称：<span class="userval">{{vm.params.nickname}}</span></div>
+                <div class="usermes">年级：<span class="userval">{{vm.params.grade | uGradeFilter}}</span></div>
+                <div class="usermes">逆袭豆：<span class="userval">{{vm.params.beans}}</span></div>
+            </div>
+            </div>
+           <p><a class="edit" ui-sref="userEdit()">编辑</a></p>
+
+        </div>
+    </div>
+        <div class="userbtn" ui-sref="colVideo()">
+            <img class="u-img" src="../image/article/hreat.png" />
+            <div class="userbtn-font">我的收藏</div>
+        </div>
+    <div class="userbtn" ui-sref="bind()">
+        <img class="u-img" src="../image/article/link.png" />
+        <div class="userbtn-font">账号与绑定设置</div>
+    </div>
+
+</div>
+</body>

@@ -1,0 +1,24 @@
+
+<body ng-controller="bind">
+
+<div class="mainbody">
+
+    <div class="b-box">
+        <div class="inputMes clearfix" >
+            <div class="inputvul">手机：</div>
+            <input class="nickname" value="{{vm.params.tel}}">
+
+        </div>
+
+        <div class="inputMes clearfix" >
+            <div class="inputvul">邮箱：</div>
+            <input class="nickname" value="{{vm.params.email}}">
+        </div>
+
+    </div>
+
+
+
+    <div class="save" ui-sref="binded()" >换绑手机/邮箱</div>
+</div>
+</body>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scale=no">
+    <link rel="stylesheet" type="text/css" href="../css/first.css">
+    <style type="text/css">
+
+
+    .main{
+        position:relative;
+        margin:0 auto;
+        width:500px;height:700px;
+        overflow:hidden;
+    }
+    .main .banner {
+        position:absolute;
+        font-size: 0;
+        width:2500px;
+        -webkit-animation:runing 15s infinite linear;
+    }
+    .main .page{
+        position:absolute;
+        bottom:0;
+        left:25%;
+        padding:10px;
+        font-size:0;
+    }
+    .main .page i{
+        display:inline-block;
+        margin-left:10px;
+        width:15px;height:15px;
+        background-color:#ccc;
+        border-radius:50%;
+    }
+    .main .page i:first-child{
+        position:absolute;
+        left:10px;
+        top:10px;
+        background-color:#f60;
+        -webkit-animation:runPage 15s infinite linear;
+    }
+
+    @-webkit-keyframes runing{
+        0%{left:0;}
+        15%{left:0;}
+        20%{left:-500px;}
+        35%{left:-500px;}
+        40%{left:-1000px;}
+        55%{left:-1000px;}
+        60%{left:-1500px;}
+        75%{left:-1500px;}
+        80%{left:-2000px;}
+        95%{left:2000px;}
+        100%{left:0;}
+    }
+
+    @-webkit-keyframes runPage{
+        0%{left:10px;}
+        15%{left:10px;}
+        20%{left:35px;}
+        35%{left:35px;}
+        40%{left:60px;}
+        55%{left:60px;}
+        60%{left:85px;}
+        75%{left:85px;}
+        80%{left:110px;}
+        95%{left:110px;}
+        100%{left:10px;}
+    }
+    img{width: 500px;
+        height:700px;}
+</style>
+</head>
+<body>
+<div class="main">
+    <div class="banner">
+        <img src="picture/6.jpg">
+        <img src="picture/2.jpg">
+      <img src="picture/3.jpg">
+        <img src="picture/4.jpg">
+        <img src="picture/5.jpg">
+    </div>
+    <div class="page">
+        <i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+</div>
+</body>
+</html>

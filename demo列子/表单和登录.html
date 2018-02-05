@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单和登录</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular-animate.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-sanitize/1.6.1/angular-sanitize.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="../js6/import/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="../js6/import/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../指令demo和时间插件日期/js.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../xiuzhen/js6/import/bootstrap-datetimepicker.css">
+</head>
+<body>
+
+<div class="panel panel-primary" style="width:700px;margin:90px auto;" ng-controller="ProListCtrl">
+    <!--//在controller.js里面定义一个控制器ProListCtrl，方便angularjs管理界定范围-->
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">管理员登录系统</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" name="loginForm" role="form" ng-submit="submitForm(loginForm.$valid)" novalidate>
+                    <!--//submitForm是在controller里面定义的一个函数，用来验证loginForm提交的。-->
+                    <div class="form-group" ng-class="{'has-error':loginForm.emailName.$invalid && !loginForm.emailName.$pristine}">
+                        <!--//$pristine是一个boolean，提示form中的属性emailName是否被用户修改，True if user has not interacted with the form yet.这里的意思就是说-->
+                        <!--ng-class="{'has-error':loginForm.emailName.$invalid && !loginForm.emailName.$pristine&&submitted}"确保数据错误只有在提交的时候才会显示-->
+                        <label class="col-md-2 control-label">
+                            用户名：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="email" name="emailName" class="form-control" placeholder="请输入注册邮箱" ng-model="user.email" required>
+                            <!--//user是在controller中定义的一个函数，定于email，pwd,和autoLogin的值-->
+                            <p ng-show="loginForm.emailName.$invalid && !loginForm.emailName.$pristine" class="alert alert-danger">您输入的邮箱地址不符合要求，请重新输入您的登录邮箱。</p>
+                            <!--//class="alert alert-danger"是boostrap里面的一个样式，提示危险信息。-->
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{'has-error':loginForm.pwdName.$invalid && !loginForm.pwdName.$pristine}">
+                        <label class="col-md-2 control-label">
+                            密码：
+                        </label>
+                        <div class="col-md-10">
+                            <input type="password" name="pwdName" class="form-control" placeholder="请输入登录密码" ng-model="user.pwd" ng-minlength="6" ng-maxlength="10">
+                            <p ng-show="loginForm.pwdName.$error.minlength" class="alert alert-danger">密码长度不够，请重新输入您的登录密码。</p>
+                            <p ng-show="loginForm.pwdName.$error.maxlength" class="alert alert-danger">密码太长，请重新输入您的登录密码。</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="user.autoLogin"> Auto Login
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <!--<a class="btn btn-success btn-lg" ng-disabled="loginForm.$invalid">登录</a>-->
+                            <button class="btn btn-success btn-lg" type="submit">登录</button>
+                            <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#mymodal-data" type="button">注册</button>
+                            <!--&lt;!&ndash; 模态弹出窗内容 &ndash;&gt;//注册弹出的框的内容也是bootstrap提供的-->
+                            <div class="modal" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">用户注册:</h4>
+                                        </div>
+                                        <form ui-sref="prolist({proType:0})" class="form-group">
+                                            <div class="modal-body">
+                                                <!--<p class="alert alert-success">注册启动成功!</p>-->
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">
+                                                        用户名：
+                                                    </label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" placeholder="请输入您的注册邮箱。">
+                                                    </div>
+                                                    <br/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">
+                                                        密码：
+                                                    </label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" placeholder="请输入您的注册密码。">
+                                                    </div>
+                                                    <br/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">
+                                                        电话：
+                                                    </label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" placeholder="请输入您的注册电话。">
+                                                    </div>
+                                                    <br/>
+                                                </div>
+                                                <input type="submit"  value="提交">
+                                            </div>
+                                        </form>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button class="btn btn-default btn-lg" ng-click="setFormData()">注册</button>-->
+                            <button class="btn btn-success btn-lg" ng-click="reset()">清空</button>
+                            <!--//reset()是controller里面定义的一个函数，用来清空form表单-->
+                            <button class="btn btn-success btn-lg" ng-click="recover()">恢复</button>
+                            <!--//recover是controller里面定义的一个函数，用来填充注册的内容-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    angular.module('myApp',[])
+        .controller("ProListCtrl",function () {
+            
+        });
+</script>
+</body>
+</html>

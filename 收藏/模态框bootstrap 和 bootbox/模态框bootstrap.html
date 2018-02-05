@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模态框</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scale=no">
+</head>
+<body>
+
+<h2>创建模态框（Modal）</h2>
+<!-- 按钮触发模态框 -->
+<button class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+    开始演示模态框
+</button>
+<!-- 模态框angular（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    模态框（Modal）标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                内容
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button class="btn btn-primary btn-lg"  data-dismiss="modal" data-toggle="modal" data-target="#Modal">
+                    回调模态框
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--另一个模态框（回调模态框）-->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="ModalLabel">
+                    标题
+                </h4>
+            </div>
+            <div class="modal-body">
+                内容
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary"  >
+                    确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+//        setTimeout(function(){$("#myModal").modal("hide")},2000);
+    });
+
+
+    $(function() {
+
+        $('#Modal').on('show.bs.modal', function () {           //  在调用 show 方法后触发。
+        setTimeout(function(){$("#Modal").modal("hide")},2000);
+    })
+    });
+
+
+    //    $(function() {
+    //       $('#myModal').modal({
+    //                    keyboard: false,
+    //                    show:false,
+    //                    backdrop:false
+    //            })
+    //    });
+//$(function () { $('#myModal').on('hide.bs.modal', function () {
+//
+//    alert('嘿，我听说您喜欢模态框...');})
+//
+//});
+
+//    show.bs.modal    在调用 show 方法后触发。    $('#identifier').on('show.bs.modal', function () {
+//        // 执行一些动作...
+//    })
+//
+//    shown.bs.modal    当模态框对用户可见时触发（将等待 CSS 过渡效果完成）。    $('#identifier').on('shown.bs.modal', function () {
+//        // 执行一些动作...
+//    })
+//
+//    hide.bs.modal    当调用 hide 实例方法时触发。    $('#identifier').on('hide.bs.modal', function () {
+//        // 执行一些动作...
+//    })
+//
+//    hidden.bs.modal    当模态框完全对用户隐藏时触发。    $('#identifier').on('hidden.bs.modal', function () {
+//        // 执行一些动作...
+//    })
+</script>
+<script>
+
+
+//    bootstrap的modal-remote两种加载方式【强化】
+//方法一：
+
+//使用链接
+//<a href="demo列子.jsp" data-toggle="modal" data-target="#mymodal">打开</a>
+//    当点击该连接时，demo列子.jsp的内容就可以动态的加载到<div class="modal-content"></div>中。当然这里的连接也可以是controller
+//    方法二：
+//
+//使用脚本
+//    [html] view plain copy
+//    $("#myModal").modal({
+//        remote: "page.jsp"
+//    });
+//    但是这样加载后，会有问题，modal数据只加载一次，如果要加载不同的数据，例如根据id查询详细信息，modal的数据是不能更新的，即使传的id值不同。其实解决办法很简单，只需要在加载下次数据前，将之前的加载的数据清除即可。
+//最简单的方式就是监听modal的hidden，当modal关闭时，即把数据清除即可：
+
+//    //v2
+//    $("#myModal").on("hidden", function() {
+//        $(this).removeData("modal");
+//    });
+//    //v3
+//    $("#myModal").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//    });
+//
+//    问题来了：如果在请求的页面中有$()加载事件加载比如boostrap-validator或者boostrap-fileinput等插件会出现奇怪的现象，第一次正常执行，关掉modal，第二次，$()的代码没有执行，第三次能执行；经过反复发现“hidden.bs.modal”监听每次都执行了，但是加载到<div class="modal-content"></div>里面的数据没有被清除，可能是这个原因导致的这种现象，于是改成如下代码：
+//
+//
+//    $("#myModal").on("hidden.bs.modal", function() {
+//        $(this).removeData("bs.modal");
+//        /*modal页面加载$()错误,由于移除缓存时加载到<span style="color: rgb(51, 51, 255);"><div class="modal-content"></div></span>未移除的数据，手动移除加载的内容*/
+//        $(this).find(".modal-content").children().remove();
+//    });
+</script>
+</body>
+</html>

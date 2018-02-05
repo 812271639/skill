@@ -1,0 +1,137 @@
+.videoAdd {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    /*margin: 1rem 0;*/
+    font-size: 1.4rem;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+.addHeight,
+.selectHeight {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    padding-left: .15rem;
+}
+
+.selectHeight{
+    height: 6.18rem;
+    padding-top: 1.8rem;
+    padding-left: 1rem;
+}
+.teacherHeight{
+    margin-top: .7rem;
+}
+
+.image {
+    max-width:7.5rem;
+    max-height: 6.18rem;
+}
+
+.addInput{
+    width: 40%;
+    display: inline;
+    margin-left: 1rem;
+}
+.teacherInput {
+    width: 22%;
+    display: inline;
+    margin-left: 1rem;
+}
+
+.videoAddInput {
+    width: 95%;
+    display: inline;
+    /*margin-left: 1rem;*/
+    margin-top: 1rem;
+}
+.inputLayout{
+    padding-right: 0;
+    padding-left: 1rem;
+    margin-top: 1rem;
+}
+.redIcon,.remind {
+    vertical-align: sub;
+    color: red;
+    height: 2rem;
+}
+
+.videoUrl {
+    display: inline-block;
+    vertical-align: text-top;
+    width: 95%;
+    margin-top: 1rem;
+    padding: 2rem;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+}
+
+.addButton {
+    margin: 0 .5rem;
+    padding: .2rem .3rem;
+}
+
+.removeButton {
+    padding: .2rem .5rem;
+}
+
+.saveButton,
+.cancelButton {
+    margin: 0 1rem;
+}
+
+.btnPosition {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+
+
+/*限制输入框缩放*/
+.resize {
+    vertical-align: text-top;
+    resize: none;
+}
+
+.videoMP4 {
+    width: 100%;
+    height: 100%;
+}
+
+/*编辑器样式*/
+.videoEditor{
+    padding: 2rem 0;
+}
+.myEditor {
+    width: 100%;
+    min-height: 15rem;
+    height: 20rem;
+}
+
+.edui-container {
+    width: 95% !important;
+    display: inline-block;
+    vertical-align: text-top;
+    /*margin: 2rem 0;*/
+}
+/*图片上传样式*/
+
+
+.fileUpLoad{
+    width: 92%;
+    margin: 1rem auto;
+    border: solid 1px #ddd;
+    padding: 1rem;
+}
+.mainUpLoad{
+    padding: 1rem 0;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+    margin-bottom: 1rem;
+}
+.nickname{
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    overflow: hidden;
+}

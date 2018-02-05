@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+</head>
+<body ng-app="myApp">
+<div ng-controller="myCtrl">
+
+    <button class="btn " ng-click="button()">这是按钮</button>
+
+</div>
+
+<script>
+    angular.module('myApp',[])
+        .controller('myCtrl',myCtrl)
+        .factory('modelBox', modelBox);
+
+    myCtrl.$inject=['$scope','modelBox'];
+
+    function myCtrl($scope,modelBox){
+        var hello = 'hello 小姐姐';
+        $scope.button = function () {
+            modelBox.confirm (hello,function () {
+                modelBox.alert('另一个小姐姐');
+            })
+        }
+    }
+    function modelBox() {
+        return {
+            alert: function (message, callback) {
+                bootbox.alert({
+                    title: "提示",
+                    backdrop: 'static',
+                    message: "<div style='text-align: center;font-size: 1.8rem;color: #03A9F4'>" + message + "</div>",
+                    buttons: {
+                        ok: {
+                            label: '确定',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function () {
+                        if (callback) {
+                            callback();
+                        }
+
+                    }
+                });
+            },
+            confirm: function (message, callback, cancel) {
+                bootbox.confirm({
+                    message: "<div style='text-align: center;font-size: 1.8rem;color: #03A9F4'>" + message + "</div>",
+                    title: "提示",
+                    backdrop: 'static',
+                    onEscape: true,
+                    buttons: {
+                        confirm: {
+                            label: '确定',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: '取消',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            callback();    //callback 为传入的回调函数
+                        } else if (!result && cancel) {
+                            cancel();
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

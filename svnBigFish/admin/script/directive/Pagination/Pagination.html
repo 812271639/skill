@@ -1,0 +1,27 @@
+<div class="videoPage">
+    每页显示
+    <input type="text"
+           class="form-control sizeInput"
+           ng-model="size"
+           ng-pattern="/^[1-9]\d{0,2}$/"> 条
+    <ul class="pagination-sm"
+        uib-pagination
+        total-items="total"
+        ng-model="bigCurrentPage"
+        items-per-page="items"
+        num-pages="totalPages"
+        ng-change="pageChanged(bigCurrentPage)"
+        max-size="maxSize"
+        first-text="首页"
+        previous-text="<"
+        next-text=">"
+        last-text="尾页"
+        boundary-links="true"
+        force-ellipses="true">
+    </ul>
+    第 <input type="text"
+             class="form-control pageInput"
+             ng-pattern="/^[1-9]\d{0,2}$/"
+             ng-model="toPage"> 页
+    <button class="btn btn-default cancel" ng-click="pageChanged(toPage)">确定</button>
+</div>

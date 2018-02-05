@@ -1,0 +1,65 @@
+.videoHead ,.videoArticle,.videoTable{
+    margin: 1rem 0;
+    padding-top: 1rem;
+    font-size: 1.4rem;
+    border: solid 1px #ddd;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+.form{
+    overflow: hidden;
+}
+.videoInput{
+    display: inline;
+    width: 64%;
+    float: right;
+}
+.lineHeight{
+    line-height: 2.7rem;
+    padding-bottom: .7rem;
+}
+.praise,.collect{
+    display: inline;
+    width: 30%;
+    float: right;
+}
+.praiseIcon{
+    float: right;
+}
+.videoReset,.videoSearch{
+    margin: .7rem 0 .7rem 2rem;
+    float: right;
+}
+.videoAddBtn{
+    float: right;
+    padding: .2rem .3rem;
+}
+.remind{
+    float: right;
+    color: red;
+    padding-top: 1rem;
+}
+@media screen and (max-width: 768px) {
+    .praise,.collect{
+        width: 37%;
+    }
+    .videoInput {
+        width: 75%;
+    }
+    .lineHeight {
+        text-align: center;
+    }
+}
+th,td{
+    text-align: -webkit-center;
+}
+.tdMargin{
+    padding: 0 .5rem;
+}
+/*最大字数，超过十四分行，不起作用，还需要调整*/
+.titleWord{
+    width: 15rem;
+}
+.teacherWord{
+    width: 6.2rem;
+}

@@ -1,0 +1,74 @@
+<body ng-controller="collection">
+
+
+<header class="c-header">
+    <div class="tech" >
+        <span class="typewording" >教学楼</span>
+    </div>
+    <div class="m-Line"></div>
+    <div class="reed" ui-sref="colArticle">
+
+        <span class="typeWord">阅览室</span>
+    </div>
+
+</header>
+<div class="blank"></div>
+
+
+<!--视频列表-->
+<div class="videoContent" ng-repeat="x in vm.videoData" >
+
+    <div class="teacherMessage">
+        <div class="headImg">
+            <img class="manHeadImg" ng-src="{{x.teacherAvatar}}" alt="">
+        </div>
+        <div>
+            <div class="teacherName"><strong>{{x.teacherName}}</strong></div>
+            <div class="shortWord">
+                <span class="words">{{x.intro}}</span>
+                <!--<span class="red" ng-click="moreFn()" ng-show="more">...更多</span>-->
+                <!--<span ng-click="moreFn()" class="red" ng-hide="more">...收起</span>-->
+            </div>
+        </div>
+    </div>
+    <div class="videos">
+        <div class="videoCover">
+            <img class="cover" ng-src="{{x.cover}}"/></div>
+        <div class="contentText">
+            <img class="camera" src="../image/videoImg/camera.png" alt="">
+            <div class="videoTitle">{{x.title}}</div>
+            <div class="immediateSee">
+                <div class="min">{{x.duration | secondFilter}}</div>
+                <div class="seeVideo" ui-sref="videoSee({vid:x.id})">立即观看</div>
+            </div>
+        </div>
+        <div class="videoLike">
+            <div class="videoGood">
+                <span ng-class="{'fa fa-thumbs-up':true,'fa fa-thumbs-o-up':x.upvoteStatus == 2  }"></span><span
+                    class="numMargin">{{x.upvote}}</span>
+                <span class="fa fa-heart" ng-class="{'red':x.collectionStatus == 1}"></span>
+                <span>{{x.collection}}</span>
+            </div>
+            <div class="videoTime">
+                {{x.publishTime | timeFilter}} <span class="fa fa-chevron-right"></span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div class="foot">
+    <div class="noMore" ng-show="vm.noMore">没有了，别点啦！
+        <div class="triangle"></div>
+    </div>
+    <div class="clickMore" ng-click="vm.vMore()">{{vm.loadMore}}</div>
+</div>
+
+
+
+
+
+</body>

@@ -1,0 +1,140 @@
+<div class=" row videoHead">
+    <form class="form" role="form" name="videoForm">
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题 <input type="text" class="form-control videoInput" ng-model="vm.params.title">
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
+            <select class="form-control videoInput" ng-model="vm.params.type">
+                <option value=''>全部</option>
+                <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-bind="y"></option>
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            所属年级
+            <select class="form-control videoInput" ng-model="vm.params.grade">
+                <option value=''>全部</option>
+                <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-bind="y"></option>
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            所属科目
+            <select class="form-control videoInput" ng-model="vm.params.subject">
+                <option value=''>全部</option>
+                <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-bind="y"></option>
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            点赞数
+            <input type="text"
+                   name="maxUpvote"
+                   class="form-control praise"
+                   ng-model="vm.params.maxUpvote"
+                   ng-pattern="/^\d*$/">
+            <span class="praiseIcon">~</span>
+            <input type="text"
+                   name="minUpvote"
+                   class="form-control praise"
+                   ng-model="vm.params.minUpvote"
+                   ng-pattern="/^\d*$/">
+            <!--<div ><span ng-show="videoForm.maxUpvote.$invalid ||videoForm.minUpvote.$invalid  ">请输入正整数</span></div>-->
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            收藏数
+            <input type="text"
+                   name="maxCollection"
+                   class="form-control collect"
+                   ng-model="vm.params.maxCollection"
+                   ng-pattern="/^\d*$/">
+            <span class="praiseIcon">~</span>
+            <input type="text"
+                   name="minCollection"
+                   class="form-control collect"
+                   ng-model="vm.params.minCollection"
+                   ng-pattern="/^\d*$/">
+            <!--<div ><span ng-show="videoForm.maxCollection.$invalid ||videoForm.minCollection.$invalid  ">请输入正整数</span></div>-->
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            老&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;师 <input type="text" class="form-control videoInput"
+                                                          ng-model="vm.params.teacherName">
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+            状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态
+            <select class="form-control videoInput" ng-model="vm.params.status">
+                <option value=''>全部</option>
+                <option ng-repeat=" (x,y) in vm.status" value="{{x}}" ng-bind="y"></option>
+            </select>
+
+        </div>
+    </form>
+    <div class="col-lg-12 ">
+          <button class="btn btn-danger videoReset" type="reset" ng-click="vm.videoClear()">重置</button>
+        <button class="btn btn-success videoSearch"
+                ng-click="vm.videoSearch()"
+                ng-disabled=
+                        "videoForm.maxUpvote.$invalid
+                        ||videoForm.minUpvote.$invalid
+                        ||videoForm.maxCollection.$invalid
+                        ||videoForm.minCollection.$invalid">搜索
+        </button>
+        <div class="remind"><span ng-show="videoForm.maxUpvote.$invalid ||videoForm.minUpvote.$invalid  ">点赞数请输入正整数</span></div>
+        <div class="remind"><span ng-show="videoForm.maxCollection.$invalid ||videoForm.minCollection.$invalid  ">收藏数请输入正整数</span></div>
+
+    </div>
+</div>
+<div class="row videoArticle">
+    <div class="col-lg-12">
+        视频列表
+        <button class="btn btn-success videoAddBtn" ui-sref="admin.videoAdd"> +新增</button>
+    </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-striped videoTable">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>标题</th>
+                        <th>分类</th>
+                        <th>所属年级</th>
+                        <th>所属科目</th>
+                        <th>老师</th>
+                        <th>收藏数</th>
+                        <th>点赞数</th>
+                        <th>编辑时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat=" x in vm.videoList">
+                        <td ng-bind="$index+1"></td>
+                        <td class="titleWord" ng-bind="x.title"></td>
+                        <td ng-bind="x.type | titleFilter"></td>
+                        <td ng-bind="x.grade | gradeFilter"></td>
+                        <td ng-bind="x.subject | subjectFilter"></td>
+                        <td class="teacherWord" ng-bind="x.teacherName"></td>
+                        <td ng-bind="x.collection"></td>
+                        <td ng-bind="x.upvote"></td>
+                        <td ng-bind="x.editTime | date:'yyyy-MM-dd'"></td>
+                        <td ng-bind="x.status | statusFilter"></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td ng-click="vm.videoSee(x.vid )"><button  class="btn btn-success padding" >查看</button></td>
+                                    <td class="tdMargin"><button  class="btn btn-success padding" ng-click="vm.compile(x.vid )"  ng-disabled="x.status == 1">编辑</button></td>
+                                    <td ng-click="vm.statuses(x.vid,x.status)"><button  class="btn btn-success padding"  ng-bind="x.status | putAwayFilter"></button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <my-page sizes="vm.params.size" pages="vm.params.page" total="vm.bigTotalItems" page-url="vm.pageUrl" ></my-page>
+        </div>
+    </div>
+</div>

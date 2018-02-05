@@ -1,0 +1,50 @@
+<div class="contentPadding">
+    <div class="content" ng-class="{'contentTop':vm.cover}">
+        <div class="teacherMessage">
+            <div class="headImg">
+                <img class="manHeadImg" ng-src="{{vm.data.teacherAvatar}}" alt="">
+            </div>
+            <div class="detailsTitle" ng-bind="vm.data.title"></div>
+            <div>
+                <div class="teacherName">
+                    <span ng-bind="vm.data.publishTime | date:'yyyy-MM-dd HH:mm:ss'"></span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span ng-bind="vm.data.teacherName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="shortWords" ng-bind="vm.data.intro"></div>
+        <div class="videoDetails" ng-class="{'videoFixed':vm.cover}">
+            <video id="myVideo"
+                   class=" video"
+                   controls
+                   preload="auto"
+                   playsinline
+                   webkit-playsinline
+                   x5-video-player-type="h5"
+                   x5-video-player-fullscreen="false"
+                   poster="{{vm.data.cover}}"
+                   ng-src="{{vm.data.videoUrl | trustUrl}}"
+                   type='video/mp4'
+                   ng-show="vm.cover">
+            </video>
+            <div class="videoCover" ng-click="vm.playThis()" ng-hide="vm.cover">
+                <img class="cover" ng-src="{{vm.data.cover}}"/>
+                <div class="playBtn">
+                    <img class="playBtnImg" src="../image/videoImg/play2.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="contentBody" ng-bind="vm.data.mainBody | removeHtml"></div>
+        <div class="videoUpvote">
+
+            <div class="upvoteBox" ng-click="vm.hand(x.id)">
+                <div class="fa fa-thumbs-up " ng-class="{'yellow':vm.data.upvoteStatus == 1}"></div>
+                <div ng-bind="vm.data.upvote"></div>
+            </div>
+            <div class="upvoteBox" ng-click="vm.heart(x.id)">
+                <div class="fa fa-heart" ng-class="{'red':vm.data.collectionStatus == 1}"></div>
+                <div ng-bind="vm.data.collection"></div>
+            </div>
+        </div>
+    </div>
+</div>

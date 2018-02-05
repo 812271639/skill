@@ -1,0 +1,81 @@
+.mainbody {
+    min-height: 100vh;
+    background-color:#fbf3d0;
+    margin-bottom: -1.3rem;
+}
+.bindMes {
+    text-align: center;
+    font-size: .22rem;
+    color: #5f2500;
+    padding: .7rem 0;
+}
+.inputMes {
+    width: 100%;
+    padding: .2rem;
+    font-size: .36rem;
+    color: #fcba1a;
+}
+.nickname {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    background-color: #fcd32d;
+    color: #FFFFFF;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 0 0;
+    text-indent: 10px;
+}
+.b-nickname {
+    display: flex;
+    align-items: center;
+    width: 75%;
+    background-color: #fcd32d;
+    color: #FFFFFF;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    box-shadow: 0 1px 0 0;
+    text-indent: 10px;
+}
+.save {
+    width: 2.6rem;
+    margin: 1.3rem auto;
+    border-radius: 5px;
+    text-align: center;
+    font-size: .38rem;
+    color: #FFFFFF;
+    background-color: #aec542;
+}
+.inputTest {
+    width: 75%;
+    background-color: #fcd32d;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    text-indent: 10px;
+}
+.sentTest {
+    float: right;
+    text-align: center;
+    vertical-align: middle;
+    font-size: .24rem;
+    width: 2.57rem;
+    background-color: #fcd32d;
+    outline: none;
+    border: none;
+}
+.inputvul {
+    float: left;
+}
+.b-box {
+    width: 100%;
+    padding-top: 2rem;
+}
+.toast {
+    padding: 1rem;
+    text-align: center;
+
+}

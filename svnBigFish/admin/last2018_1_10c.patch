@@ -1,0 +1,1588 @@
+Index: view/videoAdd.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/videoAdd.html	(revision 17922)
++++ view/videoAdd.html	(revision )
+@@ -6,7 +6,7 @@
+                 <span class="redIcon" ng-hide="vm.videoList.grade || vm.videoList.type == 1">*</span>
+                 <select class="form-control addInput" ng-model="vm.videoList.grade">
+                     <option value=''>请选择</option>
+-                    <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-selected="vm.videoList.grade == x" ng-bind="y"></option>
++                    <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-selected="vm.videoList.grade == x">{{y}}</option>
+                 </select>
+             </div>
+             <div class="col-lg-3 col-md-6 col-sm-6  selectHeight">                                <!--科目选择-->
+@@ -14,7 +14,7 @@
+                 <span class="redIcon" ng-hide="vm.videoList.subject || vm.videoList.type == 1">*</span>
+                 <select class="form-control addInput" ng-model="vm.videoList.subject">
+                     <option value=''>请选择</option>
+-                    <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-selected="vm.videoList.subject == x" ng-bind="y">
++                    <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-selected="vm.videoList.subject == x">{{y}}
+                     </option>
+                 </select>
+             </div>
+@@ -22,7 +22,7 @@
+                 老师昵称
+                 <span class="redIcon" ng-hide="vm.image.teacherName || vm.videoList.type == 1">*</span>
+                 <select class="form-control teacherInput" ng-model="vm.image">
+-                    <option ng-repeat=" x  in vm.teacherData" ng-value="x" ng-bind="x.teacherName"></option>
++                    <option ng-repeat=" x  in vm.teacherData" ng-value="x">{{x.teacherName}}</option>
+                 </select>
+                 <button class="btn btn-success addButton" ng-click="vm.addTeacher()"> +添加</button>
+                 <button class="btn btn-danger removeButton" ng-click="vm.deleteTeacher(image.tid)"> 删除</button>
+@@ -76,7 +76,7 @@
+             <div class="col-lg-10 col-md-10 col-sm-10">
+                 <select class="form-control videoAddInput" ng-model="vm.videoList.type">
+                     <option value=''>请选择</option>
+-                    <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-selected="vm.videoList.type == x" ng-bind="y"></option>
++                    <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-selected="vm.videoList.type == x">{{y}}</option>
+                 </select>
+             </div>
+         </div>
+@@ -150,7 +150,7 @@
+                                 || !vm.videoList.videoUrl
+                                 || !vm.videoEditor.text
+                                 || formVideo.videoUrl.$invalid) : (!vm.videoList.type || !vm.returnUrl)"
+-                        ng-click="vm.addVideo()" ng-bind="vm.button">
++                        ng-click="vm.addVideo()">{{vm.button}}
+                 </button>
+                 <button class="btn btn-danger cancelButton" type="reset" ng-click="vm.cancel()">取消</button>
+             </div>
+Index: view/modules/addRole.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/modules/addRole.html	(revision 17922)
++++ view/modules/addRole.html	(revision )
+@@ -1,5 +1,7 @@
+ <div class="contents">
+-    <div class="top" ng-bind="vm.roles"></div>
++    <div class="top">
++        {{vm.roles}}
++    </div>
+     <div class="password">
+         <div class="col-xs-2 description">
+             角色名称  <span style="color: red" ng-hide="vm.params.moduleName">*</span>
+@@ -14,7 +16,7 @@
+                            ng-disabled="vm.admin && (x.id==3)"
+                            class="checkboxes"
+                            ng-model="x.random"
+-                           ng-click="vm.all(x.id,x.random)" ng-bind="x.moduleName">
++                           ng-click="vm.all(x.id,x.random)">{{x.moduleName}}
+                 </label>
+             </div>
+             <div class="col-xs-9 left">
+@@ -24,7 +26,7 @@
+                                ng-disabled="admin && (x.id==3)"
+                                class="checkboxes"
+                                ng-model="y.random"
+-                               ng-click="vm.addArr(y.id,y.parentId,y.random)" ng-bind="y.moduleName">
++                               ng-click="vm.addArr(y.id,y.parentId,y.random)">{{y.moduleName}}
+                     </label>
+                 </div>
+             </div>
+Index: index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- index.html	(revision 17922)
++++ index.html	(revision )
+@@ -22,24 +22,24 @@
+ 
+ <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+ <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+-<!--<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>-->
+-<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular.js"></script>
+-<!--<script src="https://cdn.bootcss.com/angular-ui-router/1.0.3/angular-ui-router.js"></script>-->
+-<script src="https://cdn.bootcss.com/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+-<!--<script src="https://cdn.bootcss.com/oclazyload/1.1.0/ocLazyLoad.js"></script>-->
+-<script src="https://cdn.bootcss.com/oclazyload/0.6.0/ocLazyLoad.js"></script>
++<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.js"></script>
++<!--<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular.js"></script>-->
++<script src="https://cdn.bootcss.com/angular-ui-router/1.0.3/angular-ui-router.js"></script>
++<!--<script src="https://cdn.bootcss.com/angular-ui-router/0.3.2/angular-ui-router.js"></script>-->
++<script src="https://cdn.bootcss.com/oclazyload/1.1.0/ocLazyLoad.js"></script>
++<!--<script src="https://cdn.bootcss.com/oclazyload/0.6.0/ocLazyLoad.js"></script>-->
+ 
+ 
+-<!--<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular-animate.js"></script>-->
+-<!--<script src="https://cdn.bootcss.com/angular-sanitize/1.6.6/angular-sanitize.js"></script>-->
+-<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular-animate.js"></script>
+-<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular-sanitize.js"></script>
++<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular-animate.js"></script>
++<script src="https://cdn.bootcss.com/angular-sanitize/1.6.6/angular-sanitize.js"></script>
++<!--<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular-animate.js"></script>-->
++<!--<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular-sanitize.js"></script>-->
+ <script src="https://cdn.bootcss.com/angular-file-upload/2.5.0/angular-file-upload.js"></script>
+ <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+ <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+-<!--<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular-messages.js"></script>-->
+-<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular-messages.js"></script>
++<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular-messages.js"></script>
++<!--<script src="https://cdn.bootcss.com/angular.js/1.4.0/angular-messages.js"></script>-->
+ <script type="text/javascript" charset="UTF-8" src="import/utf8-php/umeditor.config.js"></script>
+ <script type="text/javascript" charset="UTF-8" src="import/utf8-php/umeditor.min.js"></script>
+ <script type="text/javascript" src="import/utf8-php/lang/zh-cn/zh-cn.js"></script>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 17919)
++++ .idea/workspace.xml	(revision 17919)
+@@ -1,1333 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ChangeListManager">
+-    <list default="true" readonly="true" id="d60432cf-befc-476f-ae6a-82407a12f505" name="Default" comment="last2018.1.10c">
+-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+-    </list>
+-    <ignored path="$PROJECT_DIR$/.tmp/" />
+-    <ignored path="$PROJECT_DIR$/temp/" />
+-    <ignored path="$PROJECT_DIR$/tmp/" />
+-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+-    <option name="TRACKING_ENABLED" value="true" />
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FavoritesManager">
+-    <favorites_list name="admin" />
+-  </component>
+-  <component name="FileEditorManager">
+-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+-      <file leaf-file-name="global.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/factory/global.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="423">
+-              <caret line="59" column="8" lean-forward="true" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="38" />
+-              <folding>
+-                <marker date="1517204589695" expanded="true" signature="277:328" ph="..." />
+-                <marker date="1517204589695" expanded="true" signature="902:953" ph="..." />
+-              </folding>
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="moduleAdd.js" pinned="false" current-in-tab="true">
+-        <entry file="file://$PROJECT_DIR$/script/controller/moduleAdd.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="306">
+-              <caret line="18" column="53" lean-forward="true" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="moduleManage.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/moduleManage.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="119">
+-              <caret line="7" column="39" lean-forward="true" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="videoAdd.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/videoAdd.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="137">
+-              <caret line="122" column="51" lean-forward="true" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="video.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/video.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="187">
+-              <caret line="65" column="65" lean-forward="true" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="password.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/password.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="357">
+-              <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="roleAdd.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/roleAdd.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="629">
+-              <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="roleManage.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/roleManage.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="442">
+-              <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-      <file leaf-file-name="accountManage.js" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/script/controller/accountManage.js">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state relative-caret-position="238">
+-              <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+-    </leaf>
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="HTML File" />
+-        <option value="CSS File" />
+-        <option value="JavaScript File" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="FindInProjectRecents">
+-    <findStrings>
+-      <find>count</find>
+-      <find>wrapper</find>
+-      <find>nav_left</find>
+-      <find>item</find>
+-      <find>uploader</find>
+-      <find>errorConstant</find>
+-      <find>total</find>
+-      <find>sizes</find>
+-      <find>$rootScope</find>
+-      <find>id</find>
+-      <find>accountCompile</find>
+-      <find>$http</find>
+-      <find>$scope</find>
+-      <find>grade</find>
+-      <find>condition</find>
+-      <find>logInTop</find>
+-      <find>videoConstant</find>
+-      <find>articleConstant.js</find>
+-      <find>articleFilter.js</find>
+-      <find>Pagination.js</find>
+-      <find>sideBar.js</find>
+-      <find>bootstrap-datetimepicker.css</find>
+-      <find>upLoad</find>
+-      <find>fileSize</find>
+-      <find>name</find>
+-      <find>head</find>
+-      <find>image</find>
+-      <find>ng</find>
+-      <find>vm.params</find>
+-      <find>搜</find>
+-    </findStrings>
+-    <replaceStrings>
+-      <replace>vm</replace>
+-    </replaceStrings>
+-  </component>
+-  <component name="IdeDocumentHistory">
+-    <option name="CHANGED_PATHS">
+-      <list>
+-        <option value="$PROJECT_DIR$/view/fileUpLoad.html" />
+-        <option value="$PROJECT_DIR$/script/directive/Pagination.js" />
+-        <option value="$PROJECT_DIR$/script/directive/Pagination/Pagination.html" />
+-        <option value="$PROJECT_DIR$/style/videoAdd.css" />
+-        <option value="$PROJECT_DIR$/script/directive/fileUpLoad/fielUpLoad.css" />
+-        <option value="$PROJECT_DIR$/style/public.css" />
+-        <option value="$PROJECT_DIR$/style/fileUpLoad.css" />
+-        <option value="$PROJECT_DIR$/script/directive/Pagination/Pagination.css" />
+-        <option value="$PROJECT_DIR$/style/modules.css" />
+-        <option value="$PROJECT_DIR$/script/directive/sideBar/sideBar.css" />
+-        <option value="$PROJECT_DIR$/style/admin.css" />
+-        <option value="$PROJECT_DIR$/script/directive/fileUpLoad/fileUpLoad.html" />
+-        <option value="$PROJECT_DIR$/script/directive/fileUpLoad/fileUpLoad.js" />
+-        <option value="$PROJECT_DIR$/script/directive/Pagination/Pagination.js" />
+-        <option value="$PROJECT_DIR$/script/factory/address.js" />
+-        <option value="$PROJECT_DIR$/script/factory/ajaxRequest.js" />
+-        <option value="$PROJECT_DIR$/view/modules/accountManage.html" />
+-        <option value="$PROJECT_DIR$/view/modules/addAccount.html" />
+-        <option value="$PROJECT_DIR$/view/modules/moduleManage.html" />
+-        <option value="$PROJECT_DIR$/script/directive/sideBar/sideBar.html" />
+-        <option value="$PROJECT_DIR$/view/modules/addModule.html" />
+-        <option value="$PROJECT_DIR$/view/modules/password.html" />
+-        <option value="$PROJECT_DIR$/view/modules/roleManage.html" />
+-        <option value="$PROJECT_DIR$/view/modules/addRole.html" />
+-        <option value="$PROJECT_DIR$/view/videoSee.html" />
+-        <option value="$PROJECT_DIR$/script/directive/sideBar/sideBar.js" />
+-        <option value="$PROJECT_DIR$/style/login.css" />
+-        <option value="$PROJECT_DIR$/script/controller/accountAdd.js" />
+-        <option value="$PROJECT_DIR$/script/controller/moduleAdd.js" />
+-        <option value="$PROJECT_DIR$/script/controller/roleAdd.js" />
+-        <option value="$PROJECT_DIR$/script/controller/roleManage.js" />
+-        <option value="$PROJECT_DIR$/script/controller/video.js" />
+-        <option value="$PROJECT_DIR$/script/controller/videoAdd.js" />
+-        <option value="$PROJECT_DIR$/script/controller/accountManage.js" />
+-        <option value="$PROJECT_DIR$/script/controller/moduleManage.js" />
+-        <option value="$PROJECT_DIR$/script/controller/password.js" />
+-        <option value="$PROJECT_DIR$/view/login.html" />
+-        <option value="$PROJECT_DIR$/script/controller/login.js" />
+-        <option value="$PROJECT_DIR$/script/factory/global.js" />
+-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+-        <option value="$PROJECT_DIR$/index.html" />
+-        <option value="$PROJECT_DIR$/view/articleSee.html" />
+-        <option value="$PROJECT_DIR$/view/videoAdd.html" />
+-        <option value="$PROJECT_DIR$/script/app.js" />
+-        <option value="$PROJECT_DIR$/script/controller/articleAdd.js" />
+-        <option value="$PROJECT_DIR$/view/articleAdd.html" />
+-        <option value="$PROJECT_DIR$/view/admin.html" />
+-        <option value="$PROJECT_DIR$/script/controller/admin.js" />
+-        <option value="$PROJECT_DIR$/view/video.html" />
+-        <option value="$PROJECT_DIR$/view/article.html" />
+-        <option value="$PROJECT_DIR$/view/user.html" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+-  <component name="JsGulpfileManager">
+-    <detection-done>true</detection-done>
+-    <sorting>DEFINITION_ORDER</sorting>
+-  </component>
+-  <component name="ProjectFrameBounds">
+-    <option name="x" value="-8" />
+-    <option name="y" value="-8" />
+-    <option name="width" value="1370" />
+-    <option name="height" value="744" />
+-  </component>
+-  <component name="ProjectView">
+-    <navigator currentView="ProjectPane" proportions="" version="1">
+-      <flattenPackages />
+-      <showMembers />
+-      <showModules />
+-      <showLibraryContents />
+-      <hideEmptyPackages />
+-      <abbreviatePackageNames />
+-      <autoscrollToSource />
+-      <autoscrollFromSource />
+-      <sortByType />
+-      <manualOrder />
+-      <foldersAlwaysOnTop value="true" />
+-    </navigator>
+-    <panes>
+-      <pane id="ProjectPane">
+-        <subPane>
+-          <expand>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="import" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="import" type="462c0819:PsiDirectoryNode" />
+-              <item name="locales" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="constant" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="directive" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="directive" type="462c0819:PsiDirectoryNode" />
+-              <item name="fileUpLoad" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="directive" type="462c0819:PsiDirectoryNode" />
+-              <item name="Pagination" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="directive" type="462c0819:PsiDirectoryNode" />
+-              <item name="sideBar" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="directive" type="462c0819:PsiDirectoryNode" />
+-              <item name="sideBar" type="462c0819:PsiDirectoryNode" />
+-              <item name="metisMenu.js" type="620a8d5e:NestingTreeNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="factory" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="script" type="462c0819:PsiDirectoryNode" />
+-              <item name="filter" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="style" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="view" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="admin" type="462c0819:PsiDirectoryNode" />
+-              <item name="view" type="462c0819:PsiDirectoryNode" />
+-              <item name="modules" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-          </expand>
+-          <select />
+-        </subPane>
+-      </pane>
+-      <pane id="Scope" />
+-      <pane id="Scratches" />
+-    </panes>
+-  </component>
+-  <component name="PropertiesComponent">
+-    <property name="HbShouldOpenHtmlAsHb" value="" />
+-    <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+-    <property name="list.type.of.created.stylesheet" value="CSS" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth0" value="147" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder0" value="0" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth1" value="147" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder1" value="1" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth2" value="146" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder2" value="2" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth3" value="147" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder3" value="3" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatWidth4" value="146" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_flatOrder4" value="4" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth0" value="49" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder0" value="0" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth1" value="42" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder1" value="1" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth2" value="93" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder2" value="2" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth3" value="49" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder3" value="3" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeWidth4" value="500" />
+-    <property name="FileHistory.org.jetbrains.idea.svn.history.SvnHistoryProvider_treeOrder4" value="4" />
+-  </component>
+-  <component name="RecentsManager">
+-    <key name="CopyFile.RECENT_KEYS">
+-      <recent name="E:\svnBigFish\admin\import" />
+-      <recent name="E:\svnBigFish\admin\script\directive\sideBar" />
+-      <recent name="E:\svnBigFish\admin\image" />
+-    </key>
+-    <key name="MoveFile.RECENT_KEYS">
+-      <recent name="E:\svnBigFish\admin\import" />
+-      <recent name="E:\svnBigFish\admin\import\css" />
+-      <recent name="E:\svnBigFish\admin\script\directive\fileUpLoad" />
+-      <recent name="E:\svnBigFish\admin\script\directive\Pagination" />
+-      <recent name="E:\svnBigFish\admin\script\directive\sideBar" />
+-    </key>
+-  </component>
+-  <component name="RunDashboard">
+-    <option name="ruleStates">
+-      <list>
+-        <RuleState>
+-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+-        </RuleState>
+-        <RuleState>
+-          <option name="name" value="StatusDashboardGroupingRule" />
+-        </RuleState>
+-      </list>
+-    </option>
+-  </component>
+-  <component name="RunManager">
+-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+-      <node-interpreter>project</node-interpreter>
+-      <node-options />
+-      <gulpfile />
+-      <tasks />
+-      <arguments />
+-      <envs />
+-    </configuration>
+-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+-      <node-interpreter value="project" />
+-      <working-dir value="" />
+-      <envs />
+-      <scope-kind value="ALL" />
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+-      <config-file value="" />
+-      <node-interpreter value="project" />
+-      <envs />
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+-      <config-file value="" />
+-      <node-interpreter value="project" />
+-      <envs />
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+-      <option name="cucumberJsArguments" value="" />
+-      <option name="executablePath" />
+-      <option name="filePath" />
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+-      <command value="run" />
+-      <scripts />
+-      <node-interpreter value="project" />
+-      <envs />
+-      <method />
+-    </configuration>
+-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+-      <node-interpreter>project</node-interpreter>
+-      <node-options />
+-      <working-directory />
+-      <pass-parent-env>true</pass-parent-env>
+-      <envs />
+-      <ui />
+-      <extra-mocha-options />
+-      <test-kind>DIRECTORY</test-kind>
+-      <test-directory />
+-      <recursive>false</recursive>
+-      <method />
+-    </configuration>
+-  </component>
+-  <component name="ShelveChangesManager" show_recycled="false">
+-    <option name="remove_strategy" value="false" />
+-  </component>
+-  <component name="SvnConfiguration" cleanupOnStartRun="true">
+-    <configuration>C:\Users\lan\AppData\Roaming\Subversion</configuration>
+-    <supportedVersion>125</supportedVersion>
+-  </component>
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="d60432cf-befc-476f-ae6a-82407a12f505" name="Default" comment="" />
+-      <created>1514774149322</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1514774149322</updated>
+-      <workItem from="1514774150610" duration="17000" />
+-      <workItem from="1514774447791" duration="3813000" />
+-      <workItem from="1514778979780" duration="10000" />
+-      <workItem from="1514779217157" duration="1284000" />
+-      <workItem from="1514826166699" duration="327000" />
+-      <workItem from="1514855160037" duration="2062000" />
+-      <workItem from="1514857339858" duration="10989000" />
+-      <workItem from="1514873741499" duration="33925000" />
+-      <workItem from="1514915165913" duration="438000" />
+-      <workItem from="1514940613758" duration="1867000" />
+-      <workItem from="1514942632811" duration="22157000" />
+-      <workItem from="1514994504241" duration="3291000" />
+-      <workItem from="1515027965410" duration="3011000" />
+-      <workItem from="1515059604021" duration="4070000" />
+-      <workItem from="1515085378548" duration="819000" />
+-      <workItem from="1515114682980" duration="618000" />
+-      <workItem from="1515115820321" duration="19974000" />
+-      <workItem from="1515154489129" duration="4958000" />
+-      <workItem from="1515200437467" duration="28207000" />
+-      <workItem from="1515258461446" duration="88000" />
+-      <workItem from="1515290195097" duration="24964000" />
+-      <workItem from="1515328683860" duration="15088000" />
+-      <workItem from="1515344874144" duration="2331000" />
+-      <workItem from="1515372771238" duration="9165000" />
+-      <workItem from="1515402991235" duration="4388000" />
+-      <workItem from="1515463992983" duration="688000" />
+-      <workItem from="1515465776930" duration="65000" />
+-      <workItem from="1515499658297" duration="759000" />
+-      <workItem from="1515572474791" duration="913000" />
+-      <workItem from="1515573391711" duration="913000" />
+-      <workItem from="1515675116597" duration="655000" />
+-      <workItem from="1515684479787" duration="1087000" />
+-      <workItem from="1515765278889" duration="1077000" />
+-      <workItem from="1515769442591" duration="425000" />
+-      <workItem from="1515819740977" duration="698000" />
+-      <workItem from="1515861587424" duration="83000" />
+-      <workItem from="1515895247378" duration="1257000" />
+-      <workItem from="1515935081573" duration="864000" />
+-      <workItem from="1516023726786" duration="3114000" />
+-      <workItem from="1516036938975" duration="606000" />
+-      <workItem from="1516064230610" duration="8205000" />
+-      <workItem from="1516083478151" duration="7849000" />
+-      <workItem from="1516111042008" duration="3439000" />
+-      <workItem from="1516118420496" duration="624000" />
+-      <workItem from="1516178447041" duration="4626000" />
+-      <workItem from="1516259771154" duration="11396000" />
+-      <workItem from="1516281757004" duration="1144000" />
+-      <workItem from="1516285481080" duration="1279000" />
+-      <workItem from="1516323485690" duration="2211000" />
+-      <workItem from="1516332369720" duration="5259000" />
+-      <workItem from="1516366747616" duration="1203000" />
+-      <workItem from="1516410933285" duration="31776000" />
+-      <workItem from="1516497985064" duration="11593000" />
+-      <workItem from="1516543030570" duration="12553000" />
+-      <workItem from="1516557202170" duration="1162000" />
+-      <workItem from="1516582737481" duration="72000" />
+-      <workItem from="1516583414649" duration="20871000" />
+-      <workItem from="1516618650898" duration="12536000" />
+-      <workItem from="1516634573337" duration="7991000" />
+-      <workItem from="1516666712535" duration="1808000" />
+-      <workItem from="1516712430380" duration="9376000" />
+-      <workItem from="1516755506177" duration="26922000" />
+-      <workItem from="1516786788189" duration="3570000" />
+-      <workItem from="1516791963587" duration="21777000" />
+-      <workItem from="1516816087877" duration="76000" />
+-      <workItem from="1516843110180" duration="22665000" />
+-      <workItem from="1516884217902" duration="17765000" />
+-      <workItem from="1516924670134" duration="6754000" />
+-      <workItem from="1516932355295" duration="7287000" />
+-      <workItem from="1516942328470" duration="15513000" />
+-      <workItem from="1516969060548" duration="168000" />
+-      <workItem from="1516974574319" duration="1191000" />
+-      <workItem from="1516979993270" duration="1366000" />
+-      <workItem from="1517040027641" duration="53000" />
+-      <workItem from="1517048964696" duration="614000" />
+-      <workItem from="1517053247376" duration="598000" />
+-      <workItem from="1517070848707" duration="7373000" />
+-      <workItem from="1517101210293" duration="7086000" />
+-      <workItem from="1517115760397" duration="12645000" />
+-      <workItem from="1517158431126" duration="2430000" />
+-      <workItem from="1517187486764" duration="5798000" />
+-      <workItem from="1517196391256" duration="613000" />
+-      <workItem from="1517200766932" duration="1214000" />
+-    </task>
+-    <task id="LOCAL-00009" summary="video">
+-      <created>1514975745856</created>
+-      <option name="number" value="00009" />
+-      <option name="presentableId" value="LOCAL-00009" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1514975745856</updated>
+-    </task>
+-    <task id="LOCAL-00010" summary="video">
+-      <created>1514975767059</created>
+-      <option name="number" value="00010" />
+-      <option name="presentableId" value="LOCAL-00010" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1514975767059</updated>
+-    </task>
+-    <task id="LOCAL-00011" summary="video">
+-      <created>1514975781673</created>
+-      <option name="number" value="00011" />
+-      <option name="presentableId" value="LOCAL-00011" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1514975781673</updated>
+-    </task>
+-    <task id="LOCAL-00012" summary="video">
+-      <created>1514975892296</created>
+-      <option name="number" value="00012" />
+-      <option name="presentableId" value="LOCAL-00012" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1514975892296</updated>
+-    </task>
+-    <task id="LOCAL-00013" summary="video">
+-      <created>1515036507412</created>
+-      <option name="number" value="00013" />
+-      <option name="presentableId" value="LOCAL-00013" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515036507412</updated>
+-    </task>
+-    <task id="LOCAL-00014" summary="video">
+-      <created>1515152984298</created>
+-      <option name="number" value="00014" />
+-      <option name="presentableId" value="LOCAL-00014" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515152984298</updated>
+-    </task>
+-    <task id="LOCAL-00015" summary="video">
+-      <created>1515153099992</created>
+-      <option name="number" value="00015" />
+-      <option name="presentableId" value="LOCAL-00015" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515153099992</updated>
+-    </task>
+-    <task id="LOCAL-00016" summary="video">
+-      <created>1515220500881</created>
+-      <option name="number" value="00016" />
+-      <option name="presentableId" value="LOCAL-00016" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515220500881</updated>
+-    </task>
+-    <task id="LOCAL-00017" summary="video">
+-      <created>1515226771329</created>
+-      <option name="number" value="00017" />
+-      <option name="presentableId" value="LOCAL-00017" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515226771329</updated>
+-    </task>
+-    <task id="LOCAL-00018" summary="video">
+-      <created>1515249375559</created>
+-      <option name="number" value="00018" />
+-      <option name="presentableId" value="LOCAL-00018" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515249375559</updated>
+-    </task>
+-    <task id="LOCAL-00019" summary="video">
+-      <created>1515251197018</created>
+-      <option name="number" value="00019" />
+-      <option name="presentableId" value="LOCAL-00019" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515251197018</updated>
+-    </task>
+-    <task id="LOCAL-00020" summary="video">
+-      <created>1515383849522</created>
+-      <option name="number" value="00020" />
+-      <option name="presentableId" value="LOCAL-00020" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515383849522</updated>
+-    </task>
+-    <task id="LOCAL-00021" summary="video">
+-      <created>1515403121093</created>
+-      <option name="number" value="00021" />
+-      <option name="presentableId" value="LOCAL-00021" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515403121093</updated>
+-    </task>
+-    <task id="LOCAL-00022" summary="video">
+-      <created>1515464701843</created>
+-      <option name="number" value="00022" />
+-      <option name="presentableId" value="LOCAL-00022" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515464701844</updated>
+-    </task>
+-    <task id="LOCAL-00023" summary="video">
+-      <created>1515573872637</created>
+-      <option name="number" value="00023" />
+-      <option name="presentableId" value="LOCAL-00023" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515573872638</updated>
+-    </task>
+-    <task id="LOCAL-00024" summary="last2018.1.10">
+-      <created>1515574242486</created>
+-      <option name="number" value="00024" />
+-      <option name="presentableId" value="LOCAL-00024" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1515574242486</updated>
+-    </task>
+-    <task id="LOCAL-00025" summary="last2018.1.10">
+-      <created>1516025021968</created>
+-      <option name="number" value="00025" />
+-      <option name="presentableId" value="LOCAL-00025" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516025021968</updated>
+-    </task>
+-    <task id="LOCAL-00026" summary="last2018.1.10">
+-      <created>1516025062162</created>
+-      <option name="number" value="00026" />
+-      <option name="presentableId" value="LOCAL-00026" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516025062162</updated>
+-    </task>
+-    <task id="LOCAL-00027" summary="last2018.1.10">
+-      <created>1516025084255</created>
+-      <option name="number" value="00027" />
+-      <option name="presentableId" value="LOCAL-00027" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516025084255</updated>
+-    </task>
+-    <task id="LOCAL-00028" summary="last2018.1.10">
+-      <created>1516111248970</created>
+-      <option name="number" value="00028" />
+-      <option name="presentableId" value="LOCAL-00028" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516111248970</updated>
+-    </task>
+-    <task id="LOCAL-00029" summary="last2018.1.10">
+-      <created>1516111263752</created>
+-      <option name="number" value="00029" />
+-      <option name="presentableId" value="LOCAL-00029" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516111263752</updated>
+-    </task>
+-    <task id="LOCAL-00030" summary="last2018.1.10">
+-      <created>1516333215875</created>
+-      <option name="number" value="00030" />
+-      <option name="presentableId" value="LOCAL-00030" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516333215875</updated>
+-    </task>
+-    <task id="LOCAL-00031" summary="last2018.1.10">
+-      <created>1516419523805</created>
+-      <option name="number" value="00031" />
+-      <option name="presentableId" value="LOCAL-00031" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516419523805</updated>
+-    </task>
+-    <task id="LOCAL-00032" summary="last2018.1.10">
+-      <created>1516468399429</created>
+-      <option name="number" value="00032" />
+-      <option name="presentableId" value="LOCAL-00032" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516468399429</updated>
+-    </task>
+-    <task id="LOCAL-00033" summary="last2018.1.10">
+-      <created>1516506324151</created>
+-      <option name="number" value="00033" />
+-      <option name="presentableId" value="LOCAL-00033" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516506324151</updated>
+-    </task>
+-    <task id="LOCAL-00034" summary="last2018.1.10">
+-      <created>1516507999357</created>
+-      <option name="number" value="00034" />
+-      <option name="presentableId" value="LOCAL-00034" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516507999357</updated>
+-    </task>
+-    <task id="LOCAL-00035" summary="last2018.1.10">
+-      <created>1516611524954</created>
+-      <option name="number" value="00035" />
+-      <option name="presentableId" value="LOCAL-00035" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516611524954</updated>
+-    </task>
+-    <task id="LOCAL-00036" summary="last2018.1.10">
+-      <created>1516636532325</created>
+-      <option name="number" value="00036" />
+-      <option name="presentableId" value="LOCAL-00036" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516636532325</updated>
+-    </task>
+-    <task id="LOCAL-00037" summary="last2018.1.10">
+-      <created>1516637415870</created>
+-      <option name="number" value="00037" />
+-      <option name="presentableId" value="LOCAL-00037" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516637415870</updated>
+-    </task>
+-    <task id="LOCAL-00038" summary="last2018.1.10">
+-      <created>1516784211841</created>
+-      <option name="number" value="00038" />
+-      <option name="presentableId" value="LOCAL-00038" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516784211841</updated>
+-    </task>
+-    <task id="LOCAL-00039" summary="last2018.1.10">
+-      <created>1516807795561</created>
+-      <option name="number" value="00039" />
+-      <option name="presentableId" value="LOCAL-00039" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516807795561</updated>
+-    </task>
+-    <task id="LOCAL-00040" summary="last2018.1.10">
+-      <created>1516816136053</created>
+-      <option name="number" value="00040" />
+-      <option name="presentableId" value="LOCAL-00040" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516816136053</updated>
+-    </task>
+-    <task id="LOCAL-00041" summary="last2018.1.10">
+-      <created>1516846109424</created>
+-      <option name="number" value="00041" />
+-      <option name="presentableId" value="LOCAL-00041" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516846109424</updated>
+-    </task>
+-    <task id="LOCAL-00042" summary="last2018.1.10">
+-      <created>1516857868156</created>
+-      <option name="number" value="00042" />
+-      <option name="presentableId" value="LOCAL-00042" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516857868156</updated>
+-    </task>
+-    <task id="LOCAL-00043" summary="last2018.1.10">
+-      <created>1516868640786</created>
+-      <option name="number" value="00043" />
+-      <option name="presentableId" value="LOCAL-00043" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516868640786</updated>
+-    </task>
+-    <task id="LOCAL-00044" summary="last2018.1.10">
+-      <created>1516924971538</created>
+-      <option name="number" value="00044" />
+-      <option name="presentableId" value="LOCAL-00044" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516924971538</updated>
+-    </task>
+-    <task id="LOCAL-00045" summary="last2018.1.10">
+-      <created>1516960550189</created>
+-      <option name="number" value="00045" />
+-      <option name="presentableId" value="LOCAL-00045" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516960550189</updated>
+-    </task>
+-    <task id="LOCAL-00046" summary="last2018.1.10">
+-      <created>1516974608797</created>
+-      <option name="number" value="00046" />
+-      <option name="presentableId" value="LOCAL-00046" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1516974608797</updated>
+-    </task>
+-    <task id="LOCAL-00047" summary="last2018.1.10">
+-      <created>1517078177227</created>
+-      <option name="number" value="00047" />
+-      <option name="presentableId" value="LOCAL-00047" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517078177227</updated>
+-    </task>
+-    <task id="LOCAL-00048" summary="last2018.1.10">
+-      <created>1517104935770</created>
+-      <option name="number" value="00048" />
+-      <option name="presentableId" value="LOCAL-00048" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517104935770</updated>
+-    </task>
+-    <task id="LOCAL-00049" summary="last2018.1.10">
+-      <created>1517123645974</created>
+-      <option name="number" value="00049" />
+-      <option name="presentableId" value="LOCAL-00049" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517123645974</updated>
+-    </task>
+-    <task id="LOCAL-00050" summary="last2018.1.10">
+-      <created>1517125216425</created>
+-      <option name="number" value="00050" />
+-      <option name="presentableId" value="LOCAL-00050" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517125216426</updated>
+-    </task>
+-    <task id="LOCAL-00051" summary="last2018.1.10c">
+-      <created>1517132347383</created>
+-      <option name="number" value="00051" />
+-      <option name="presentableId" value="LOCAL-00051" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517132347384</updated>
+-    </task>
+-    <task id="LOCAL-00052" summary="last2018.1.10c">
+-      <created>1517151876542</created>
+-      <option name="number" value="00052" />
+-      <option name="presentableId" value="LOCAL-00052" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517151876543</updated>
+-    </task>
+-    <task id="LOCAL-00053" summary="last2018.1.10c">
+-      <created>1517158645157</created>
+-      <option name="number" value="00053" />
+-      <option name="presentableId" value="LOCAL-00053" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517158645157</updated>
+-    </task>
+-    <task id="LOCAL-00054" summary="last2018.1.10c">
+-      <created>1517195452854</created>
+-      <option name="number" value="00054" />
+-      <option name="presentableId" value="LOCAL-00054" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517195452855</updated>
+-    </task>
+-    <task id="LOCAL-00055" summary="last2018.1.10c">
+-      <created>1517196538132</created>
+-      <option name="number" value="00055" />
+-      <option name="presentableId" value="LOCAL-00055" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517196538132</updated>
+-    </task>
+-    <task id="LOCAL-00056" summary="last2018.1.10c">
+-      <created>1517201729077</created>
+-      <option name="number" value="00056" />
+-      <option name="presentableId" value="LOCAL-00056" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517201729078</updated>
+-    </task>
+-    <task id="LOCAL-00057" summary="last2018.1.10c">
+-      <created>1517204629986</created>
+-      <option name="number" value="00057" />
+-      <option name="presentableId" value="LOCAL-00057" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1517204629986</updated>
+-    </task>
+-    <option name="localTasksCounter" value="58" />
+-    <servers />
+-  </component>
+-  <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="534109000" />
+-  </component>
+-  <component name="ToolWindowManager">
+-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+-    <editor active="true" />
+-    <layout>
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20238096" sideWeight="0.49217004" order="0" side_tool="false" content_ui="combo" />
+-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12643678" sideWeight="0.50595236" order="10" side_tool="true" content_ui="tabs" />
+-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.4940476" order="3" side_tool="false" content_ui="tabs" x="493" y="268" width="664" height="199" />
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14732143" sideWeight="0.50782996" order="2" side_tool="true" content_ui="tabs" />
+-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.93760264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12643678" sideWeight="0.50595236" order="10" side_tool="true" content_ui="tabs" />
+-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+-      <window_info id="Version Control" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.4940476" order="3" side_tool="false" content_ui="tabs" x="493" y="268" width="664" height="199" />
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2688331" sideWeight="0.49217004" order="0" side_tool="false" content_ui="combo" />
+-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14732143" sideWeight="0.50782996" order="2" side_tool="true" content_ui="tabs" />
+-    </layout>
+-    <layout-to-restore>
+-      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.93760264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.5029762" order="11" side_tool="true" content_ui="tabs" />
+-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32676518" sideWeight="0.49702382" order="8" side_tool="false" content_ui="tabs" />
+-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18080357" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+-    </layout-to-restore>
+-  </component>
+-  <component name="VcsContentAnnotationSettings">
+-    <option name="myLimit" value="2678400000" />
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+-    <MESSAGE value="video" />
+-    <MESSAGE value="last2018.1.10" />
+-    <MESSAGE value="last2018.1.10c" />
+-    <option name="LAST_COMMIT_MESSAGE" value="last2018.1.10c" />
+-  </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager />
+-    <watches-manager />
+-  </component>
+-  <component name="editorHistoryManager">
+-    <entry file="file://$PROJECT_DIR$/style/login.css">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="170">
+-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/roleManage.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="442">
+-          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/accountAdd.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-84">
+-          <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/modules/password.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="294">
+-          <caret line="30" column="33" lean-forward="true" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/modules/accountManage.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="518">
+-          <caret line="64" column="101" lean-forward="false" selection-start-line="64" selection-start-column="101" selection-end-line="64" selection-end-column="101" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/modules/addAccount.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="1139">
+-          <caret line="67" column="39" lean-forward="true" selection-start-line="67" selection-start-column="39" selection-end-line="67" selection-end-column="39" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/modules/moduleManage.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="188">
+-          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/modules/roleManage.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="273">
+-          <caret line="34" column="114" lean-forward="false" selection-start-line="34" selection-start-column="114" selection-end-line="34" selection-end-column="114" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/password.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="357">
+-          <caret line="21" column="17" lean-forward="false" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/constant/modulesConstant.js" />
+-    <entry file="file://$PROJECT_DIR$/script/constant/articleConstant.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-274">
+-          <caret line="3" column="23" lean-forward="true" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/video.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="187">
+-          <caret line="65" column="65" lean-forward="true" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/constant/videoConstant.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/filter/videoFilter.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/filter/articleFilter.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-342">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/directive/Pagination/Pagination.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="260">
+-          <caret line="18" column="57" lean-forward="false" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="57" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/directive/Pagination/Pagination.css">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="102">
+-          <caret line="6" column="21" lean-forward="false" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/import/jquery.js" />
+-    <entry file="file://$PROJECT_DIR$/import/angular-ui-router.min.js" />
+-    <entry file="file://$PROJECT_DIR$/import/css/bootstrap.css" />
+-    <entry file="file://$PROJECT_DIR$/import/angular.min.js" />
+-    <entry file="file://$PROJECT_DIR$/script/factory/address.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-170">
+-          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/import/angular.js" />
+-    <entry file="file://$PROJECT_DIR$/import/bootstrap-datetimepicker.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/import/bootstrap-datetimepicker.css">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="340">
+-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/accountManage.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="238">
+-          <caret line="14" column="47" lean-forward="true" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/import/bootstrap-theme.css.map">
+-      <provider editor-type-id="sourcemapFileViewerProvider">
+-        <state />
+-      </provider>
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/import/bootstrap-theme.css">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="0">
+-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="3111">
+-          <caret line="639" column="56" lean-forward="true" selection-start-line="639" selection-start-column="56" selection-end-line="639" selection-end-column="56" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/modules/addRole.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="447">
+-          <caret line="26" column="101" lean-forward="false" selection-start-line="26" selection-start-column="101" selection-end-line="26" selection-end-column="101" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/videoSee.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="19">
+-          <caret line="44" column="125" lean-forward="false" selection-start-line="44" selection-start-column="125" selection-end-line="44" selection-end-column="125" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/articleSee.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="380">
+-          <caret line="68" column="62" lean-forward="true" selection-start-line="68" selection-start-column="62" selection-end-line="68" selection-end-column="62" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/index.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="608">
+-          <caret line="46" column="63" lean-forward="false" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="63" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/article.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="323">
+-          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/videoAdd.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="137">
+-          <caret line="122" column="51" lean-forward="true" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/videoAdd.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="273">
+-          <caret line="50" column="19" lean-forward="true" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/roleAdd.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="629">
+-          <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/directive/fileUpLoad/fileUpLoad.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="247">
+-          <caret line="16" column="15" lean-forward="true" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/articleAdd.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="589">
+-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/admin.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="266">
+-          <caret line="14" column="46" lean-forward="true" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/login.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="209">
+-          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="45" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/login.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="114">
+-          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="37" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/admin.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="323">
+-          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/articleAdd.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="542">
+-          <caret line="41" column="57" lean-forward="false" selection-start-line="41" selection-start-column="57" selection-end-line="41" selection-end-column="57" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/app.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="570">
+-          <caret line="118" column="0" lean-forward="false" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/video.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="205">
+-          <caret line="75" column="54" lean-forward="true" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/article.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="190">
+-          <caret line="13" column="65" lean-forward="false" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="65" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/view/user.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-133">
+-          <caret line="134" column="65" lean-forward="false" selection-start-line="134" selection-start-column="65" selection-end-line="134" selection-end-column="65" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/moduleManage.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="119">
+-          <caret line="7" column="39" lean-forward="true" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/factory/global.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="423">
+-          <caret line="59" column="8" lean-forward="true" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="38" />
+-          <folding>
+-            <marker date="1517204589695" expanded="true" signature="277:328" ph="..." />
+-            <marker date="1517204589695" expanded="true" signature="902:953" ph="..." />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/script/controller/moduleAdd.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="306">
+-          <caret line="18" column="53" lean-forward="true" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: view/video.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/video.html	(revision 17922)
++++ view/video.html	(revision )
+@@ -7,21 +7,21 @@
+             分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
+             <select class="form-control videoInput" ng-model="vm.params.type">
+                 <option value=''>全部</option>
+-                <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-bind="y"></option>
++                <option ng-repeat=" (x,y) in vm.type" value="{{x}}">{{y}}</option>
+             </select>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+             所属年级
+             <select class="form-control videoInput" ng-model="vm.params.grade">
+                 <option value=''>全部</option>
+-                <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-bind="y"></option>
++                <option ng-repeat=" (x,y) in vm.grade" value="{{x}}">{{y}}</option>
+             </select>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+             所属科目
+             <select class="form-control videoInput" ng-model="vm.params.subject">
+                 <option value=''>全部</option>
+-                <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-bind="y"></option>
++                <option ng-repeat=" (x,y) in vm.subject" value="{{x}}">{{y}}</option>
+             </select>
+         </div>
+         <div class="col-lg-3 col-md-4 col-sm-4 lineHeight">
+@@ -62,7 +62,7 @@
+             状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态
+             <select class="form-control videoInput" ng-model="vm.params.status">
+                 <option value=''>全部</option>
+-                <option ng-repeat=" (x,y) in vm.status" value="{{x}}" ng-bind="y"></option>
++                <option ng-repeat=" (x,y) in vm.status" value="{{x}}">{{y}}</option>
+             </select>
+ 
+         </div>
+@@ -108,22 +108,22 @@
+                     </thead>
+                     <tbody>
+                     <tr ng-repeat=" x in vm.videoList">
+-                        <td ng-bind="$index+1"></td>
+-                        <td class="titleWord" ng-bind="x.title"></td>
+-                        <td ng-bind="x.type | titleFilter"></td>
+-                        <td ng-bind="x.grade | gradeFilter"></td>
+-                        <td ng-bind="x.subject | subjectFilter"></td>
+-                        <td class="teacherWord" ng-bind="x.teacherName"></td>
+-                        <td ng-bind="x.collection"></td>
+-                        <td ng-bind="x.upvote"></td>
+-                        <td ng-bind="x.editTime | date:'yyyy-MM-dd'"></td>
+-                        <td ng-bind="x.status | statusFilter"></td>
++                        <td>{{$index+1}}</td>
++                        <td class="titleWord">{{x.title}}</td>
++                        <td>{{x.type | titleFilter}}</td>
++                        <td>{{x.grade | gradeFilter}}</td>
++                        <td>{{x.subject | subjectFilter}}</td>
++                        <td class="teacherWord">{{x.teacherName}}</td>
++                        <td>{{x.collection}}</td>
++                        <td>{{x.upvote}}</td>
++                        <td>{{x.editTime | date:"yyyy-MM-dd "}}</td>
++                        <td>{{x.status | statusFilter}}</td>
+                         <td>
+                             <table>
+                                 <tr>
+                                     <td ng-click="vm.videoSee(x.vid )"><a href="">查看</a></td>
+                                     <td class="tdMargin"><a href="" ng-click="vm.compile(x.vid )">编辑</a></td>
+-                                    <td ng-click="vm.statuses(x.vid,x.status)"><a href="" ng-bind="x.status | putAwayFilter"></a>
++                                    <td ng-click="vm.statuses(x.vid,x.status)"><a href="">{{x.status | putAwayFilter}}</a>
+                                     </td>
+                                 </tr>
+                             </table>
+Index: view/videoSee.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- view/videoSee.html	(revision 17922)
++++ view/videoSee.html	(revision )
+@@ -6,21 +6,21 @@
+                     所属年级
+                     <select class="form-control addInput" ng-model="vm.videoList.grade">
+                         <option value=''>请选择</option>
+-                        <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-selected="vm.videoList.grade == x" ng-bind="y"></option>
++                        <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-selected="vm.videoList.grade == x">{{y}}</option>
+                     </select>
+                 </div>
+                 <div class="col-lg-3 col-md-6 col-sm-6  selectHeight">                                <!--科目选择-->
+                     所属科目
+                     <select class="form-control addInput" ng-model="vm.videoList.subject">
+                         <option value=''>请选择</option>
+-                        <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-selected="vm.videoList.subject == x" ng-bind="y">
++                        <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-selected="vm.videoList.subject == x">{{y}}
+                         </option>
+                     </select>
+                 </div>
+                 <div class="col-lg-6 col-md-12 col-sm-12 teacherHeight">
+                     老师昵称
+                     <select class="form-control teacherInput" ng-model="vm.image">
+-                        <option ng-repeat=" x  in vm.teacherData" ng-value="x" ng-bind="x.teacherName"></option>
++                        <option ng-repeat=" x  in vm.teacherData" ng-value="x">{{x.teacherName}}</option>
+                     </select>
+                     <span>头像</span>
+                     <img class="image" ng-src="{{vm.image.teacherAvatar}}"
+@@ -42,7 +42,7 @@
+                 <div class="col-lg-10 col-md-10 col-sm-10">
+                     <select class="form-control videoAddInput" ng-model="vm.videoList.type">
+                         <option value=''>请选择</option>
+-                        <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-selected="vm.videoList.type == x" ng-bind="y"></option>
++                        <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-selected="vm.videoList.type == x">{{y}}</option>
+                     </select>
+                 </div>
+             </div>

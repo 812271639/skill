@@ -1,0 +1,18 @@
+
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="testLi" ng-repeat="x in modules  | orderBy:'x.id'" ng-if="x.parentId == 0">
+                <a href="" >
+                    <i class="fa fa-wrench fa-fw"></i>{{x.moduleName}}<span class="fa arrow" ></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li ng-repeat="y in modules" ng-if="x.id == y.parentId" >
+                        <a class="test" ui-sref="{{y.url}}"> {{y.moduleName}}</a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

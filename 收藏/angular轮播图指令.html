@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>测试</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular-animate.js"></script>
+    <script src="https://cdn.bootcss.com/angular-sanitize/1.6.1/angular-sanitize.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bannerImg {
+            margin: auto;
+            width: 1000px;
+            height: 300px;
+        }
+        .test{
+               height: 100px;
+               background-color: #972323;
+           }
+        .test2{
+            height: 100px;
+            background-color: #699758;
+        }
+    </style>
+</head>
+<body ng-controller="demoCtrl">
+
+
+<video-banner banner="banner" active="active"  my-interval="myInterval" no-wrap-slides='noWrapSlides'></video-banner>
+
+
+
+
+</body>
+<script>
+    angular.module('myApp', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
+        .controller('demoCtrl', function ($scope) {
+            $scope.banner = [
+                {image: '../image/1.jpg', text: 'nsfocus', url: 'https://www.baidu.com/'},
+                {image: '../image/2.jpg', text: 'nsfocus', url: 'https://www.google.com.hk/'},
+                {image: '../image/3.jpg', text: 'nsfocus', url: 'https://segmentfault.com/t/javascript'},
+                {image: '../image/4.jpg', text: 'nsfocus', url: 'http://www.runoob.com/html/html-entities.html'},
+                {image: '../image/5.jpg', text: 'nsfocus', url: 'https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842'
+                }];
+            $scope.myInterval = 1500;      //轮播的时间间隔
+            $scope.noWrapSlides = false;    //是否循环轮播
+            $scope.active = 1;               //起始所显示的图片（0：下标为0的图片）
+
+        })
+        .directive('videoBanner', [function () {
+            return {
+                scope:{
+                    banner:'=banner',
+                    myInterval:'=myInterval',
+                    noWrapSlides:'=noWrapSlides',
+                    active:'=active'
+                },
+                restrict: 'AE',
+                templateUrl: 'videoBanner.html',
+                controller: function ($scope) {
+
+                    var slides = $scope.slides = []; //用于存放图片地址
+                    var currIndex = 0;
+                    for (var i = 0; i < $scope.banner.length; i++) {
+                        slides.push({
+                            image: $scope.banner[i].image,
+                            text: $scope.banner[i].text,
+                            url: $scope.banner[i].url,
+                            id: currIndex++
+                        });
+                    }
+                }
+            }
+        }]);
+</script>
+<script type="text/ng-template" id="videoBanner.html">
+    <div>
+        <div>
+            <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                    <a href="{{slide.url}}"> <img class="bannerImg" ng-src="{{slide.image}}"></a>
+                    <!--<div class="carousel-caption">-->
+                        <!--<h4>Slide {{slide.id}}</h4>-->
+                        <!--<p>{{slide.text}}</p>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+</body>
+</html>

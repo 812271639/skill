@@ -1,0 +1,81 @@
+<!doctype html>
+<html ng-app="ui.bootstrap.demo">
+<head>
+    <meta charset="UTF-8">
+    <title>angular分页demo</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.js"></script>
+    <script src="example.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"></head>
+<body>
+<div ng-controller="PaginationDemoCtrl" style="padding:20px;">
+    <!--<h4>Default</h4>-->
+    <!--<ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>-->
+    <!--<ul uib-pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>-->
+    <!--<ul uib-pagination direction-links="false" boundary-links="true" total-items="totalItems" ng-model="currentPage"></ul>-->
+    <!--<ul uib-pagination direction-links="false" total-items="totalItems" ng-model="currentPage" num-pages="smallnumPages"></ul>-->
+    <!--<pre>The selected page no: {{currentPage}}</pre>-->
+    <button type="button" class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
+
+    <!--<hr />-->
+    <!--<h4>Limit the maximum visible buttons</h4>-->
+    <!--<h6><code>rotate</code> defaulted to <code>true</code>:</h6>-->
+    <!--<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></ul>-->
+    <!--<h6><code>rotate</code> defaulted to <code>true</code> and <code>force-ellipses</code> set to <code>true</code>:</h6>-->
+    <!--<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>-->
+    <!--<h6><code>rotate</code> set to <code>false</code>:</h6>-->
+    <ul uib-pagination
+        total-items="bigTotalItems"
+        ng-model="bigCurrentPage"
+        num-pages="totalPages"
+        items-per-page ="items"
+        ng-click="pageChanged()"
+        max-size="maxSize"
+        page-label="'p'+$page"
+        class="pagination-sm"
+        boundary-links="true"
+        first-text="首页"
+        previous-text="<"
+        next-text=">"
+        last-text="尾页"
+        rotate="false"></ul>
+    <!--<h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> defaulted to <code>true</code>:</h6>-->
+    <!--<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></ul>-->
+    <!--<h6><code>boundary-link-numbers</code> set to <code>true</code> and <code>rotate</code> set to <code>false</code>:</h6>-->
+    <!--<ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true" rotate="false"></ul>-->
+    <pre>总数bigTotalItems： {{bigTotalItems}} ； $page:{{page}} ； maxSize ： {{maxSize}}  ； Page: {{bigCurrentPage}} / {{totalPages}}</pre>
+
+
+
+</div>
+<script>
+    angular.module('ui.bootstrap.demo', ['ui.bootstrap']);
+    angular.module('ui.bootstrap.demo').controller('PaginationDemoCtrl', function ($scope, $log) {
+//        $scope.totalItems = 64;
+//        $scope.currentPage =5;
+
+        $scope.setPage = function (pageNo) {
+            $scope.currentPage = pageNo;
+            alert(pageNo)
+        };
+
+        $scope.pageChanged = function() {
+            // $scope.currentPage = 5;
+            $log.log('Page changed to: ' + $scope.currentPage);
+
+            // alert("你好")
+            console.log($scope.bigCurrentPage)
+        };
+        $scope.items = 2;  //每页多少条
+        $scope.maxSize = 5;//显示多少数字
+        $scope.bigTotalItems = 300; //总共多少条
+        $scope.bigCurrentPage = 2; //当前页
+
+    });
+</script>
+
+
+</body>
+</html>

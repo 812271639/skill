@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular umeditor</title>
+    <!--<link type="text/css" href="../lib/umeditor/dist/utf8-php/themes/default/css/umeditor.css">-->
+    <link type="text/css"
+          href="../utf8-php/themes/default/css/umeditor.min.css"
+          rel="stylesheet">
+
+    <style>
+        .simple {
+            /* box */
+            position: relative;
+            margin: 5px;
+
+            /* self block */
+
+            /* font */
+        }
+
+        .all {
+            position: relative;
+            margin: 5px;
+        }
+
+        .model {
+            position: absolute;
+            top: 0px;
+            right: -210px;
+
+            width: 200px;
+            height: 100%;
+            border: 1px dashed #ccc;
+        }
+    </style>
+</head>
+<body ng-app="app">
+
+<!-- controller -->
+<div ng-controller="controller" style="width:800px;margin:auto;">
+    <!-- simple 日期插件.html -->
+    <div class="simple">
+        <div type="text/html" style="height:200px;width:100%;"
+             ng-model="SimpleModel.text"
+             meta-umeditor
+             meta-umeditor-placeholder="提示文案!这里是简单的示例">
+        </div>
+        <div class="model">
+            <div ng-bind="SimpleModel.text"></div>
+        </div>
+    </div>
+    <!-- end simple 日期插件.html -->
+    <!-- complete 日期插件.html -->
+    <div class="all">
+        <div ng-if="condition" type="text/html" style="height:200px;width:100%;"
+             ng-model="CompleteModel.text"
+             meta-umeditor
+             meta-umeditor-config='config'
+             meta-umeditor-placeholder="提示文案!这里是完整的示例">
+        </div>
+        <div class="model">
+            <div ng-bind="CompleteModel.text"></div>
+        </div>
+    </div>
+    <!-- end complete 日期插件.html -->
+</div>
+<script type="text/javascript" src="../utf8-php/third-party/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.6.6/angular.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../utf8-php/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="../utf8-php/umeditor.min.js"></script>
+<script type="text/javascript" src="../utf8-php/lang/zh-cn/zh-cn.js"></script>
+<script src="src/meta.umeditor.js"></script>
+
+<script>
+    var app = angular.module('app', ['meta.umeditor']);
+//    .run('$rootScope', function ($rootScope) { }]);
+
+    app.controller('controller', function ($scope, $timeout) {
+        $scope.config = {};
+        $scope.CompleteModel = {
+            text: '<p>Hello World</p>'
+        };
+        $timeout(function () {
+            $scope.condition = true;
+        },0);
+    });
+</script>
+
+</body>
+</html>

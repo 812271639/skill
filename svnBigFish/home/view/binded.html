@@ -1,0 +1,67 @@
+<body >
+<header class="c-header">
+    <div class="tech" ng-click="vm.Tel()">
+        <span ng-class="{'typeWord':vm.bindStates==2,'typewording':vm.bindStates==1}">手机绑定</span>
+    </div>
+    <div class="m-Line"></div>
+    <div class="reed" ng-click="vm.eMail()">
+        <span ng-class="{'typeWord':vm.bindStates==1,'typewording':vm.bindStates==2}" >邮箱绑定</span>
+    </div>
+
+</header>
+<div class="blank"></div>
+<div class="mainbody">
+    <!--手机-->
+    <div ng-if="vm.bindStates==1" class="main">
+
+        <p class="bindMes"><img src="../image/user/bool.png" width="30" height="24"/>绑定手机号/邮箱获取20颗逆袭豆 </p>
+
+        <div class="inputMes">
+            <div class="inputvul">手机：</div>
+            <input type="text" class="b-nickname" maxlength="13" ng-model="vm.params.newTel">
+        </div>
+
+        <div class="inputMes">
+            <div class="inputvul">验证：</div>
+            <div class="b-nickname" >
+                <input type="text" class="inputTest" ng-model="vm.params.tCode" maxlength="6">
+                <button class="sentTest" ng-disabled="vm.canClick" ng-click="vm.telCode()" >{{vm.description}}</button>
+            </div>
+
+        </div>
+        <div class="save" ng-click="vm.telBinding()">绑定</div>
+
+    </div>
+    <!--邮箱-->
+
+    <div ng-if="vm.bindStates==2" class="main">
+
+        <p class="bindMes"><img src="../image/user/bool.png" width="30" height="24"/>绑定手机号/邮箱获取20颗逆袭豆 </p>
+
+        <div class="inputMes">
+            <div class="inputvul">邮箱：</div>
+            <input type="text" class="b-nickname" ng-model="vm.params.newEmail">
+
+        </div>
+
+        <div class="inputMes">
+            <div class="inputvul">验证：</div>
+            <div class="b-nickname" >
+                <input type="text" class="inputTest" ng-model="vm.params.eCode" maxlength="6">
+                <button class="sentTest" ng-disabled="vm.canClick" ng-click="vm.EmailCode()" >{{vm.description}}</button>
+            </div>
+
+        </div>
+        <div class="save" ng-click="vm.EmailBinding()">绑定</div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+</body>

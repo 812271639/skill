@@ -1,0 +1,171 @@
+
+/*.mainSign {*/
+    /*max-width: 6.4rem;*/
+    /*padding: 1.7rem .4rem 2.8rem .4rem;*/
+    /*margin: 0 auto;*/
+    /*background-color: #009688ab;*/
+/*}*/
+/*@media (max-width: 768px) {*/
+    /*html {*/
+        /*font-size: 300%;*/
+    /*}*/
+/*}*/
+
+.signDay {
+    padding: .2rem .2rem 0 .2rem;
+    background-color: #fcd32d;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.myDay, .myToday, .myOldDay {
+    display: inline-block;
+    margin: .03rem;
+    text-align: center;
+    font-size: .36rem;
+    width: .65rem;
+    line-height: .65rem;
+    color: #afccf8;
+    background-color: #fffbea;
+    border-radius: 5px;
+}
+
+.myWeek {
+    display: inline-block;
+    text-align: center;
+    margin: 0 .025rem;
+    width: .65rem;
+    line-height: .65rem;
+    font-size: .2rem;
+}
+
+.headWeek {
+    font-size: 0;
+    padding: 0 .15rem;
+    background-color: #fcea6b;
+    border-radius: 5px 5px 0 0;
+}
+
+.dayContent {
+    background-color: #fcba1a;
+    border-radius: 5px;
+}
+
+.Container {
+    padding: .05rem .1rem .1rem .1rem;
+}
+
+.totalSign {
+    text-align: right;
+    line-height: 0.4rem;
+    font-size: .175rem;
+}
+
+.redNum {
+    color: red;
+}
+
+.blueNum {
+    color: #03A9F4;
+}
+
+.signBtn {
+    text-align: center;
+    padding: .15rem 0;
+}
+
+.signButton {
+    padding: .06rem .7rem;
+    font-size: .33rem;
+    background-color: #ee7600;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    /*z-index: 9999;*/
+}
+.grayColor{
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: .06rem .7rem;
+    font-size: .33rem;
+    background-color: rgba(153, 153, 153, 0.56);
+}
+.signImg{
+    max-width: 1.45rem;
+}
+.beanImg{
+    max-width: 4.75rem;
+}
+.closeImg{
+    max-width: .78rem;
+}
+.modal-dialog {
+    margin: 0;
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        float: left;
+        margin: 0;
+        width: auto;
+    }
+}
+.modal-backdrop{
+    z-index: 1;
+}
+.modal-body {
+    display: inline-block;
+    float: left;
+    padding: 0;
+}
+
+.modal-content {
+    border: none;
+}
+
+.signCenter {
+    width: 5.65rem;
+    height: 5.95rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.beanCenter{
+    width: 4.8rem;
+    height: 4.5rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+.closeModal{
+    position: absolute;
+    z-index: 2;
+    right: -5%;
+}
+.beanNbm{
+    color: white;
+    position: absolute;
+    bottom: -3.6rem;
+    left: 35.3%;
+    font-size: .32rem;
+}
+.beanNbmColor{
+    color: #fcde00;
+}
+.blue {
+    background-color: #03A9F4;
+}
+.signBottom{
+    position: fixed;
+    right: .25rem;
+    top: .4rem;
+    z-index: 2;
+}

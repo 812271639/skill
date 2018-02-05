@@ -1,0 +1,40 @@
+<div class="contents">
+    <div class="top">
+        {{vm.roles}}
+    </div>
+    <div class="password">
+        <div class="col-xs-2 description">
+            角色名称  <span style="color: red" ng-hide="vm.params.moduleName">*</span>
+        </div>
+        <div class="col-xs-10">
+            <input type="text" class="form-control moduleInput" ng-model="vm.params.moduleName" placeholder="请输入角色名"> <br>
+        </div>
+        <div class="row description size" ng-repeat="x in vm.role" >
+            <div class="col-xs-3 ">
+                <label ng-show="x.parentId == 0">
+                    <input type="checkbox"
+                           ng-disabled="vm.admin && (x.id==3)"
+                           class="checkboxes"
+                           ng-model="x.random"
+                           ng-click="vm.all(x.id,x.random)">{{x.moduleName}}
+                </label>
+            </div>
+            <div class="col-xs-9 left">
+                <div ng-repeat="y in vm.role">
+                    <label ng-show="x.id == y.parentId">
+                        <input type="checkbox"
+                               ng-disabled="vm.admin && (x.id==3)"
+                               class="checkboxes"
+                               ng-model="y.random"
+                               ng-click="vm.addArr(y.id,y.parentId,y.random)">{{y.moduleName}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <button class="btn btn-success" ng-disabled="!vm.params.moduleName" ng-click="vm.sureChang()">确认</button>
+            <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+        </div>
+
+    </div>
+</div>

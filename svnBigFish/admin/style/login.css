@@ -1,0 +1,65 @@
+.back {
+    font-family: "华文细黑";
+    width: 100%;
+    min-height: 100vh;
+    background: url("../image/3.jpeg") no-repeat;
+    background-size: cover;
+}
+.main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #dcdcdc42;
+    text-align: center;
+    padding: 10px 30px;
+}
+.logInTop {
+    font-size: 25px;
+    color: #00bcd459;
+}
+.inside {
+    background-color: #6b6767;
+    margin-top: 20px;
+    padding: 3px;
+    /*width: 250px;*/
+}
+.inside img {
+    max-width: 20px;
+    vertical-align: middle;
+}
+.inside input {
+    line-height: 20px;
+    vertical-align: middle;
+    font-size: 18px;
+    color: #31221d;
+    border: none;
+    outline: none;
+    border-left: 1px solid #cec8c8;
+    background-color: transparent;
+    margin-left: 3px;
+    padding-left: 3px;
+}
+.inside input::-webkit-input-placeholder {
+    color: #dedede;
+}
+.verification {
+    height: 30px;
+    margin-top: 10px;
+    text-align: left;
+    color: #ff0000cc;
+    font-size: 18px;
+}
+.log {
+    width: 100%;
+    padding: 6px 12px;
+    line-height: 33px;
+    font-weight: 400;
+    font-size: 25px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    background-color: #5f778257;
+    color: #628da0;
+    cursor: pointer;
+}

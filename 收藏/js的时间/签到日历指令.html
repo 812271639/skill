@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>时间指令</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular-animate.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-sanitize/1.6.1/angular-sanitize.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <style>
+        html {
+            font-size: 625%;
+            background-color: #e9e9e9;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainSign {
+            max-width: 6.4rem;
+            padding: 1.7rem .4rem 2.8rem .4rem;
+            margin: 0 auto;
+            background-color: #009688ab;
+        }
+
+        .signDay {
+            padding: .2rem .2rem 0 .2rem;
+            background-color: #fcd32d;
+            display: inline-block;
+        }
+
+        .myDay, .myToday, .myOldDay {
+            display: inline-block;
+            margin: .03rem;
+            text-align: center;
+            font-size: .36rem;
+            width: .65rem;
+            line-height: .65rem;
+            color: #afccf8;
+            background-color: #fffbea;
+            border-radius: 5px;
+        }
+
+        .myWeek {
+            display: inline-block;
+            text-align: center;
+            margin: 0 .007rem;
+            width: .65rem;
+            line-height: .65rem;
+            font-size: .2rem;
+        }
+
+        .headWeek {
+            padding: 0 .15rem;
+            background-color: #fcea6b;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .dayContent {
+            background-color: #fcba1a;
+            border-radius: 5px;
+        }
+
+        .Container {
+            padding: .05rem .1rem .1rem .1rem;
+        }
+
+        .totalSign {
+            text-align: right;
+            line-height: 0.4rem;
+            font-size: .175rem;
+        }
+
+        .redNum {
+            color: red;
+        }
+
+        .blueNum {
+            color: #03A9F4;
+        }
+
+        .signBtn {
+            text-align: center;
+            padding: .15rem 0;
+        }
+
+        .signButton {
+            padding: .06rem .7rem;
+            font-size: .33rem;
+            background-color: #ee7600;
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .modal-dialog {
+                float: left;
+                margin: 0;
+            }
+        }
+
+        .modal-body {
+            display: inline-block;
+            float: left;
+            padding: 0;
+        }
+
+        .modal-content {
+            border: none;
+        }
+
+        .center {
+            width: 5.65rem;
+            height: 5.95rem;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .blue {
+            background-color: #03A9F4;
+        }
+    </style>
+</head>
+<body ng-controller="signIn">
+
+<sign-Day></sign-Day>
+
+<script type="text/ng-template" id="signDay.html">
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">签到</button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="center">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="signDay">
+                            <div class="totalSign">当前累计签到 <span class="redNum">3</span>天</div>
+                            <div class="dayContent">
+                                <div class="headWeek">
+                                    <ul>
+                                        <li class="myWeek"><span class="blueNum">周日</span></li>
+                                        <li class="myWeek">周一</li>
+                                        <li class="myWeek">周二</li>
+                                        <li class="myWeek">周三</li>
+                                        <li class="myWeek">周四</li>
+                                        <li class="myWeek">周五</li>
+                                        <li class="myWeek"><span class="blueNum">周六</span></li>
+                                    </ul>
+                                </div>
+                                <div class="Container" id="Container"></div>
+                            </div>
+                            <div class="signBtn">
+                                <button class="btn signButton"
+                                        ng-click="sign()"
+                                        data-dismiss="modal"
+                                        data-toggle="modal"
+                                        data-target="#Modal"> 签到
+                                </button>
+                                <!--ng-disabled="true"-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--回调弹出逆袭豆模态框-->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="center">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="ModalLabel">
+                            标题
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        内容
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            确定
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+
+    angular.module('myApp', [])
+        .controller('signIn', function ($scope) {
+
+        })
+        .directive('signDay', [function () {
+        return {
+            restrict: 'AE',
+            templateUrl: 'signDay.html',
+            controller: function ($scope) {
+                (function () {
+                    var today = new Date();
+                    var year = today.getFullYear();
+                    var month = today.getMonth() + 1;
+                    var day = today.getDate();
+                    var startDay = new Date(year, month - 1, 1).getDay();
+                    var nDays = new Date(year, month, 0).getDate();
+                    var numRow = 0;
+                    var i;
+                    var html = '';
+                    html += '<div>';
+                    html += '<ul>';
+                    for (i = 0; i < startDay; i++) {
+                        html += '<li class="myOldDay"></li>';
+                        numRow++;
+                    }
+
+                    for (var j = 1; j <= nDays; j++) {
+                        if (j == day) {
+                            html += '<li class="myToday">';
+                            html += j;
+                        } else {
+                            html += '<li class="myDay">';
+                            html += j;
+                        }
+
+                        html += '</li>';
+                        numRow++;
+                        if (numRow == 7) {
+                            numRow = 0;
+                            html += '</ul><ul>';
+                        }
+                    }
+                    html += '</div>';
+                    $('#Container').append(html)
+                })();
+                var arr = [1, 3, 5, 6, 7, 15, 30, 31];
+                var myToday = angular.element('.myToday');
+                var day = angular.element('.myDay');
+                angular.forEach(day, function (d, index, array) {
+                    angular.forEach(arr, function (a, index, array) {
+                        if (a == d.innerHTML) {
+                            angular.element(d).addClass('blue');
+                        }
+                    });
+                });
+                $scope.sign = function () {
+                    angular.element(myToday).addClass('blue');
+                }
+            }
+
+        }
+    }]);
+
+</script>
+</body>
+</html>

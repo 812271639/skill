@@ -1,0 +1,59 @@
+
+
+<body ng-controller="articleList" >
+
+<div class="banner">
+    <div>
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="$index"
+                 ng-click="vm.goArticle($index)">
+                <img class="a-bannerImg" ng-src="{{slide.image}}" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="list" ng-repeat="x in vm.params.card" ng-click="vm.reArticle($index)">
+        <img class="avatar" ng-src="{{x.cover}}" />
+        <div class="titalMeg">
+            <div class="titalName"><b>{{x.title}}</b></div>
+            <div class="a-author"><b>{{x.author}}</b></div>
+            <div class="intro"><span>{{x.intro}}
+            <div class="morebtn"></div></span>
+            </div>
+
+
+        </div>
+        <div class="upvoteBox">
+            <div class="upvote">
+            <span ng-class="{'collect fa fa-thumbs-up':x.upvoteStatus == 1,
+            'fa fa-thumbs-up':x.upvoteStatus == 2}">  </span>
+                {{x.upvote}}
+            </div>
+            <div class="upvote">
+            <span ng-class="{'invote fa fa-heart':x.collectionStatus == 1,
+            'fa fa-heart':x.collectionStatus == 2}"></span>
+                {{x.collection}}
+
+            </div>
+            <span class="date">{{x.publishTime | timeFilter}}
+            <span class="glyphicon glyphicon-menu-right"></span>
+                </span>
+
+
+
+
+        </div>
+    </div>
+
+
+</main>
+
+<div class="foot">
+    <div class="noMore" ng-show="vm.noMore">没有了，别点啦！
+        <div class="triangle"></div>
+    </div>
+    <div class="clickMore" ng-click="vm.clickMore()">{{vm.loadMore}}</div>
+</div>
+</body>

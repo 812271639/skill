@@ -1,0 +1,164 @@
+<div ui-view class="ng-scope">
+    <div class="page-body">
+        <div class="panel panel-default">
+            <!--头部-->
+            <div class="panel-heading">
+
+                <strong>{{vm.titleName}}</strong>
+
+
+            </div>
+            <!--body-->
+            <div class="panel-body ">
+
+                <form name="articleForm">
+
+                    <div class="form-group clearfix" >
+                        <label class="col-md-2 control-label">标题</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="title" maxlength="25"
+                                   ng-model="vm.params.title" required>
+                        </div>
+                        <div class="col-md-2" style="padding-top: 8px;color: red">
+                                       <span class="prompt" ng-messages="articleForm.title.$error" ng-if="articleForm.title.$touched">
+                                       <span ng-message="required">不能为空</span>
+                                       </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group clearfix">
+                        <label class="col-md-2 control-label">分类</label>
+                        <div class="col-md-8" >
+
+                            <select class="form-control" name="type"  ng-model="vm.params.type" required>
+                                <option value="">请选择</option>
+                                <option ng-repeat=" (x,y) in vm.type" value="{{x}}"  ng-selected="x==vm.params.type">
+                                    {{y}}</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-2" style="padding-top: 8px;color: red">
+                                                  <span class="prompt" ng-messages="articleForm.type.$error" ng-if="articleForm.type.$touched">
+                                                  <span ng-message="required">不能为空</span>
+                                                  </span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="col-md-2 control-label">封面</label>
+                        <div class="col-md-2">
+                            <label  class="btn btn-primary" for="fileId">选择效果图</label>
+                            <input id="fileId" type="file"
+                                   nv-file-select uploader="vm.uploader"  style="display: none">
+                        </div>（上传文件在5M以内）
+                        <div class="col-md-8 col-md-offset-2">
+                            <img class="img-responsive" ng-src="{{vm.params.cover}}">
+                        </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <td>图片名</td>
+                                        <td>文件大小</td>
+                                        <td>进度</td>
+                                        <td>状态</td>
+                                        <td class="text-center">操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tr ng-repeat="item in vm.uploader.queue">
+                                        <td>{{item.file.name}}</td>
+                                        <td>{{item.file.size/1024/1024|number:2 }}M</td>
+                                        <td ng-show="vm.uploader.isHTML5">
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" ng-style="{'width':item.progress+'%'}"
+                                                     style="width: 0%;">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td class="text-center">
+                                        <span ng-show="item.isSuccess" class="ng-show">
+                                            <i class="glyphicon glyphicon-ok"></i>
+                                        </span>
+                                            <span ng-show="item.isCancel" class="ng-show">
+                                            <i class="glyphicon glyphicon-ban-circle"></i>
+                                        </span>
+                                        </td>
+
+
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()"
+                                                    ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                                上传
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs"
+                                                    ng-click="item.remove()">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                                删除
+                                            </button>
+
+                                        </td>
+                                    </tr>
+                                    <tbody>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix" >
+                        <label class="col-md-2 control-label">作者</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" maxlength="14"      name="author"
+                                   ng-model="vm.params.author"  required>
+                        </div>
+                        <div class="col-md-2" style="padding-top: 8px;color: red">
+                              <span class="prompt" ng-messages="articleForm.author.$error" ng-if="articleForm.author.$touched">
+                           <span ng-message="required">不能为空</span>
+                            </span>
+                        </div>
+
+
+
+                    </div>
+                    <div class="form-group clearfix" >
+                        <label class="col-md-2 control-label">摘要</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" maxlength="28"  name="intro"
+                                   ng-model="vm.params.intro" required >
+                        </div>
+                        <div class="col-md-2" style="padding-top: 8px;color: red">
+                       <span class="prompt" ng-messages="articleForm.intro.$error" ng-if="articleForm.intro.$touched">
+                 <span ng-message="required">不能为空</span>
+                       </span>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix" >
+                        <label class="col-md-2 control-label">正文</label>
+                        <div class="col-md-8">
+                            <div type="text/html" class="umeditor" ng-model="vm.params.mainBody"
+                                 meta-umeditor meta-umeditor-config='vm.config'
+                                 meta-umeditor-placeholder=""></div>
+                        </div>                                                                                                     </div>
+
+
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-success" ng-click="vm.save()"
+                                ng-disabled="!vm.params.title || !vm.params.type
+                            || !vm.params.cover || !vm.params.author || !vm.params.intro
+                           || !vm.params.mainBody">{{vm.yes}}</button>
+                        <button class="btn btn-danger" ng-click="vm.cancel()">取消</button>
+
+
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="contents">
+    <div class="top" ng-bind="vm.account"></div>
+    <div class="password">
+        <div class="col-xs-2 description">
+            账&nbsp;&nbsp;号&nbsp;&nbsp;名 <span style="color: red" ng-hide="vm.params.username">*</span>
+        </div>
+        <div class="col-xs-10">
+            <input type="text" class="form-control moduleInput" ng-model="vm.params.username" placeholder="请输入账号名"> <br>
+        </div>
+        <div class="col-xs-2 description">
+            手机号码 <span style="color: red" ng-hide="vm.params.phone">*</span>
+        </div>
+        <div class="col-xs-10">
+            <form name="phoneForm">
+                <input type="text"
+                       name="phone"
+                       class="form-control moduleInput"
+                       ng-blur="blur=1"
+                       ng-focus="blur=0"
+                       ng-pattern="/^1[35789][0-9]{9}$/"
+                       ng-model="vm.params.phone" placeholder="请输入手机号码"> <br>
+            </form>
+        </div>
+        <form name="passwordForm">
+        <div class="col-xs-2 description">
+            密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码 <span style="color: red" ng-hide="vm.params.password">*</span>
+        </div>
+        <div class="col-xs-10">
+            <input type="password"
+                   name="password"
+                   class="form-control moduleInput"
+                   ng-focus="blur=0"
+                   ng-blur="blur=1"
+                   ng-minlength="5"
+                   ng-maxlength="11"
+                   ng-model="vm.params.password"
+                   placeholder="请输入密码" required> <br>
+        </div>
+        <div class="col-xs-2 description">
+            确认密码 <span style="color: red" ng-hide="vm.params.confirm">*</span>
+        </div>
+        <div class="col-xs-10">
+            <input type="password"
+                   name="confirm"
+                   class="form-control moduleInput"
+                   ng-focus="blur=0"
+                   ng-blur="blur=1"
+                   ng-minlength="5"
+                   ng-maxlength="11"
+                   ng-model="vm.params.confirm"
+                   placeholder="再次输入密码" required> <br>
+        </div>
+        </form>
+        <div class="col-xs-2 description" ng-hide="vm.admin">
+            角&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色 <span style="color: red" ng-hide="vm.params.roleId">*</span>
+        </div>
+        <div class="col-xs-10" ng-hide="vm.admin">
+            <select class="form-control moduleInput" ng-model="vm.params.roleId">
+                <option value=''>请选择</option>
+                <option ng-repeat="x in vm.role" ng-value="x.id" ng-selected="vm.params.roleId == x.id" ng-bind="x.roleName">
+                </option>
+            </select>
+        </div>
+
+    <button class="btn btn-success"
+                ng-click="vm.sureChang()"
+                ng-disabled=
+                        " !vm.params.username
+                         || phoneForm.phone.$invalid
+                         || passwordForm.password.$invalid
+                         || passwordForm.confirm.$invalid
+                         || !vm.params.roleId">确认
+        </button>
+        <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+        <div class="errorMessage" ng-show="blur && vm.params.confirm && vm.params.password && (vm.params.password != vm.params.confirm)">两次密码不一致</div>
+        <div class="errorMessage" ng-show="blur && phoneForm.phone.$invalid">手机号码格式不正确</div>
+        <div class="errorMessage" ng-show="blur && (passwordForm.password.$error.minlength || passwordForm.confirm.$error.minlength)">密码最短为5字符</div>
+        <div class="errorMessage" ng-show="blur && (passwordForm.password.$error.maxlength || passwordForm.confirm.$error.maxlength)">密码最长为11字符</div>
+
+    </div>
+
+</div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=" utf-8">
+    <meta name="author" content="http://www.softwhy.com/"/>
+    <title>字符串截取展开效果</title>
+    <style type="text/css">
+        #div {
+            width: 200px;
+            margin: 0 auto;
+        }
+    </style>
+
+<body>
+<div id="div">脚本之家欢迎您，个人的力量再强也只是一只强壮的而已，如果有分享和胸怀和合作的精神，那么就有可能活得巨大进步。</div>
+<script type="text/javascript">
+    function cutStr() {
+        var div = document.getElementById("div");
+        var text = div.innerHTML;
+        var span = document.createElement("span");
+        var link = document.createElement("a");
+        span.innerHTML = text.substring(0, 20);
+        console.log(text.substring(0, 20));
+        link.innerHTML = text.length > 20 ? "...更多" : "";
+        link.href = "###";
+        link.onclick = function () {
+            if (link.innerHTML == "...更多") {
+                link.innerHTML = "收起";
+                span.innerHTML = text;
+            }
+            else {
+                link.innerHTML = "...更多";
+                span.innerHTML = text.substring(0, 20);
+            }
+        };
+        div.innerHTML = "";
+        div.appendChild(span);
+        div.appendChild(link);
+    }
+
+    window.onload = function () {
+        cutStr();
+    }
+</script>
+
+<!--以上代码实现了我们的要求，截取指定的字符串，后面以"..."结尾，当点击这个结尾的时候，能够展开所有的文字内容，下面就介绍一下此效果的实现过程。-->
+<!--一.实现原理:-->
+<!--创建一个span元素和a元素，然后使用substring()函数截取指定的字符串并将其设置为span元素的内容，然后判断原来字符串的长度是否大于指定长度，-->
+<!--如果大于，则将a元素中的内容设置为"..."。然后将原有div清空，然后span元素和a元素添加到div中去，这样就实现了截取功能。为a元素注册时间处理函数，-->
+<!--点击此按钮就会执行事件处理函数，此函数首先判断是出于何种状态，如果处于收起状态，那么就会将a元素中的内容设置为"收起"，并且将原有所有字符放入span，-->
+<!--这样就实现了展开，如果出于展开状态，那么就是截取字符和修改a元素中的内容。原理大体如此，可以参阅相关阅读。-->
+<p id="demoP">这项研究关注的是持续的社会经济调查与智商的遗传关系。年龄在2岁和16岁之间的孩子被评估了九次，并通过混合家长管理、网站和电话为基础进行测试。发表在情报杂志中的结果显示，有着富裕家庭背景的两岁儿童有更多的机会在智商测试上获得更高的分数，而且随着时间的推移和经验的丰富会获得更高的收入。伦敦大学金史密斯学院的索菲·冯·斯塔姆医生接了这项研究说：“我们在这段时间已经知道，那些处于低社会经济地位（SES）的儿童的智力测试平均比高社会经济地位的儿童糟糕，但智力与SES的发展关系并不是如前所述。我们的调查在建立着关系，强调了SES和IQ之间的联系。我们希望我们的发现将会推动未来研究的具体机制和因素。”</p>
+<button id="demoBtn">显示所有</button>
+<script>
+    var oP = document.getElementById('demoP');
+    var oBtn = document.getElementById('demoBtn');
+    var allContent = oP.innerHTML;                   //存放所有内容
+    oP.innerHTML = oP.innerHTML.substr(0,100);        //截取前100个字符
+    oBtn.onclick=function(){
+        oP.innerHTML = allContent;                    //显示所有内容
+    }
+</script>
+</body>
+</html>
+

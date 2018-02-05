@@ -1,0 +1,34 @@
+<div class="signDay">
+    <div class="totalSign">当前累计签到 <span class="redNum" ng-bind="vm.signDate"></span>天</div>
+    <div class="dayContent">
+        <div class="headWeek">
+            <ul>
+                <li class="myWeek"><span class="blueNum">周日</span></li>
+                <li class="myWeek">周一</li>
+                <li class="myWeek">周二</li>
+                <li class="myWeek">周三</li>
+                <li class="myWeek">周四</li>
+                <li class="myWeek">周五</li>
+                <li class="myWeek"><span class="blueNum">周六</span></li>
+            </ul>
+        </div>
+        <div class="Container" id="Container"></div>
+    </div>
+    <div class="signBtn">
+        <button class="{{vm.signButton}}"
+                ng-click="vm.sign()"
+                data-dismiss="modal"
+                data-toggle="modal"
+                data-target="#Modal"
+                ng-disabled="vm.alreadySign" ng-bind="vm.signWord">
+        </button>
+        <!--<button class=" signButton"-->
+                <!--ng-click="vm.sign()"-->
+                <!--ng-class="{'grayColor': vm.alreadySign}"-->
+                <!--data-dismiss="modal"-->
+                <!--data-toggle="modal"-->
+                <!--data-target="#Modal"-->
+                <!--ng-disabled="vm.alreadySign">{{vm.signWord}}{{vm.alreadySign}}-->
+        <!--</button>-->
+    </div>
+</div>

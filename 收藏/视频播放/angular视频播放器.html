@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>video</title>
+    <link rel="stylesheet" href="videogular.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .playlist ul {
+            list-style-type: none;
+        }
+
+        .playlist ul a {
+            cursor: pointer;
+            color: #428bca;
+            text-decoration: none;
+        }
+
+        .playlist ul a:visited {
+            color: #428bca;
+        }
+
+        .playlist ul a:hover {
+            color: #428bca;
+            text-decoration: underline;
+        }
+
+        .videogular-container {
+            width: 100%;
+            height: 320px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .videogular-container .skipButton {
+            position: absolute;
+            padding: 10px;
+            top: 10px;
+            right: 10px;
+            z-index: 99999;
+            color: white;
+            cursor: pointer;
+            background-color: #666666;
+            border: 2px #FFFFFF solid;
+            display: none;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            -ms-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        @media (min-width: 1200px) {
+            .videogular-container {
+                width: 1170px;
+                height: 658.125px;
+            }
+
+            .videogular-container.audio {
+                width: 1170px;
+                height: 50px;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .videogular-container {
+                width: 940px;
+                height: 528.75px;
+            }
+
+            .videogular-container.audio {
+                width: 940px;
+                height: 50px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .videogular-container {
+                width: 728px;
+                height: 409.5px;
+            }
+
+            .videogular-container.audio {
+                width: 728px;
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div ng-app="myApp">
+    <div ng-controller="HomeCtrl as vm">
+
+        <div class="videogular-container">
+            <videogular vg-player-ready="vm.onPlayerReady($API)" vg-theme="vm.config.theme.url">
+                <vg-media vg-src="vm.config.sources"
+                          vg-tracks="vm.config.tracks" vg-preload="vm.config.preload">
+                </vg-media>
+
+                <vg-controls>
+                    <vg-play-pause-button></vg-play-pause-button>
+                    <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                    </vg-scrub-bar>
+                    <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+                    <vg-volume>
+                        <vg-mute-button></vg-mute-button>
+                        <vg-volume-bar></vg-volume-bar>
+                    </vg-volume>
+                    <vg-fullscreen-button></vg-fullscreen-button>
+                </vg-controls>
+
+                <vg-overlay-play></vg-overlay-play>
+                <vg-buffering></vg-buffering>
+                <vg-poster vg-url='vm.config.plugins.poster'></vg-poster>
+            </videogular>
+        </div>
+        <!--<div class="playlist">-->
+            <!--<ul>-->
+                <!--<li><a ng-click="controller.setVideo(0)">Pale Blue Dot</a></li>-->
+                <!--<li><a ng-click="controller.setVideo(1)">Big Buck Bunny</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/angular.js/1.2.26/angular.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.2.26/angular-sanitize.js"></script>
+<script src="videogular.js"></script>
+<script src="vg-controls.js"></script>
+<script src="vg-overlay-play.js"></script>
+<script src="vg-poster.js"></script>
+<script src="vg-buffering.js"></script>
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script>-->
+<!--<script src="https://unpkg.com/videogular@2.1.2/dist/videogular/videogular.js"></script>-->
+<!--<script src="https://unpkg.com/videogular@2.1.2/dist/controls/vg-controls.js"></script>-->
+<!--<script src="https://unpkg.com/videogular@2.1.2/dist/overlay-play/vg-overlay-play.js"></script>-->
+<!--<script src="https://unpkg.com/videogular@2.1.2/dist/poster/vg-poster.js"></script>-->
+<!--<script src="https://unpkg.com/videogular@2.1.2/dist/buffering/vg-buffering.js"></script>-->
+
+<script>
+    'use strict';
+    angular.module('myApp',
+        [
+            "ngSanitize",
+            "com.2fdevs.videogular",
+            "com.2fdevs.videogular.plugins.controls",
+            "com.2fdevs.videogular.plugins.overlayplay",
+            "com.2fdevs.videogular.plugins.poster",
+            "com.2fdevs.videogular.plugins.buffering"
+        ]).controller('HomeCtrl',
+            ["$sce", function ($sce) {
+                var vm = this;
+                vm.API = null;
+
+                vm.onPlayerReady = function (API) {
+                    vm.API = API;
+                };
+
+//                vm.videos = [
+//                    {
+//                        sources: [
+//                            {
+//                                src: $sce.trustAsResourceUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"),
+//                                type: "video/mp4"
+//                            },
+//                            {
+//                                src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.webm"),
+//                                type: "video/webm"
+//                            },
+//                            {
+//                                src: $sce.trustAsResourceUrl("http://static.videogular.com/assets/videos/videogular.ogg"),
+//                                type: "video/ogg"
+//                            }
+//                        ]
+//                    },
+//                    {
+//                        sources: [
+//                            {
+//                                src: $sce.trustAsResourceUrl("http://www.videogular.com/assets/videos/big_buck_bunny_720p_h264.mov"),
+//                                type: "video/mp4"
+//                            },
+//                            {
+//                                src: $sce.trustAsResourceUrl("http://www.videogular.com/assets/videos/big_buck_bunny_720p_stereo.ogg"),
+//                                type: "video/ogg"
+//                            }
+//                        ]
+//                    }
+//                ];
+
+                vm.config = {
+                    preload: "auto",
+                    autoHide: false,
+                    autoHideTime: 3000,
+                    autoPlay: false,
+//                    sources: vm.videos[0].sources
+                    sources: $sce.trustAsResourceUrl("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+//                    theme: {
+//                        url: "https://unpkg.com/videogular@2.1.2/dist/themes/default/videogular.css"
+//                    },
+//                    plugins: {
+//                        poster: "http://www.videogular.com/assets/images/videogular.png"
+//                    }
+                };
+
+                vm.setVideo = function (index) {
+                    vm.API.stop();
+                    vm.config.sources = vm.videos[index].sources;
+                };
+            }]
+        );
+</script>
+
+<!--<div>参考文献：angular视频播放插件 http://www.videogular.com/tutorials/how-to-start/</div>-->
+<!--<p>angular视频API接口 ：http://www.videogular.com/docs/#/api/com.2fdevs.videogular.directive:videogular</p>-->
+</body>
+</html>

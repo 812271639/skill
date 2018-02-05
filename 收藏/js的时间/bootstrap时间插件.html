@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>时间</title>
+    <link href="../../xiuzhen/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../../xiuzhen/dist/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+
+<div>
+    <input id='BeginTime' name='a' type="text" class="form-control" style="width: 30%;float: left;margin: 2%">
+    <input id='EndTime' name='b' type="text" class="form-control" style="width: 30%;float: left;margin: 2%">
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script src="../locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script>
+    $(document).ready(function () {
+        $("#BeginTime").datetimepicker({    //时间插件
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            endDate: new Date()           //设置当前时间范围
+        }).on('changeDate', function (e) {
+            var startTime = e.date;
+            $('#EndTime').datetimepicker('setStartDate', startTime);//设置开始时间范围
+        });
+        $("#EndTime").datetimepicker({    //时间插件
+            language: 'zh-CN',
+            format: 'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            endDate: new Date()
+        }).on('changeDate', function (e) {
+            var endTime = e.date;
+            $('#BeginTime').datetimepicker('setEndDate', endTime);//设置结束时间范围
+        });
+    })//end documnet.ready
+</script>
+</body>
+</html>

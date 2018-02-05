@@ -1,0 +1,55 @@
+
+
+<div class="contents">
+
+    <div class="top">
+        模块列表
+        <button class="btn btn-success AddBtn" ui-sref="admin.addModule"> +新增</button>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-striped ">
+                <thead>
+                <tr>
+                    <th>自增长ID</th>
+                    <th>名称</th>
+                    <th>对应的url地址</th>
+                    <th>父模块ID</th>
+                    <th>创建人 </th>
+                    <th>更新人 </th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in vm.data  | orderBy:'id' ">
+                    <td ng-bind="x.id"></td>
+                    <td ng-bind="x.moduleName"></td>
+                    <td ng-bind="x.url"></td>
+                    <td ng-bind="x.parentId"></td>
+                    <td ng-bind="x.createBy"></td>
+                    <td ng-bind="x.updateBy"></td>
+                    <td ng-bind="x.createAt | date:'yyyy-MM-dd '"></td>
+                    <td ng-bind="x.updateAt | date:'yyyy-MM-dd '"></td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td ><button  class="btn btn-success padding" ui-sref="admin.addModule({id:x.id})">编辑</button></td>
+                                <td ><button class="btn btn-danger margin padding"  ng-click="vm.delete(x.id)">删除</button></td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <my-page sizes="vm.params.size" pages="vm.params.page" total="vm.bigTotalItems" page-url="vm.pageUrl" ></my-page>
+
+
+    </div>
+</div>

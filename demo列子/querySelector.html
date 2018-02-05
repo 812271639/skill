@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular学习</title>
+    <script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>
+
+</head>
+<body>
+
+<ul id="id1">
+    <li>111</li>
+    <li>111</li>
+    <li>111</li>
+</ul>
+<ul id="id2">
+    <li>111</li>
+    <li>111</li>
+    <li>111</li>
+</ul>
+<script>
+
+    var ul=document.querySelector('#id1');
+    var list=ul.querySelectorAll('li');
+    for(var i=0;i<list.length;i++){
+        var li =  document.createElement('li');
+        var text = document.createTextNode(i);
+        li.appendChild(text);
+        ul.appendChild(li);
+    }
+
+    console.log(list.length)
+
+    //这个时候就创建了3个新的li，添加在ul列表上。
+    //输出的结果仍然是3，不是此时li的数量6
+</script>
+<script>
+    var ul=document.getElementById('id2');
+    var list=ul.getElementsByTagName('li');
+    for(var i=0;i<3;i++){
+        var li =  document.createElement('li');
+        var text = document.createTextNode(i);
+        li.appendChild(text);
+        ul.appendChild(li);
+    }
+    alert(list.length)
+    //此时输出的结果就是3+5=8
+
+//query选择符选出来的元素及元素数组是静态的，
+//而getElement这种方法选出的元素是动态的。
+//静态的就是说选出的所有元素的数组，''不会随着文档操作而改变''．
+</script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8"/>
+    <title>清除空格节点</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td id="TEST">
+            <input type="submit" value="确定"/>
+            <input type="button" value="取消"/>
+        </td>
+    </tr>
+</table>
+
+<ul id="id1">
+    <li>111</li>
+    <li>111</li>
+    <li>111</li>
+</ul>
+<ul id="id2">
+    <li>111</li>
+    <li>111</li>
+    <li>111</li>
+</ul>
+
+<script type="text/javascript">
+    var td = document.getElementById("TEST");
+    alert(td.childNodes.length);    //结果为5
+
+    function cleanWhitespace(element) {
+        for (var i = 0; i < element.childNodes.length; i++) {
+            var node = element.childNodes[i];
+            if (node.nodeType == 3 && !/\S/.test(node.nodeValue)) {
+                node.parentNode.removeChild(node);
+            }
+        }
+    }
+
+    cleanWhitespace(document.getElementById("TEST"));
+    alert(td.childNodes.length);    //结果为2
+</script>
+<script>
+
+
+    $('.removeTextNodes').contents().filter(function () { //消除 inline-block 元素空白节点
+        return this.nodeType === 3;
+    }).remove();
+
+</script>
+
+
+<script>
+
+    var ul = document.querySelector('#id1');
+    var list = ul.querySelectorAll('li');
+    for (var i = 0; i < list.length; i++) {
+        var li = document.createElement('li');
+        var text = document.createTextNode(i);
+        li.appendChild(text);
+        ul.appendChild(li);
+    }
+
+    console.log(list.length)
+
+    //这个时候就创建了3个新的li，添加在ul列表上。
+    //输出的结果仍然是3，不是此时li的数量6
+</script>
+<script>
+    var ul = document.getElementById('id2');
+    var list = ul.getElementsByTagName('li');
+    for (var i = 0; i < 3; i++) {
+        var li = document.createElement('li');
+        var text = document.createTextNode(i);
+        li.appendChild(text);
+        ul.appendChild(li);
+    }
+    alert(list.length)
+    //此时输出的结果就是3+5=8
+
+    //query选择符选出来的元素及元素数组是静态的，
+    //而getElement这种方法选出的元素是动态的。
+    //静态的就是说选出的所有元素的数组，''不会随着文档操作而改变''．
+</script>
+
+</body>
+</html>

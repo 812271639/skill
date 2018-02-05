@@ -1,0 +1,29 @@
+
+<body ng-controller="article">
+
+
+<div class="mainbody">
+    <div><div class="titleName">{{vm.params.title}}</div></div>
+    <p>
+        <span class="message">{{vm.params.publishTime | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+        <span class="message"> {{vm.params.author}}</span>
+    </p>
+    <p class="titleBody">
+        {{vm.params.mainBody | removeHtml}}
+    </p>
+
+<footer class="voteStatus">
+    <div class="footBox" ng-click="vm.vote()">
+    <span ng-class="{'thumbsing collect fa fa-thumbs-up':vm.params.upvoteStatus == 1,
+            'thumbsing fa fa-thumbs-up':vm.params.upvoteStatus == 2}"></span>
+        {{vm.params.upvote}}
+</div>
+    <div class="footBox" ng-click="vm.collect()">
+        <span ng-class="{'thumbsing invote fa fa-heart':vm.params.collectionStatus == 1,
+            'thumbsing fa fa-heart':vm.params.collectionStatus == 2}"></span>
+        {{vm.params.collection}}
+    </div>
+
+</footer>
+</div>
+</body>

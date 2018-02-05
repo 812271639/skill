@@ -1,0 +1,54 @@
+
+<main>
+    <div class="background">
+        <img src="../image/main.png" usemap="#bc"/>
+        <map id="bc" name="bc">
+            <area shape="rect" coords="300,0,600,300" ui-sref="videoList">
+            <area shape="rect" coords="150,350,370,550" ui-sref="articleList()">
+        </map>
+
+
+        <div class="signBottom" ng-click="vm.signBottom()">
+            <div class="" data-toggle="modal" data-target="#myModal">
+                <img class="signImg" ng-src="../image/sign/sing.png" alt=""></div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="signCenter">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <sign-Day></sign-Day>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--回调弹出逆袭豆模态框-->
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 aria-hidden="true">
+                <div class="beanCenter">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="closeModal" data-dismiss="modal" aria-hidden="true">
+                                <img class="closeImg" ng-src="../image/sign/close.png" alt="">
+                            </div>
+                            <div class="modal-body">
+                                <img class="beanImg" ng-src="../image/sign/bean.png" alt="">
+                            </div>
+                            <div class="beanNbm">
+                                逆袭豆 <span class="beanNbmColor">+<span ng-bind="vm.beans"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="studenBtn">
+            <a ui-sref="user()">
+                <img class="signImg" src="../image/user/student.png"/>
+            </a>
+        </div>
+    </div>
+</main>

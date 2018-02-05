@@ -1,0 +1,28 @@
+<div class="contents">
+    <div class="top" ng-bind="vm.modules"></div>
+    <div class="password">
+        <div class="col-xs-2 description">
+            模块名称
+            <span style="color: red;margin-left: .2rem;" ng-hide="vm.params.moduleName">*</span>
+        </div>
+        <div class="col-xs-10">
+            <input  type="text" class="form-control moduleInput" ng-model="vm.params.moduleName" placeholder="请输入模块名"> <br>
+        </div>
+        <div class="col-xs-2 description">
+            模块url地址
+        </div>
+        <div class="col-xs-10">
+            <input  type="text" class="form-control moduleInput" ng-model="vm.params.url" placeholder="请输入模块url地址"> <br>
+        </div>
+        <div class="col-xs-2 description">
+
+            父模块id
+        </div>
+        <div class="col-xs-10">
+            <input  type="text" class="form-control moduleInput" ng-model="vm.params.parentId" placeholder="请输入父模块id"> <br>
+        </div>
+   <div style="padding: 1rem 0;">备注：只有二级模块，一级模块的父模块id为0；二级模块的父模块id为一级模块id</div>
+        <button class="btn btn-success" ng-click="vm.sureChang()" ng-disabled="!vm.params.moduleName">确认</button>
+        <button class="btn btn-warning" ng-click="vm.cancel()">取消</button>
+    </div>
+</div>

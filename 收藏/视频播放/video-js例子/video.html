@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../videojs/video-js.css">
+    <script src="../../videojs/video.js"></script>
+</head>
+<body>
+<!--<video id="example_video_1" class="video-js vjs-default-skin"   poster="http://vjs.zencdn.net/v/oceans.png">-->
+    <!--<source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4">-->
+<!--</video>-->
+<video id="example_video_1"
+       class="video-js vjs-default-skin"
+       controls
+       preload="none"
+       width="640"
+       height="264"
+       data-setup="{}"
+       poster="http://vjs.zencdn.net/v/oceans.png">
+    <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4">
+</video>
+<script>
+    var options = {};
+
+    var player = videojs('example_video_1', options, function onPlayerReady() {
+        videojs.log('播放器已经准备好了!');
+
+        // In this context, `this` is the player that was created by Video.js.
+        // 注意，这个地方的上下文， `this` 指向的是Video.js的实例对像player
+        this.play();
+
+        // How about an event listener?
+        // 如何使用事件监听？
+        this.on('ended', function() {
+            videojs.log('播放结束了!');
+        });
+    });
+//    var options = {
+////        controls:true,
+//        preload:"none",
+//        width:"640",
+//        height:"264",
+//        children: [
+//            'bigPlayButton',
+//            'controlBar'
+//        ]
+//        sources: [{
+//            src: 'source src="http://vjs.zencdn.net/v/oceans.mp4',
+//            type: 'video/mp4'
+//        }, {
+//            src: '//path/to/video.webm',
+//            type: 'video/webm'
+//        }]
+//    };
+
+//    var player = videojs('example_video_1', options, function onPlayerReady() {
+//        videojs.log('播放器已经准备好了!');// 注意，这个地方的上下文， `this` 指向的是Video.js的实例对像player
+////        this.play();
+//        this.on('ended', function() {
+//            videojs.log('播放结束了!');// 如何使用事件监听？
+//        });
+//    });
+////
+//    对于视频播放来说，常用的功能有：
+//1. 播放   this.play()
+//    2. 停止   -- video没有stop方法，可以用pause 暂停获得同样的效果
+//    3. 暂停   this.pause()
+//    4. 销毁  this.dispose()
+//    5. 监听  this.on('click',fn)
+//    6. 触发事件this.trigger('dispose')
+//    ......
+//        以上的this是指在onPlayerReady函数中执行。
+//    有两种方式可以改变videojs的行为：
+//   1. 通过添加video标签的data-setup属性：<video data-setup='{"autoplay":"true",.....}'
+//    2. var player = videojs('example_video_1',{autoplay:true,....}) , 直接传入options
+//    由于第一种方式是写在html标签中，通过JSON.parse解析，性能低，还容易报错。个人更倾向于方法2.
+//        这里有大量关于options的配置参数：http://docs.videojs.com/tutorial-options.html
+//        常用几个项有：
+// autoplay :  true/false   播放器准备好之后，是否自动播放 【默认false】If true/present as an attribute, begins playback when the player is ready
+//    controls : true/false 是否拥有控制条 【默认true】,如果设为false ,那么只能通过api进行控制了。也就是说界面上不会出现任何控制按钮
+//    height: 视频容器的高度，字符串或数字 单位像素  比如： height:300 or height:'300px'
+//    width: 视频容器的宽度, 字符串或数字 单位像素
+//    loop : true/false 视频播放结束后，是否循环播放
+//    muted : true/false 是否静音
+//    poster: 播放前显示的视频画面，播放开始之后自动移除。通常传入一个URL
+//    preload:预加载
+//    'auto' 自动
+//            ’metadata' 元数据信息 ，比如视频长度，尺寸等
+//    'none'  不预加载任何数据，直到用户开始播放才开始下载
+//    children: Array | Object  可选子组件  从基础的Component组件继承而来的子组件，数组中的顺序将影响组件的创建顺序哦。
+
+</script>
+</body>
+</html>

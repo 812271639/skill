@@ -1,0 +1,47 @@
+
+<body ng-controller="user">
+
+<div class="mainbody">
+    <div class="uPanle">
+        <div class="studenPanle">
+
+            <div class="studen"> 学生证</div>
+            <div class="studenMes clearfix">
+                <div class="u-avatar" ng-click="vm.replace()">换头像</div>
+                <img ng-src="{{vm.img}}" class="avatarimg"/>
+
+                <div class="clearfix">
+                    <div class="usermes">昵称： <input type="text" class="u-nickname" ng-model="vm.params.nickname"></div>
+                    <div class="usermes">年级：
+                        <input type="text" id="sex-list_dummy"  class="u-nickname" placeholder="" readonly=""
+                               value="{{vm.params.grade | uGradeFilter}}">
+
+                        <ul id="sex-list" style="display: none">
+                            <li>未选择</li>
+                            <li>初一</li>
+                            <li>初二</li>
+                            <li>初三</li>
+                            <li>高一</li>
+                            <li>高二</li>
+                            <li>高三</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="usermes">逆袭豆：<span class="userval">{{vm.params.beans}}颗</span></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="save" ng-click="vm.save()">保存修改</div>
+
+
+
+
+</div>
+
+
+
+</body>

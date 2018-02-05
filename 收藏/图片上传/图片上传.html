@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="admin">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+
+    <script src="upLoad.js"></script>
+</head>
+<body>
+<div ng-controller="AppController">
+
+<!-- multiple属性支持一次性选择多个文件 -->
+<input type="file" nv-file-select="" uploader="uploader" multiple="">
+
+
+</div>
+<script>
+    'use strict';
+    angular
+        .module('admin', ['angularFileUpload'])
+        .controller('AppController', ['$scope', 'FileUploader', function($scope, FileUploader) {
+            //选择文件并创建文件对象有
+            var uploader = $scope.uploader = new FileUploader({
+                url: 'upload.php'
+            });
+
+            // 过滤器
+            uploader.filters.push({
+                name: 'customFilter',
+                fn: function(item /*{File|FileLikeObject}*/, options) {
+                    return this.queue.length < 10;
+                }
+            });
+            //注入过滤器的两种方式:
+//            var uploader = new FileUploader({
+//                filters: [{
+//                    name: 'yourName1',
+//                    // 自定义的过滤器
+//                    fn: function(item) {
+//                        return true;
+//                    }
+//                }]
+//            });
+//
+//          // 另一种方式加入自定义过滤器
+//            uploader.filters.push({
+//                name: 'yourName2',
+//                fn: function(item) {
+//                    return true;
+//                }
+//            });
+//            //只能上传图片的过滤器
+//            uploader.filters.push({
+//                name: 'imageFilter',
+//                fn: function(item /*{File|FileLikeObject}*/, options) {
+//                    var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
+//                    return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
+//                }
+//            });
+            // 回调
+            uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+                console.info('onWhenAddingFileFailed', item, filter, options);
+            };
+            uploader.onAfterAddingFile = function(fileItem) {
+                console.info('onAfterAddingFile', fileItem);
+            };
+            uploader.onAfterAddingAll = function(addedFileItems) {
+                console.info('onAfterAddingAll', addedFileItems);
+            };
+            uploader.onBeforeUploadItem = function(item) {
+                console.info('onBeforeUploadItem', item);
+            };
+            uploader.onProgressItem = function(fileItem, progress) {
+                console.info('onProgressItem', fileItem, progress);
+            };
+            uploader.onProgressAll = function(progress) {
+                console.info('onProgressAll', progress);
+            };
+            uploader.onSuccessItem = function(fileItem, response, status, headers) {
+                console.info('onSuccessItem', fileItem, response, status, headers);
+            };
+            uploader.onErrorItem = function(fileItem, response, status, headers) {
+                console.info('onErrorItem', fileItem, response, status, headers);
+            };
+            uploader.onCancelItem = function(fileItem, response, status, headers) {
+                console.info('onCancelItem', fileItem, response, status, headers);
+            };
+            uploader.onCompleteItem = function(fileItem, response, status, headers) {
+                console.info('onCompleteItem', fileItem, response, status, headers);
+            };
+            uploader.onCompleteAll = function() {
+                console.info('onCompleteAll');
+            };
+
+            console.info('uploader', uploader);
+        }]);
+
+
+
+
+</script>
+
+
+<script>
+    //逗你学的图片上传服务
+    angular.module('admin')
+        .factory('uploadFileCustomerService', function($http) {
+        return {
+            uploadFile: function(formData) {
+                return $http.post('/a/u/img/task', formData, {
+                    withCredentials: true,
+                    headers: { 'Content-Type': undefined },
+                    transformRequest: angular.identity
+                })
+            }
+        }
+    });
+    //逗你学的图片上传指令
+    angular.module('admin')
+        .directive('simpleUpload', function (uploadFileCustomerService, $rootScope) {
+
+        return {
+            restrict: 'AE',
+            scope: {
+                string: '@',//string
+                ngModel: '=',
+                accept: '@'
+            },
+            require: 'ngModel',
+            template: '' +
+            '<div class="uploader-box2" ng-click="triggerSelect()" ng-if="isAudio2" ><span  style="line-height: 40px;width: 100%;text-align: center;display: inline-block">上传音频</span>' +
+            //'<img ng-if="img && isImg" ng-src="{{img}}" />'+
+            '<audio style="margin-top: 30px" ng-if=" isAudio2"  src=" {{img | urlFilter}} " ng-src="{{img}}" controls="controls" ></audio>' +
+            '<span ng-if="uploadStatus">上传中...</span>' +
+            //'<p ng-if="!img">点击上传音频</p>'+
+            '</div>' +
+
+
+            '<div class="uploader-box2" ng-click="triggerSelect()" ng-if="isAudio" ><span  style="line-height: 40px;width: 100%;text-align: center;display: inline-block">上传音频</span>' +
+            //'<img ng-if="img && isImg" ng-src="{{img}}" />'+
+            '<audio style="margin-top: 30px" ng-if=" isAudio"  src=" {{img | urlFilter}} " ng-src="{{img}}" controls="controls" ></audio>' +
+            '<span ng-if="uploadStatus">上传中...</span>' +
+            //'<p ng-if="!img">点击上传音频</p>'+
+            '</div>' +
+
+
+            '<div class="uploader-box" ng-click="triggerSelect()" ng-if="isImg"  >' +
+            '<img ng-if="img && isImg" ng-src="{{img}}" style="width: 200px"/>' +
+
+            //'<audio style="margin-left: 300px" ng-if="isAudio"  src=" {{img | urlFilter}} " ng-src="{{img}}" controls="controls"></audio>'+
+            '<span ng-if="uploadStatus">上传中...</span>' +
+            '<p ng-if="!img">点击上传图片</p>' +
+            '</div>' +
+            '<input class="hidden" type="file" id="fileInput" accept="{{accept}}" onchange="angular.element(this).scope().uploadFile(this.files);">' +
+            '',
+            link: function (scope, element, attrs, ctrl) {
+
+                // 是否处于上传中状态
+                scope.uploadStatus = false;
+                scope.isImg = (scope.string == "img");
+                scope.isAudio = (scope.string == "music");
+                scope.isAudio2 = (scope.string == "music2");
+                scope.img = attrs.url;
+
+                // 点击div触发input:file
+                scope.triggerSelect = function () {
+                    if (eval(attrs.disabled)) return;
+                    element.children('input[type=file]').trigger('click');
+                };
+
+
+                // 上传
+                scope.uploadFile = function (files) {
+                    var file = files[0];
+                    $('#fileInput').val('');
+
+                    var str = scope.string == 'img' ? 'image' : 'audio';
+
+                    if (file.type.indexOf(str) == -1) {
+                        $rootScope.alert("请选择正确的格式");
+                        return;
+                    }
+                    var fd = new FormData();
+                    fd.append("file", file);
+
+                    scope.uploadStatus = true;
+
+                    uploadFileCustomerService.uploadFile(fd).then(function (res) {
+                        scope.img = res.data.data.url;
+                        scope.uploadStatus = false;
+                        ctrl.$setViewValue(scope.img);
+                    });
+                };
+
+
+            },
+            controller: function ($scope, $element, $attrs) {
+
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+
+    <div class="videoAdd">
+        <form role="form" class="form" name="formVideo">
+            <div class="row ">
+                <div class="col-lg-3 col-md-6 col-sm-6  selectHeight">                                <!--年级选择-->
+                    所属年级
+                    <select class="form-control addInput" ng-model="vm.videoList.grade">
+                        <option value=''>请选择</option>
+                        <option ng-repeat=" (x,y) in vm.grade" value="{{x}}" ng-selected="vm.videoList.grade == x" ng-bind="y"></option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6  selectHeight">                                <!--科目选择-->
+                    所属科目
+                    <select class="form-control addInput" ng-model="vm.videoList.subject">
+                        <option value=''>请选择</option>
+                        <option ng-repeat=" (x,y) in vm.subject" value="{{x}}" ng-selected="vm.videoList.subject == x" ng-bind="y">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 teacherHeight">
+                    老师昵称
+                    <select class="form-control teacherInput" ng-model="vm.image">
+                        <option ng-repeat=" x  in vm.teacherData" ng-value="x" ng-bind="x.teacherName"></option>
+                    </select>
+                    <span>头像</span>
+                    <img class="image" ng-src="{{vm.image.teacherAvatar}}"
+                         ng-init="vm.image.teacherAvatar='../image/405.jpg'">
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                     <!--标题-->
+                    标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <input type="text" name="title" class="form-control videoAddInput" ng-model="vm.videoList.title">
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                       <!--分类选择-->
+                    分&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;类
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <select class="form-control videoAddInput" ng-model="vm.videoList.type">
+                        <option value=''>请选择</option>
+                        <option ng-repeat=" (x,y) in vm.type" value="{{x}}" ng-selected="vm.videoList.type == x" ng-bind="y"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row " ng-show="vm.videoList.type">
+                <div class="col-lg-12 ">
+                    <div class="fileUpLoad">
+                        <up-load return-url="vm.returnUrl" url="vm.banner" picture-name="vm.picture"></up-load>  <!--banner封面上传指令-->
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                         <!--视频简介-->
+                    视频简介
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                <textarea rows="3"
+                          name="intro"
+                          ng-model="vm.videoList.intro"
+                          class="form-control resize videoAddInput">
+                </textarea>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">                          <!--视频链接-->
+                    视频连接
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div class="videoUrl">
+                        <span>视频URL</span>
+                        <input type="url"
+                               name="videoUrl"
+                               ng-model="vm.videoList.videoUrl"
+                               class="form-control videoAddInput">
+                        <div class="remind"><span ng-show="false">仅支持MP4格式</span></div>
+                        <video ng-src="{{vm.videoList.videoUrl}}" id="video" class="videoMP4" controls preload="auto"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="row videoEditor">
+                <div class="col-lg-1 col-md-2 col-sm-2 inputLayout">
+                    正&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <div meta-umeditor
+                         type="text/html"
+                         class="myEditor"
+                         ng-model="vm.videoEditor.text"
+                         meta-umeditor-config='vm.config'>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="row ">
+        <div class="col-lg-12 btnPosition">
+            <button class="btn btn-default cancelButton" type="reset" ng-click="vm.cancel()">返回</button>
+        </div>
+    </div>

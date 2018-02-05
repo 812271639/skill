@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //设置cookie
+    var vm = this;
+
+    function setCookie(cname, cvalue, exdays) {
+// 获取系统时间
+        xmlHttp = new XMLHttpRequest();
+        xmlHttp.open('HEAD', window.location.href.toString(), false);
+        xmlHttp.send('');
+        var time = xmlHttp.getResponseHeader("Date");
+        var d = new Date();
+        d.setTime(Date.parse(time) + (exdays * 1000 * 60 * 60 * 24));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires;
+    }
+
+    var cookie = document.cookie.indexOf("loginAdmin=true");
+    if (cookie !== -1) {
+        $state.go("main", {})
+    }
+
+    vm.login = function () {
+        var params = {
+            name: vm.user,
+            pwd: vm.pwd
+        };
+        getList.login($.param(params)) //序列化
+            .then(function (res) {
+                if (res.data.code === 0) {
+//将登录状态保存到cookie中
+                    setCookie("loginAdmin", true, 5);
+                    $state.go("main", {})
+                } else {
+                    if (res.data.message === "用户不存在") {
+                        vm.message1 = res.data.message;
+                    } else if (res.data.message === "密码错误" && res.data.message !== "用户不存在") {
+                        vm.message1 = "";
+                        vm.message2 = res.data.message;
+                    }
+                }
+            })
+            .catch(function (res) {
+                $rootScope.open('提示', '', res.status + res.statusText, '确定', '', 'warning')
+            })
+    }
+</script>
+</body>
+</html>

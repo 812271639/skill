@@ -1,0 +1,73 @@
+<div ui-view class="ng-scope">
+    <div class="page-body">
+        <div class="panel panel-default clearfix">
+
+            <div class="panel-heading">
+                <strong>用户详情</strong>
+            </div>
+            <div class="panel-body ">
+                <div class="col-md-6 ">
+                    <div class="form-group clearfix">
+                        <label class="col-md-4 control-label">昵称</label>
+                        <div class="col-md-8">
+                            <div class="form-control">{{vm.params.nickname}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix">
+                    <label class="col-md-4 control-label">ID</label>
+                    <div class="col-md-8">
+                        <div class="form-control">{{vm.params.id}}</div>
+                      </div>
+                    </div>
+                        <div class="form-group clearfix">
+                    <label class="col-md-4 control-label">手机号</label>
+                    <div class="col-md-8">
+                        <div class="form-control">{{vm.params.tel}}</div>
+                    </div>
+                        </div>
+                    <div class="form-group clearfix">
+                    <label class="col-md-4 control-label">邮箱</label>
+                    <div class="col-md-8">
+                        <div class="form-control">{{vm.params.email}}</div>
+                    </div>
+                    </div>
+                    <div class="form-group clearfix">
+                    <label class="col-md-4 control-label">年级</label>
+                    <div class="col-md-8">
+                        <div class="form-control">{{vm.params.grade | gradeFilter}}</div>
+                    </div>
+                    </div>
+                    <div class="form-group clearfix">
+                    <label class="col-md-4 control-label">所在区域</label>
+                    <div class="col-md-8">
+                        <div class="form-control">{{vm.params.location}}</div>
+                    </div>
+                    </div>
+                    <div class="form-group clearfix">
+                    <label class="col-md-4 control-label">逆袭豆</label>
+                    <div class="col-md-8">
+                        <div class="form-control">{{vm.params.beans}}</div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4 col-md-offset-2">
+                    <label class="col-md-4 control-label">头像</label>
+                    <img width="200" height="200" ng-src="{{vm.params.avatar}}"/>
+
+                </div>
+                <div class="form-group clearfix">
+                <div class="col-md-12 text-center">
+                    <button class="btn btn-default cancelButton" type="reset"
+                            ui-sref="admin.user">返回</button>
+                </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>

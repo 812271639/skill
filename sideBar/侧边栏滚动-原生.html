@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #content {
+            width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #content h1 {
+            color: #0874c7;
+        }
+
+        #content .item {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px dotted #1596c7;
+        }
+
+        #content .item h2 {
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid #0088bb;
+            margin-bottom: 10px;
+        }
+
+        #content .item li {
+            display: inline;
+            margin-bottom: 20px;
+        }
+
+        #content .item li a img {
+            width: 230px;
+            height: 230px;
+            border: none;
+        }
+
+        #menu {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            margin-left: 400px;
+            width: 80px;
+        }
+
+        #menu ul li a {
+            display: block;
+            margin: 5px 0;
+            font-size: 14px;
+            color: #333;
+            width: 80px;
+            height: 50px;
+            line-height: 50px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        #menu ul li a:hover,
+        #menu ul li a.current {
+            color: white;
+            background-color: #0088bb;
+        }
+
+        /*ie6 hack*/
+        * html, * html body {
+            /*消除ie6 闪跳*/
+            background-image: url(about:blank);
+            background-attachment: fixed;
+        }
+
+        * html #menu {
+            /*position: fixed; */ /*兼容IE6的 fixed bug 的 hack写法*/
+            position: absolute;
+            top: expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop) + 100 +'px');
+
+        }
+    </style>
+    <!--<script src="http://how2j.cn/study/js/jquery/2.0.0/jquery.min.js"></script>-->
+    <script>
+
+        //根据class name 获取元素
+        function getByClassName(parent, cls) {
+            var res = [];
+            var ele = parent.getElementsByTagName("*");//获取obj 下的所有DOM元素
+
+            for (var i = 0; i < ele.length; i++) {
+                if (ele[i].className == cls) {
+
+                    res.push(ele[i]);
+                }
+            }
+            return res;
+        }
+
+        function hasClass( obj , cls) {
+            return obj.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)"));
+
+        }
+        function removeClass(obj ,cls) {
+            if(hasClass(obj,cls)){
+                var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+                obj.className = obj.className.replace(reg,'');
+            }
+        }
+        function addClass(obj,cls) {
+            if(!hasClass(obj,cls)){
+                obj.className += "" + cls;
+            }
+        }
+
+        window.onload = function () {
+            window.onscroll = function () {
+                var top = document.documentElement ? document.documentElement.scrollTop : document.body.scrollTop;
+
+                var menus = document.getElementById('menu').getElementsByTagName('a');
+                var items = getByClassName(document.getElementById('content'), 'item');
+                var currentId = '';
+                for (var i = 0; i < items.length; i++) {
+                    var _item = items[i];
+                    var _itemTop = _item.offsetTop;
+                    if (top > _itemTop - 150) {
+                        currentId = _item.id;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (currentId) {
+                    for (var j = 0; j < menus.length; j++) {
+                        var _menu = menus[j];
+                        var _href = _menu.href.split('#');
+                        if (_href[_href.length - 1] != currentId) {
+                            removeClass(_menu,'current');
+                        } else {
+                            addClass(_menu,'current');
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="menu">
+    <ul>
+        <li><a href="#item1" class="current">1F</a></li>
+        <li><a href="#item2">2F</a></li>
+        <li><a href="#item3">3F</a></li>
+        <li><a href="#item4">4F</a></li>
+        <li><a href="#item5">5F</a></li>
+    </ul>
+
+</div>
+<div id="content">
+    <h1>修真购物</h1>
+    <div id="item1" class="item">
+        <h2>1F 男装</h2>
+        <ul>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="1.jpg" alt="/"></a></li>
+        </ul>
+    </div>
+    <div id="item2" class="item">
+        <h2>2F 女装</h2>
+        <ul>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="2.jpg" alt="/"></a></li>
+        </ul>
+        /
+    </div>
+    <div id="item3" class="item">
+        <h2>3F 鞋包</h2>
+        <ul>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="3.jpg" alt="/"></a></li>
+        </ul>
+        /
+    </div>
+    <div id="item4" class="item">
+        <h2>4F 家具</h2>
+        <ul>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="4.jpg" alt="/"></a></li>
+        </ul>
+        /
+    </div>
+    <div id="item5" class="item">
+        <h2>5F 电气</h2>
+        <ul>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+            <li><a href="#"><img src="5.jpg" alt="/"></a></li>
+        </ul>
+        /
+    </div>
+</div>
+
+<!--http://www.liuyidi.com/jquery-navScrollSpy/example/sideNav.html-->
+
+</body>
+</html>

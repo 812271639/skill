@@ -1,0 +1,219 @@
+
+<div ui-view class="ng-scope">
+    <div class="page-body ">
+        <div class=" panel panel-default">
+
+
+            <div class="panel-body " >
+                <div class=" row ">
+                    <div class="col-md-4">
+                        <div class="clearfix form-group">
+                            <label class="control-label col-md-4">昵称</label>
+
+                            <div class="col-md-8">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" maxlength="25" class="form-control" ng-model="vm.params.nickname">
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="clearfix form-group">
+                            <label class="control-label col-md-4">ID</label>
+
+                            <div class="col-md-8">
+                                <div class='input-group col-xs-12' >
+                                    <input type="text" class="form-control" ng-pattern="/^[1-9]\d{0,2}$/" ng-model="vm.params.id">
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">年级</label>
+                            <div class="col-md-8">
+                                <select class="form-control" ng-model="vm.params.grade">
+                                    <option value="">全部</option>
+                                    <option ng-repeat="(x,y) in vm.grades" value="{{x}}">{{y}}</option>
+                                </select>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class=" row ">
+                    <div class="col-md-4">
+                        <div class="clearfix form-group">
+                            <label class="control-label col-md-4">手机号</label>
+
+                            <div class="col-md-8">
+                                <div class='input-group col-xs-12' >
+                                    <input type="text" class="form-control" maxlength="14"  ng-model="vm.params.tel">
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="clearfix form-group">
+                            <label class="control-label col-md-4">邮箱</label>
+
+                            <div class="col-md-8">
+                                <div class='input-group col-xs-12' >
+                                    <input type="text" class="form-control" maxlength="25"  ng-model="vm.params.email">
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">状态</label>
+                            <div class="col-md-8">
+                                <select class="form-control" ng-model="vm.params.status">
+                                    <option value="">全部</option>
+                                    <option ng-repeat="(x,y) in vm.userStatus" value="{{x}}">{{y}}</option>
+                                </select>
+
+
+                            </div>
+                        </div></div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="clearfix form-group">
+                            <label class="control-label col-md-3">逆袭豆</label>
+                            <div class="col-md-3">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" ng-pattern="/^[1-9]\d{0,2}$/" class="form-control" ng-model="vm.params.minBeans">
+                                </div>
+
+                            </div>
+                            <div class="col-md-1">~</div>
+
+                            <div class="col-md-3">
+                                <div class="input-group col-xs-12">
+                                    <input type="text" ng-pattern="/^[1-9]\d{0,2}$/" class="form-control" ng-model="vm.params.maxBeans">
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="clearfix form-group">
+                            <label class="control-label col-md-4">所在区域</label>
+
+                            <div class="col-md-8">
+                                <div class='input-group col-xs-12' >
+                                    <input type="text" class="form-control" maxlength="14"  ng-model="vm.params.location">
+                                </div>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--按钮-->
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <button type="button" class="btn btn-success" ng-click="vm.search()">搜索</button>
+                        <button type="button" class="btn btn-danger" ng-click="vm.reset()">重置</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--模态框-->
+
+
+        <!--下半部分-->
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <strong>用户管理({{vm.userNum}})人</strong>
+            </div>
+            <div class="panel-body table-responsive">
+
+                <table class="table table-striped add-table-border">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>ID</th>
+                        <th>昵称</th>
+                        <th>邮箱</th>
+                        <th>手机号</th>
+                        <th>逆袭豆</th>
+                        <th>年级</th>
+                        <th>所在区域</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <!--ng-repeat-->
+                    <tbody>
+                    <tr ng-repeat="x in vm.userList">
+                        <td>{{$index+1}}</td>
+                        <td>{{x.id}}</td>
+                        <td>{{x.nickname}}</td>
+                        <td>{{x.email}}</td>
+                        <td>{{x.tel}}</td>
+                        <td>{{x.beans}}</td>
+                        <td>{{x.grade | gradeFilter}}</td>
+                        <td>{{x.location}}</td>
+                        <td>{{x.status | userStatusFilter}}</td>
+                        <td>
+                            <button class="btn btn-success padding" type="button" class="btn btn-sm"   ui-sref="admin.userSee({id:x.id})">查看</button>
+                            <button class="btn btn-success padding" type="button" class="btn btn-sm"
+                                ng-click="vm.changeStatus(x.id,x.status)">{{x.status | useFilter}}</button>
+                        </td>
+                        <td></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+            </div>
+
+        </div>
+        <!--翻页-->
+        <div class="row">
+            <my-page sizes="vm.params.size" pages="vm.params.page" total="vm.bigTotalItems" page-url="vm.pageUrl" ></my-page>
+        </div>
+    </div>
+</div>

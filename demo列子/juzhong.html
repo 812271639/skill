@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格相对定位</title>
+    <style tape="text/css">
+
+
+        .son{
+            text-align: center;
+            background-color: olivedrab;
+            line-height:150px;
+            border:1px dashed #cccccc;
+            padding-left:5px;
+        }
+        span{
+            text-align: left;
+            background-color: #68cdd5;
+            display:inline-block;
+            line-height:1.4em;
+            font-size:12px;
+            vertical-align:middle;}
+        .box {
+            background-color: olivedrab;
+            line-height: 150px;
+            border: 1px dashed #cccccc;
+            padding-left: 5px;
+            text-align: center;
+        }
+
+        .box .line {
+            background-color: #68cdd5;
+            display: inline-block;
+            line-height: 1.4em;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        .house {
+            display: inline-block;
+            width: 46px;
+            height: 40px;
+            background: url('css_sprites.png') -72px -10px;
+        }
+    </style>
+</head>
+<body>
+<div class="son">
+<span>这里是高度为150像素的标签内的多行文字，文字大小为12像素。
+    <br />这里是第二行，用来测试多行的显示效果。</span>
+</div>
+<img src="meinv.jpg">
+<div class="box">
+        <span class="line">
+            <span class="house"></span><br> 我的
+        </span>
+</div>
+<audio src="task7/music/gangganghao.mp3" controls="controls"></audio>
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+.review{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    background-size:100% 100%;
+}
+.reviewSize{
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 12rem;
+    min-height: 9rem;
+    background: url(../../../image/405.jpg) no-repeat;
+    background-size: cover;
+
+}
+.picturePre{
+    padding-left: 2rem;
+}
+.file {
+    position: relative;
+    display: inline-block;
+    background: #1596c7;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: white;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+.file:hover {
+    background: #0874c7;
+    border-color: #78C3F3;
+    color: white;
+    text-decoration: none;
+}
+.imageName{
+    width: 100px;
+    display: inline-block;
+    word-wrap: break-word;
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angular操作DOM</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.1/angular-animate.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-sanitize/1.6.1/angular-sanitize.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-ui-bootstrap/2.4.0/ui-bootstrap-tpls.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        html {
+            font-size: 625%;
+            background-color: #e9e9e9;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mainSign {
+            max-width: 6.4rem;
+            padding: 1.7rem .4rem 2.8rem .4rem;
+            margin: 0 auto;
+            background-color: #009688ab;
+        }
+
+        .signDay {
+            padding: .2rem .2rem 0 .2rem;
+            background-color: #fcd32d;
+            display: inline-block;
+        }
+
+        .myDay, .myToday, .myOldDay {
+            display: inline-block;
+            margin: .03rem;
+            text-align: center;
+            font-size: .36rem;
+            width: .65rem;
+            line-height: .65rem;
+            color: #afccf8;
+            background-color: #fffbea;
+            border-radius: 5px;
+        }
+
+        .myWeek {
+            display: inline-block;
+            text-align: center;
+            margin: 0 .007rem;
+            width: .65rem;
+            line-height: .65rem;
+            font-size: .2rem;
+        }
+
+        .headWeek {
+            padding: 0 .15rem;
+            background-color: #fcea6b;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .dayContent {
+            background-color: #fcba1a;
+            border-radius: 5px;
+        }
+
+        .Container {
+            padding: .05rem .1rem .1rem .1rem;
+        }
+
+        .totalSign {
+            text-align: right;
+            line-height: 0.4rem;
+            font-size: .175rem;
+        }
+
+        .redNum {
+            color: red;
+        }
+
+        .blueNum {
+            color: #03A9F4;
+        }
+
+        .signBtn {
+            text-align: center;
+            padding: .15rem 0;
+        }
+
+        .signButton {
+            padding: .06rem .7rem;
+            font-size: .33rem;
+            background-color: #ee7600;
+            color: white;
+        }
+
+        @media (min-width: 768px) {
+            .modal-dialog {
+                float: left;
+                margin: 0;
+            }
+        }
+
+        .modal-body {
+            display: inline-block;
+            float: left;
+            padding: 0;
+        }
+
+        .modal-content {
+            border: none;
+        }
+
+        .center {
+            width: 5.65rem;
+            height: 5.95rem;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+        }
+
+        .blue {
+            background-color: #03A9F4;
+        }
+    </style>
+</head>
+<body ng-controller="signIn">
+<div class="signDay">
+    <div class="totalSign">当前累计签到 <span class="redNum">3</span>天</div>
+    <div class="dayContent">
+        <div class="headWeek">
+            <ul>
+                <li class="myWeek"><span class="blueNum">周日</span></li>
+                <li class="myWeek">周一</li>
+                <li class="myWeek">周二</li>
+                <li class="myWeek">周三</li>
+                <li class="myWeek">周四</li>
+                <li class="myWeek">周五</li>
+                <li class="myWeek"><span class="blueNum">周六</span></li>
+            </ul>
+        </div>
+        <div class="Container" id="Container"></div>
+    </div>
+    <div class="signBtn">
+        <button class="btn signButton" data-dismiss="modal" data-toggle="modal"
+                data-target="#Modal"> 签到
+        </button>
+    </div>
+</div>
+<script>
+    angular.module('myApp', [])
+        .controller('signIn', function ($scope) {
+            console.log(angular.element('.myDay').text());
+            var arr = [1, 3, 5];
+            var day = angular.element('.myDay');
+            angular.forEach(day, function (d, index, array) {
+                angular.forEach(arr, function (a, index, array) {
+                    if (a == d.innerHTML) {
+                        angular.element(d).addClass('blue');
+                    }
+                });
+            });
+
+            //                var day = $('.myDay');
+            //                $(day[3]).addClass('blue');                   //jqurey方法添加class
+            //                angular.element(day[3]).addClass('blue');      //angular方法添加class
+        });
+
+</script>
+<script>
+//    addClass();//-为每个匹配的元素添加指定的样式类名
+//    after();//-在匹配元素集合中的每个元素后面插入参数所指定的内容，作为其兄弟节点
+//    append();//-在每个匹配元素里面的末尾处插入参数内容
+//    attr();//- 获取匹配的元素集合中的第一个元素的属性的值
+//    bind();//- 为一个元素绑定一个事件处理程序
+//    children();// - 获得匹配元素集合中每个元素的子元素，选择器选择性筛选
+//    clone();//-创建一个匹配的元素集合的深度拷贝副本
+//    contents();//-获得匹配元素集合中每个元素的子元素，包括文字和注释节点
+//    css(); //- 获取匹配元素集合中的第一个元素的样式属性的值
+//    data();//-在匹配元素上存储任意相关数据
+//    detach();//-从DOM中去掉所有匹配的元素
+//    empty();//-从DOM中移除集合中匹配元素的所有子节点
+//    eq();//-减少匹配元素的集合为指定的索引的哪一个元素
+//    find(); //- 通过一个选择器，jQuery对象，或元素过滤，得到当前匹配的元素集合中每个元素的后代
+//    hasClass();//-确定任何一个匹配元素是否有被分配给定的（样式）类
+//    html();//-获取集合中第一个匹配元素的HTML内容
+//    next(); //- 取得匹配的元素集合中每一个元素紧邻的后面同辈元素的元素集合。如果提供一个选择器，那么只有紧跟着的兄弟元素满足选择器时，才会返回此元素
+//    on(); //- 在选定的元素上绑定一个或多个事件处理函数
+//    off();//- 移除一个事件处理函数
+//    one();//- 为元素的事件添加处理函数。处理函数在每个元素上每种事件类型最多执行一次
+//    parent(); //- 取得匹配元素集合中，每个元素的父元素，可以提供一个可选的选择器
+//    prepend();//-将参数内容插入到每个匹配元素的前面（元素内部）
+//    prop();//-获取匹配的元素集中第一个元素的属性（property）值
+//    ready();//-当DOM准备就绪时，指定一个函数来执行
+//    remove();//-将匹配元素集合从DOM中删除。（同时移除元素上的事件及 jQuery 数据。）
+//    removeAttr();//-为匹配的元素集合中的每个元素中移除一个属性（attribute）
+//    removeClass();//-移除集合中每个匹配元素上一个，多个或全部样式
+//    removeData();//-在元素上移除绑定的数据
+//    replaceWith();//-用提供的内容替换集合中所有匹配的元素并且返回被删除元素的集合
+//    text();//-得到匹配元素集合中每个元素的合并文本，包括他们的后代
+//    toggleClass();//-在匹配的元素集合中的每个元素上添加或删除一个或多个样式类,取决于这个样式类是否存在或值切换属性。即：如果存在（不存在）就删除（添加）一个类
+//    triggerHandler();// -为一个事件执行附加到元素的所有处理程序
+//    unbind();//- 从元素上删除一个以前附加事件处理程序
+//    val();//-获取匹配的元素集合中第一个元素的当前值
+//    wrap();//-在每个匹配的元素外层包上一个html元素
+</script>
+<script>
+    (function () {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth() + 1;
+        var day = today.getDate();
+        var startDay = new Date(year, month - 1, 1).getDay();
+        var nDays = new Date(year, month, 0).getDate();
+        var numRow = 0;
+        var i;
+        var html = '';
+        html += '<div>';
+        html += '<ul>';
+        for (i = 0; i < startDay; i++) {
+            html += '<li class="myOldDay"></li>';
+            numRow++;
+        }
+
+        for (var j = 1; j <= nDays; j++) {
+            if (j == day) {
+//                html += '<td style="color:red" >';
+                html += '<li class="myToday">';
+                html += j;
+            } else {
+                html += '<li class="myDay">';
+                html += j;
+            }
+
+            html += '</li>';
+            numRow++;
+            if (numRow == 7) {
+                numRow = 0;
+                html += '</ul><ul>';
+            }
+        }
+        html += '</div>';
+        $('#Container').append(html)
+    })();
+</script>
+</body>
+</html>

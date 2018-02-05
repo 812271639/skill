@@ -1,0 +1,71 @@
+<header>
+    <div class="grades" ng-click="vm.gradeClick()">
+        <span class="typeWord">年级</span>
+    </div>
+    <div class="midLine"></div>
+    <div class="subjects" ng-click="vm.subjectClick()">
+        <span class="typeWord">科目</span>
+    </div>
+    <ul class="gradeList" ng-show="vm.gradeList">
+        <li class="grade" ng-repeat="x in vm.grades" ng-click="vm.class(x.num)" ng-bind="x.grade"></li>
+    </ul>
+    <ul class="subjectList" ng-show="vm.subjectList">
+        <li class="subject" ng-repeat="x in vm.subjects" ng-click="vm.subject(x.num)" ng-bind="x.subject"></li>
+    </ul>
+</header>
+<div class="videoBanner">
+    <div>
+        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in vm.slides track by slide.id" index="slide.id">
+                <img class="bannerImg" ng-click="vm.bannerClick(slide.vid,slide.url)" ng-src="{{slide.image}}">
+            </div>
+        </div>
+    </div>
+</div>
+<main>
+    <div class="videoContent" ng-repeat="x in vm.card">
+        <div class="teacherMessage">
+            <div class="headImg">
+                <img class="manHeadImg" ng-src="{{x.teacherAvatar}}" alt="">
+            </div>
+            <div>
+                <div class="teacherName"><strong ng-bind="x.teacherName"></strong></div>
+                <div class="shortWord">
+                    <p synopsis-pucker ng-model="num[$index]">
+                        <span ng-bind="x.intro|textLimit:num[$index]?1000:23"></span>　
+                        <a class="more-text" ng-bind="num[$index]?'收起':'更多'"></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="videos">
+            <div class="videoCover">
+                <img class="cover" ng-src="{{x.cover}}"/></div>
+            <div class="contentText">
+                <img class="camera" src="../image/videoImg/camera.png" alt="">
+                <div class="videoTitle" ng-bind="x.title"></div>
+                <div class="immediateSee">
+                    <div class="min" ng-bind="x.duration | secondFilter"></div>
+                    <div class="seeVideo" ui-sref="videoSee({vid:x.id})">立即观看</div>
+                </div>
+            </div>
+            <div class="videoLike">
+                <div class="videoGood">
+                    <span class="fa fa-thumbs-up" ng-class="{'yellow':x.upvoteStatus == 1  }"></span><span
+                        class="numMargin" ng-bind="x.upvote"></span>
+                    <span class="fa fa-heart" ng-class="{'red':x.collectionStatus == 1}"></span>
+                    <span ng-bind="x.collection"></span>
+                </div>
+                <div class="videoTime">
+              <span ng-bind="x.publishTime | timeFilter"></span> <span class="fa fa-chevron-right"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="foot">
+    <div class="noMore" ng-show="vm.noMore">没有了，别点啦！
+        <div class="triangle"></div>
+    </div>
+    <div class="clickMore" ng-click="vm.clickMore()" ng-bind="vm.loadMore"></div>
+</div>

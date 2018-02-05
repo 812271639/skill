@@ -1,0 +1,220 @@
+
+header{
+    position: fixed;
+    top: 0;
+    /*max-width: 6.4rem;*/
+    width: 100%;
+    background-color: #ffe57e;
+    padding: .17rem;
+    text-align: center;
+    z-index:999;
+}
+.grades,.subjects{
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+    box-sizing:border-box;
+    width: calc((100% - .42rem)/2);
+    z-index: 999;
+}
+.typeWord{
+    font-size: 26px;
+    color: #e3a51c;
+    text-shadow: 1px 1px 1px black;
+    cursor: pointer;
+}
+.midLine{
+    height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0;
+    border-left: solid 2px black;
+}
+.subjectList,.gradeList{
+    overflow: hidden;
+    padding: .3rem 0.15rem 0;
+    background-color: #fcd32d;
+    border-top: solid 2px #fcc120;
+}
+.subject,.grade{
+    float: left;
+    width: 30%;
+    margin-left: 2.5%;
+    margin-bottom: 1%;
+    font-size: .35rem;
+    color: #93672a;
+    border-radius: 5px;
+    cursor: pointer;
+    border-top: solid 1px #fdc738;
+    background-color: #ffe57e;
+}
+.bannerImg {
+    /*width: 6.4rem;*/
+    width: 100%;
+    height: 3rem;
+    margin-top: .76rem;
+}
+main{
+    background-color: #fbf3d0;
+}
+.teacherMessage{
+    padding: .15rem 0;
+    overflow: hidden;
+
+}
+.headImg{
+    float: left;
+    overflow: hidden;
+    margin-right: 5%;
+    background: url("../image/videoImg/yang.jpg");
+    background-size: cover;
+    border-radius: 50%;
+}
+.manHeadImg{
+    border-radius: 50%;
+    width: .77rem;
+    height: .77rem;
+
+}
+.teacherName{
+    font-size: .26rem;
+}
+.shortWord{
+    text-align: left;
+    font-size: .28rem;
+    overflow: hidden;
+    float: left;
+    width: calc(93% - .77rem );
+}
+.more-text{
+    margin-left: -.25rem;
+    text-decoration: none !important;
+    color: #00BCD4 !important;
+}
+.video{
+    width: 100%;
+    border-radius: 5px;
+}
+.videoContent{
+    padding: 0 .3rem;
+    margin-top: .2rem;
+    background-color: white;
+}
+.videos{
+    position: relative;
+}
+
+.cover {
+    width: 100%;
+    max-height: 3.5rem;
+    border-radius: 4px;
+}
+
+.camera{
+    position: absolute;
+    top: .15rem;
+    right: .15rem;
+    max-width: .57rem;
+}
+.immediateSee{
+    position: absolute;
+    bottom: 1rem;
+    right: 50%;
+    transform: translate(50%,0);
+}
+.seeVideo{
+    box-sizing: border-box;
+    padding: .125rem .36rem;
+    font-size: .25rem;
+    color: white;
+    border: solid 1px white;
+}
+.videoTitle{
+    position: absolute;
+    text-align: center;
+    top: 15%;
+    right: 50%;
+    transform: translate(50%,0);
+    margin: auto;
+    width: 100%;
+    padding: .125rem .36rem;
+    font-size: .25rem;
+    color: white;
+    box-sizing:border-box;
+}
+.min{
+    text-align: center;
+    font-size: .2rem;
+    color: #ffffff;
+}
+.videoLike{
+    font-size: 0;
+}
+.videoGood{
+    display: inline-block;
+    font-size: .18rem;
+    padding: .13rem 0;
+    width: 50%;
+    color: #b8b8b8;
+}
+.red{
+    color: red;
+    font-weight: 800;
+}
+.yellow{
+    color: #fcbb1c;
+}
+
+.numMargin{
+    margin-right: .3rem;
+    margin-left: .05rem;
+}
+
+.videoTime{
+    display: inline-block;
+    width: 50%;
+    font-size: .18rem;
+    text-align: right;
+    color: #b8b8b8;
+}
+.foot{
+    position: relative;
+    background-color: white;
+    margin-top: 1rem;
+}
+.clickMore{
+    text-align: center;
+    padding: .1rem 0;
+    margin-top: .2rem;
+    background-color: #ececec4f;
+}
+.noMore{
+    position: absolute;
+    left: 30%;
+    bottom: .7rem;
+    text-align: center;
+    width: 40%;
+    padding: .2rem 0;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fffefb;
+    border: 1px solid #e6d112;
+}
+.triangle{
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -.2rem;
+    left: 42%;
+    border-left: .2rem solid transparent;
+    border-right: .2rem solid transparent;
+    border-top: .2rem solid #e6d11294;
+}
+/*video::-webkit-media-controls-play-button {*/
+    /*-webkit-appearance:none;*/
+    /*background-color: red;*/
+    /*color: white;*/
+/*}*/
+/*input::-webkit-media-controls-play-button{*/
+    /*color: white;*/
+/*}*/

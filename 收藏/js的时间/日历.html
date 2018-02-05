@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width initial-scale=1 user-scale=no">
+    <style type="text/css">
+        html {
+            font-size: 625%;
+            background-color: #e9e9e9;
+        }
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .mainSign {
+            max-width: 6.4rem;
+            padding: 1.7rem .4rem 2.8rem .4rem;
+            margin: 0 auto;
+            background-color: #009688ab;
+        }
+        .signDay {
+            margin: .3rem auto;
+            padding: .2rem .2rem 0 .2rem;
+            background-color: #fcd32d;
+            display: inline-block;
+        }
+        .myDay, .myToday, .myOldDay{
+            display: inline-block;
+            margin: .03rem;
+            text-align: center;
+            font-size: .36rem;
+            width: .65rem;
+            line-height: .65rem;
+            color: #afccf8;
+            background-color: #fffbea;
+            border-radius: 5px;
+        }
+        .myWeek{
+            display: inline-block;
+            text-align: center;
+            margin: 0 .007rem;
+            width: .65rem;
+            line-height: .65rem;
+            font-size: .2rem;
+        }
+        .headWeek{
+            padding: 0 .15rem;
+            background-color: #fcea6b;
+            border-radius: 5px 5px 0 0;
+        }
+        .dayContent{
+            background-color: #fcba1a;
+            border-radius: 5px;
+        }
+        .Container{
+            padding: .05rem .1rem .1rem .1rem;
+        }
+        .totalSign{
+            text-align: right;
+            line-height: 0.4rem;
+            font-size: .175rem;
+        }
+        .redNum{
+            color: red;
+        }
+        .blueNum{
+            color: #7697b3;
+        }
+        .signBtn{
+            text-align: center;
+            padding: .15rem 0;
+        }
+        .signButton{
+            padding: .06rem .7rem;
+            font-size: .33rem;
+            background-color: #ee7600;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<main class="mainSign">
+<div class="signDay">
+    <div class="totalSign">当前累计签到 <span class="redNum">3</span>天</div>
+    <div class="dayContent">
+        <div class="headWeek">
+            <ul>
+                <li class="myWeek"><span class="blueNum">周日</span></li>
+                <li class="myWeek">周一</li>
+                <li class="myWeek">周二</li>
+                <li class="myWeek">周三</li>
+                <li class="myWeek">周四</li>
+                <li class="myWeek">周五</li>
+                <li class="myWeek"><span class="blueNum">周六</span></li>
+            </ul>
+        </div>
+            <div class="Container" id="Container"></div>
+    </div>
+    <div class="signBtn">
+        <button class="btn  signButton"> 签到</button>
+    </div>
+
+</div>
+</main>
+<script type="text/javascript">
+    //实现日历
+    (function () {
+        var today = new Date();
+        var year = today.getFullYear();      //本年
+        var month = today.getMonth() + 1;    //本月
+        var day = today.getDate();           //本日
+        var startDay = new Date(year, month - 1, 1).getDay();//本月第一天是星期几（距星期日离开的天数）
+        var nDays = new Date(year, month, 0).getDate();  //本月有多少天(即最后一天的getDate()，但是最后一天不知道，我们可以用“上个月的0来表示本月的最后一天”)
+        //开始画日历
+        var numRow = 0;  //记录行的个数，到达7的时候创建tr
+        var i;        //日期
+        var html = '';
+        html += '<div>';
+        //第一行
+        html += '<ul>';
+        for (i = 0; i < startDay; i++) {
+            html += '<li class="myOldDay"></li>';
+            numRow++;
+        }
+
+        for (var j = 1; j <= nDays; j++) {
+            if (j == day) {
+//                html += '<td style="color:red" >';  //如果是今天则显示红色
+                html += '<li class="myToday">';  //如果是今天则显示红色
+                html += j;    //开始加日期
+            } else {
+                html += '<li class="myDay">';
+                html += j;    //开始加日期
+            }
+            html += '</li>';
+            numRow++;
+            if (numRow == 7) {  //如果已经到一行（一周）了，重新创建tr
+                numRow = 0;
+                html += '</ul><ul>';
+            }
+        }
+
+        html += '</div>';
+        document.getElementById("Container").innerHTML = html;
+    })();
+
+</script>
+</body>
+</html>
