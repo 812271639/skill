@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="test">
+        <span>hello world 1</span>
+    </div>
+    <div class="test">
+        <span>hello world 1</span>
+    </div>
+    <div class="test">
+        <span>hello world 1</span>
+    </div>
+    <div class="test">
+        <span>hello world 1</span>
+    </div>
+
+    <script>
+        const divStyle = {
+            marginTop: '30px',
+            fontSize: '30px',
+            color: 'red',
+            paddingTop: '30px'
+
+        }
+        function setStyle(element, styleObject) {
+             element.forEach(function (item, index) {
+                console.log(item);
+                for (var key in styleObject) {
+                    item.style[key] = styleObject[key];
+                }
+            });  
+        }
+
+        var div = document.getElementsByClassName('test');
+            div = Array.prototype.slice.call(div);
+        //    var span = div.getElementsByTagName('span')[0];
+        setStyle(div, divStyle);
+    </script>
+
+</body>
+
+</html>
