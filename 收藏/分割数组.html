@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function chunk(arr,size){
+        var arr1=[];
+        for(var i=0;i<arr.length;i=i+size){
+            var arr2 = arr;
+            arr1.push(arr2.slice(i,i+size));
+        }
+        return arr1;
+    }
+    chunk([1,2,3,4,5,6,7],2)
+</script>
+</body>
+</html>

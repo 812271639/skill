@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    //angular.isArray是否是数组
+    console.log(angular.isArray([])); //true
+    console.log(angular.isArray([1,2,1,3])); //true
+    //angular.isDate是否是日期
+    console.log(angular.isDate('2012-12-02')); //false
+    console.log(angular.isDate(new Date)); //true
+    //angular.isDefined引用对象是否定义
+    console.log(angular.isDefined(undefined));//false
+    console.log(angular.isDefined([]));//true
+    //angular.isElement确定引用是否为DOM元素（或包装的jQuery元素）。
+    var oBody = document.getElementsByTagName('body')[0];
+    console.log(angular.isElement(oBody));
+    console.log(angular.isElement([]));
+    //angular.isFunction引用对象是否是函数
+    var fn = new Function;
+    console.log(angular.isFunction(new Function));//true
+    console.log(angular.isFunction({}));//false
+    //angular.isNumber
+    console.log(angular.isNumber(5));//true
+    console.log(angular.isNumber([1,5,6]));//false
+    //angular.isObject确定引用是否为对象。与JavaScript中的typeof不同，null不被视为对象。请注意，JavaScript数组是对象
+    console.log(angular.isObject([]));//true
+    console.log(angular.isObject(null));//false
+    //angular.isString引用对象是否是字符串
+    console.log(angular.isString('sjdklfl'));//true
+    console.log(angular.isString(123));//false
+    //angular.isUndefined引用对象是否是Undefined
+    console.log(angular.isUndefined(undefined));//true
+    console.log(angular.isUndefined(123));//false
+</script>
+</body>
+</html>
