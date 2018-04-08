@@ -6,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+    /* .test2{ color: red; font-size: 25px; margin: 30px; } */
+    </style>
 </head>
 
 <body>
+    
     <div class="test">
         <span>hello world 1</span>
     </div>
     <div class="test">
         <span>hello world 1</span>
     </div>
-    <div class="test">
+    <div class="test2">
         <span>hello world 1</span>
     </div>
-    <div class="test">
+    <div class="test3">
         <span>hello world 1</span>
     </div>
 
@@ -26,11 +30,10 @@
         const divStyle = {
             marginTop: '30px',
             fontSize: '30px',
-            color: 'red',
+            // color: 'red',
             paddingTop: '30px'
 
         }
-
         function setStyle(element, styleObject) {
             element.forEach(function (item, index) {
                 console.log(item);
@@ -41,11 +44,9 @@
         }
 
         var div = document.getElementsByClassName('test');
-        // div = Array.prototype.slice.call(div);
-           div = Array.from(div);
+        div = Array.prototype.slice.call(div);
+        //    div = Array.from(div);
         setStyle(div, divStyle);
-
-
         //slice的内部实现
         //     Array.prototype.slice = function(start,end){  
         //       var result = new Array();  
@@ -61,6 +62,45 @@
         // let arr1 = Array.prototype.slice.call(arrayLike);
         // let arr2 = [].slice.call(arrayLike);
         // let arr3 = Array.from(arrayLike);
+//动态添加css
+function addCss(css){
+    var style = document.createElement('style');
+    style.type = 'text/css';
+    style.rel = 'stylesheet';
+    style.textContent = css;
+  
+    // style.innerHTML = css;
+    // style.innerText = css;
+    // style.appendChild(document.createTextNode(css));
+    // var head = document.getElementsByTagName('head')[0];
+    // head.appendChild(style);
+    document.body.appendChild(style);
+}
+//innerText是IE的私有实现,但也被除FF之外的浏览器所实现,textContent 则是w3c的标准API,现在IE9也实现了。
+//它们区别只要有两点
+//innerText不能返回script标签里面的源码，textContent则可以，在不支持textContent的浏览器，我们可以使用text与innerHTML代替。
+//textContent会保留空行与空格与换行符，innerText则只会保留换行符。
+//innerHTML可以识别标签，而createTextNode会将内容全部转化为字符串
+//innerHTML和innerText
+//它们都会把元素内内容替换掉，区别在于： innerHTML 会把替换内容里的 HTML 标记解释执行。 innerText 会把替换内容里的 HTML 标记原样输出而不执行
+//例如有如下代码：
+//var content = "<b>这是对innerHTML和innerText的测试</b>" ; // 假设 e 为网页内某元素
+//e.innerHTML = content ; // 显示结果为  这是对innerHTML和innerText的测试
+//e.innerText = content ; // 显示结果为  <b>这是对innerHTML和innerText的测试</b>
+
+const styles = '.test2{ color: red; font-size: 25px; margin: 30px; }'
+addCss(styles );
+
+
+function loadStyle(url){
+var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = url;
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(link);
+}
+
     </script>
 
 </body>

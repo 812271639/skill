@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <div class="test">
+                <span>1111</span>
+                <span class="spanClass">1111</span>
+                <span>1111</span>
+                <span>1111</span>
+                <span>1111</span>
+            </div>
+            <div  class="test">
+                <span>2222</span>
+                <span>2222</span>
+                <span>2222</span>
+                <span>2222</span>
+            </div>
+        <div  class="test"></div>
+
+
+
+    <script>
+    
+var div = document.getElementsByClassName('test');
+var span1 = div[0].innerHTML;
+var span2 = div[0].getElementsByTagName('span');
+var span3 = div[0].children;
+
+console.log(div);
+// console.log(span1);
+
+// console.log(span2[1].className);
+// var span3 = div[0].children;
+// var span4 = div[0].childNodes;
+
+// console.log(span3);
+// console.log(span4);
+
+// console.log(span3.length);
+// console.log(span4.length);
+div =  Array.prototype.slice.call(div);
+console.log(div);
+div.forEach(function(item, index){
+    console.log(item.innerHTML == '');
+});
+
+</script>
+    
+</body>
+</html>
